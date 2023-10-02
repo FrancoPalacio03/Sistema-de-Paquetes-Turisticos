@@ -4,12 +4,12 @@ package Entidades;
 
 public class Paquete {
     private int idPaquete;
-    private Cuidad origen;
-    private Cuidad destino;
+    private Ciudad origen;
+    private Ciudad destino;
     private Alojamiento alojamiento;
     private Pasaje pasaje;
 
-    public Paquete(int idPaquete, Cuidad origen, Cuidad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
         this.idPaquete = idPaquete;
         this.origen = origen;
         this.destino = destino;
@@ -17,7 +17,7 @@ public class Paquete {
         this.pasaje = pasaje;
     }
 
-    public Paquete(Cuidad origen, Cuidad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
         this.origen = origen;
         this.destino = destino;
         this.alojamiento = alojamiento;
@@ -48,11 +48,11 @@ public class Paquete {
         this.idPaquete = idPaquete;
     }
 
-    public void setOrigen(Cuidad origen) {
+    public void setOrigen(Ciudad origen) {
         this.origen = origen;
     }
 
-    public void setDestino(Cuidad destino) {
+    public void setDestino(Ciudad destino) {
         this.destino = destino;
     }
 
