@@ -28,11 +28,11 @@ public class Paquete {
         return idPaquete;
     }
 
-    public Cuidad getOrigen() {
+    public Ciudad getOrigen() {
         return origen;
     }
 
-    public Cuidad getDestino() {
+    public Ciudad getDestino() {
         return destino;
     }
 
