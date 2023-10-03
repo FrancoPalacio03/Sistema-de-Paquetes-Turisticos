@@ -4,6 +4,8 @@
  */
 package paquetesturisticos;
 
+import Vistas.Login;
+
 /**
  *
  * @author franc
@@ -14,7 +16,10 @@ public class PaquetesTuristicos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Login re=new Login();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
     }
     
 }
