@@ -13,7 +13,7 @@ public class Conexion {
     PreparedStatement ps = null;
     ResultSet rs = null;
     
-    private static final String url = ("jdbc:mariadb://localhost:3306/universito");
+    private static final String url = ("jdbc:mariadb://localhost:3306/despegar");
     private static final String usuario = "root";
     private static final String password = "";
     private static Conexion conexion = null;
