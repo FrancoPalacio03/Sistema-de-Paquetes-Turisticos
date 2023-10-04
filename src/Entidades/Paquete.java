@@ -8,6 +8,9 @@ public class Paquete {
     private Ciudad destino;
     private Alojamiento alojamiento;
     private Pasaje pasaje;
+    
+    public Paquete(){
+    }
 
     public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
         this.idPaquete = idPaquete;
