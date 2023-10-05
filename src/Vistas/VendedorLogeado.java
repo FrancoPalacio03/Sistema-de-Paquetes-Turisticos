@@ -26,6 +26,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         Salir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
@@ -62,7 +63,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             }
         });
 
-        Tree.setBackground(new java.awt.Color(51, 51, 51));
+        Tree.setBackground(new java.awt.Color(51, 102, 255));
         Tree.setBorder(null);
         Tree.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
         Tree.setForeground(new java.awt.Color(51, 51, 51));
@@ -82,6 +83,15 @@ public class VendedorLogeado extends javax.swing.JFrame {
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
         treeNode1.add(treeNode2);
         Tree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        Tree.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                TreeAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane2.setViewportView(Tree);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -144,6 +154,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_ViajeActionPerformed
 
+    private void TreeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TreeAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TreeAncestorAdded
+
     /**
      * @param args the command line arguments
      */
@@ -186,6 +200,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JButton Viaje;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }

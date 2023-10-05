@@ -4,17 +4,21 @@
  */
 package Vistas;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author franc
  */
 public class RegistroAlojamiento extends javax.swing.JFrame {
-
+private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form RegistroAlojamiento1
      */
     public RegistroAlojamiento() {
         initComponents();
+        cargarTabla();
+        
     }
 
     /**
@@ -142,6 +146,14 @@ public class RegistroAlojamiento extends javax.swing.JFrame {
         });
     }
 
+    private void cargarTabla(){
+        modelo.addColumn("Alojamiento");
+         modelo.addColumn("Servicios incluidos");
+         modelo.addColumn("Temporada");
+          modelo.addColumn("Precio diario");
+          jTable1.setModel(modelo);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
