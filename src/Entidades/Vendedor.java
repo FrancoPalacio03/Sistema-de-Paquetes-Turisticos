@@ -2,39 +2,35 @@
 package Entidades;
 
 
-public class Cliente {
+public class Vendedor {
     private int id;
     private String correo;
+    private String pass;
     private String nombre;
     private String apellido;
     private int dni;
-    private Paquete paquete;
+    private int cont;
 
-    public Cliente() {
+    public Vendedor() {
     }
     
-    public Cliente(int id, String correo, String nombre, String apellido, int dni, Paquete paquete) {
+    public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni) {
         this.id = id;
         this.correo = correo;
+        this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.paquete = paquete;
+        this.cont=0;
     }
 
-    public Cliente(String correo, String nombre, String apellido, int dni) {
+    public Vendedor(String correo, String pass, String nombre, String apellido, int dni) {
         this.correo = correo;
+        this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-    }
-
-    public Cliente(int id, String correo, String nombre, String apellido, int dni) {
-        this.id = id;
-        this.correo = correo;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.dni = dni;
+        this.cont=0;
     }
 
     public int getId() {
@@ -43,6 +39,10 @@ public class Cliente {
 
     public String getCorreo() {
         return correo;
+    }
+
+    public String getPass() {
+        return pass;
     }
 
     public String getNombre() {
@@ -57,8 +57,8 @@ public class Cliente {
         return dni;
     }
 
-    public Paquete getPaquete() {
-        return paquete;
+    public int getCont() {
+        return cont;
     }
 
     public void setId(int id) {
@@ -67,6 +67,10 @@ public class Cliente {
 
     public void setCorreo(String correo) {
         this.correo = correo;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
     }
 
     public void setNombre(String nombre) {
@@ -81,13 +85,13 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public void setPaquete(Paquete paquete) {
-        this.paquete = paquete;
+    public void setCont(int cont) {
+        this.cont = cont;
     }
-
+   
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", correo=" + correo + ", pass=" + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return "Cliente{" + "id=" + id + ", correo=" + correo + ", pass=" + pass + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
     }
     
     

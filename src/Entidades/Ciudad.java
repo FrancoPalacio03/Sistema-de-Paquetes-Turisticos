@@ -15,24 +15,25 @@ public class Ciudad {
     private String pais;
     private boolean estado;
     private String provincia;
-
+    private String urlImagen;
     
     public Ciudad() {
     }
-
-    public Ciudad(int idCiudad, String nombre, String pais, boolean estado, String provincia) {
+    public Ciudad(int idCiudad, String nombre, String pais, boolean estado, String provincia, String urlImagen) {
         this.idCiudad = idCiudad;
         this.nombre = nombre;
         this.pais = pais;
         this.estado = estado;
         this.provincia = provincia;
+        this.urlImagen= urlImagen;
     }
 
-    public Ciudad(String nombre, String pais, boolean estado, String provincia) {
+    public Ciudad(String nombre, String pais, boolean estado, String provincia, String urlImagen) {
         this.nombre = nombre;
         this.pais = pais;
         this.estado = estado;
         this.provincia = provincia;
+        this.urlImagen= urlImagen;
     }
 
     public int getIdCiudad() {
@@ -55,6 +56,10 @@ public class Ciudad {
         return pais;
     }
 
+    public String getUrlImagen() {
+        return urlImagen;
+    }
+    
     public void setPais(String pais) {
         this.pais = pais;
     }
@@ -75,6 +80,10 @@ public class Ciudad {
         this.provincia = provincia;
     }
 
+    public void setUrlImagen(String urlImagen) {
+        this.urlImagen = urlImagen;
+    }
+    
     @Override
     public String toString() {
         return "Ciudad{" + "idCiudad=" + idCiudad + ", nombre=" + nombre + ", pais=" + pais + ", estado=" + estado + ", provincia=" + provincia + '}';
