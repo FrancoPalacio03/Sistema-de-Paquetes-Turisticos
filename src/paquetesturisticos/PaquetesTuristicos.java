@@ -4,7 +4,9 @@
  */
 package paquetesturisticos;
 
+import AccesoADatos.Conexion;
 import Vistas.Login;
+import java.sql.Connection;
 
 /**
  *
@@ -16,6 +18,7 @@ public class PaquetesTuristicos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Conexion.getConexion();
         Login re=new Login();
         re.pack();
         re.setVisible(true);
