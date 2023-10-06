@@ -11,24 +11,16 @@ import java.util.ArrayList;
 
 /**
  *
- * @author franc
+ * @author diakz
  */
-public class RegistroCiudadDestino extends javax.swing.JFrame {
+public class FormularioCiudad extends javax.swing.JFrame {
 private Connection conb= Conexion.getConexionPaises();
     /**
-     * Creates new form RegistroCiudad
+     * Creates new form FormularioCiudad
      */
-    public RegistroCiudadDestino() {
+    public FormularioCiudad() {
         initComponents();
-        combopais.removeAllItems();
-        CiudadData awp=new CiudadData(conb);
-       ArrayList<String> paises = new ArrayList();
-      paises= (ArrayList<String>) awp.listarPaises();
-       for(String elemento:paises){
-           combopais.addItem(elemento);
-       }
-//       RegistroCiudadDestino asd=new RegistroCiudadDestino();
-//       asd.setLocationRelativeTo(null);
+        cargarCombo();
     }
 
     /**
@@ -45,6 +37,8 @@ private Connection conb= Conexion.getConexionPaises();
         Siguiente = new javax.swing.JButton();
         combopais = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        combopais1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +53,7 @@ private Connection conb= Conexion.getConexionPaises();
                 CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 210, 130, 50));
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 130, 50));
 
         Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Siguiente.setText("Siguiente");
@@ -69,7 +63,7 @@ private Connection conb= Conexion.getConexionPaises();
                 SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 210, 130, 50));
+        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 130, 50));
 
         combopais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         combopais.setBorder(null);
@@ -78,26 +72,38 @@ private Connection conb= Conexion.getConexionPaises();
                 combopaisActionPerformed(evt);
             }
         });
-        jPanel1.add(combopais, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 280, 40));
+        jPanel1.add(combopais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 40));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Seleccione Ciudad Destino");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 340, -1));
+        jLabel1.setText("Seleccione la Ciudad");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 340, -1));
+
+        combopais1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combopais1.setBorder(null);
+        combopais1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combopais1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 280, 40));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Seleccione Pais ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 340, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 339, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 351, Short.MAX_VALUE)
         );
 
         pack();
@@ -122,9 +128,12 @@ private Connection conb= Conexion.getConexionPaises();
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
-       
-        
+
     }//GEN-LAST:event_combopaisActionPerformed
+
+    private void combopais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopais1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combopais1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,30 +152,39 @@ private Connection conb= Conexion.getConexionPaises();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroCiudadDestino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroCiudadDestino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroCiudadDestino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroCiudadDestino.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(FormularioCiudad.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroCiudadDestino().setVisible(true);
+                new FormularioCiudad().setVisible(true);
             }
         });
     }
-
+private void  cargarCombo(){
+    combopais.removeAllItems();
+        CiudadData awp=new CiudadData(conb);
+       ArrayList<String> paises = new ArrayList();
+      paises= (ArrayList<String>) awp.listarPaises();
+       for(String elemento:paises){
+           combopais.addItem(elemento);
+       }
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
     private javax.swing.JComboBox<String> combopais;
+    private javax.swing.JComboBox<String> combopais1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
