@@ -6,6 +6,7 @@ package Vistas;
 
 import AccesoADatos.CiudadData;
 import AccesoADatos.Conexion;
+import Entidades.Paises;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -22,10 +23,10 @@ private Connection conb= Conexion.getConexionPaises();
         initComponents();
         combopais.removeAllItems();
         CiudadData awp=new CiudadData(conb);
-       ArrayList<String> paises = new ArrayList();
+       ArrayList<Paises> paises = new ArrayList();
       paises= (ArrayList<String>) awp.listarPaises();
-       for(String elemento:paises){
-           combopais.addItem(elemento);
+       for(Paises elemento:paises){
+           combopais.addi
        }
 //       RegistroCiudadDestino asd=new RegistroCiudadDestino();
 //       asd.setLocationRelativeTo(null);
