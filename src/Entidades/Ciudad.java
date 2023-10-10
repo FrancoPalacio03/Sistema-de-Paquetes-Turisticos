@@ -12,14 +12,15 @@ public class Ciudad {
     
     private int idCiudad;
     private String nombre;
-    private String pais;
+    private Paises pais;
+    private Estados provincia;
     private boolean estado;
-    private String provincia;
+   
     private String urlImagen;
     
     public Ciudad() {
     }
-    public Ciudad(int idCiudad, String nombre, String pais, boolean estado, String provincia, String urlImagen) {
+    public Ciudad(int idCiudad, String nombre, Paises pais, boolean estado, Estados provincia, String urlImagen) {
         this.idCiudad = idCiudad;
         this.nombre = nombre;
         this.pais = pais;
@@ -28,7 +29,7 @@ public class Ciudad {
         this.urlImagen= urlImagen;
     }
 
-    public Ciudad(String nombre, String pais, boolean estado, String provincia, String urlImagen) {
+    public Ciudad(String nombre, Paises pais, boolean estado, Estados provincia, String urlImagen) {
         this.nombre = nombre;
         this.pais = pais;
         this.estado = estado;
@@ -52,7 +53,7 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
-    public String getPais() {
+    public Paises getPais() {
         return pais;
     }
 
@@ -60,7 +61,7 @@ public class Ciudad {
         return urlImagen;
     }
     
-    public void setPais(String pais) {
+    public void setPais(Paises pais) {
         this.pais = pais;
     }
 
@@ -72,11 +73,11 @@ public class Ciudad {
         this.estado = estado;
     }
 
-    public String getProvincia() {
+    public Estados getProvincia() {
         return provincia;
     }
 
-    public void setProvincia(String provincia) {
+    public void setProvincia(Estados provincia) {
         this.provincia = provincia;
     }
 
