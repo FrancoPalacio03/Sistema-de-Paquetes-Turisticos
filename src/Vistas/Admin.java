@@ -29,7 +29,7 @@ public class Admin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        FormularioCiudad = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
@@ -45,7 +45,12 @@ public class Admin extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Crear Paquete");
+        FormularioCiudad.setText("Registrar Ciudad");
+        FormularioCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FormularioCiudadActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Registro ventas");
 
@@ -76,7 +81,7 @@ public class Admin extends javax.swing.JFrame {
                                         .addGap(92, 92, 92)
                                         .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton6)
+                                .addComponent(FormularioCiudad)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton7)))
                         .addGap(50, 50, 50))))
@@ -86,7 +91,7 @@ public class Admin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
+                    .addComponent(FormularioCiudad)
                     .addComponent(jButton7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -121,6 +126,15 @@ public class Admin extends javax.swing.JFrame {
         re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void FormularioCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudadActionPerformed
+        // TODO add your handling code here:
+        FormularioCiudad re= new FormularioCiudad();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_FormularioCiudadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,9 +172,9 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton FormularioCiudad;
     private javax.swing.JButton Salir;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;

@@ -10,11 +10,13 @@ public class Vendedor {
     private String apellido;
     private int dni;
     private int cont;
+    private boolean estado;
 
     public Vendedor() {
+        this.cont=0;
     }
     
-    public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni) {
+    public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni, boolean estado) {
         this.id = id;
         this.correo = correo;
         this.pass = pass;
@@ -22,15 +24,17 @@ public class Vendedor {
         this.apellido = apellido;
         this.dni = dni;
         this.cont=0;
+        this.estado=estado;
     }
 
-    public Vendedor(String correo, String pass, String nombre, String apellido, int dni) {
+    public Vendedor(String correo, String pass, String nombre, String apellido, int dni, boolean estado) {
         this.correo = correo;
         this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
         this.cont=0;
+        this.estado=estado;
     }
 
     public int getId() {
@@ -60,6 +64,10 @@ public class Vendedor {
     public int getCont() {
         return cont;
     }
+    
+    public boolean getEstado(){
+        return this.estado;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -87,6 +95,10 @@ public class Vendedor {
 
     public void setCont(int cont) {
         this.cont = cont;
+    }
+    
+    public void setEstado(boolean estado){
+        this.estado=estado;
     }
    
     @Override

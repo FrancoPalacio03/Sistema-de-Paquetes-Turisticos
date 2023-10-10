@@ -15,22 +15,10 @@ import java.util.ArrayList;
  * @author franc
  */
 public class RegistroCiudadDestino extends javax.swing.JFrame {
-private Connection conb= Conexion.getConexionPaises();
     /**
      * Creates new form RegistroCiudad
      */
-    public RegistroCiudadDestino() {
-        initComponents();
-        combopais.removeAllItems();
-        CiudadData awp=new CiudadData(conb);
-       ArrayList<Paises> paises = new ArrayList();
-      paises= (ArrayList<String>) awp.listarPaises();
-       for(Paises elemento:paises){
-           combopais.addi
-       }
-//       RegistroCiudadDestino asd=new RegistroCiudadDestino();
-//       asd.setLocationRelativeTo(null);
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

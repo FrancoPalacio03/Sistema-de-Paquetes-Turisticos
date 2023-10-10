@@ -45,7 +45,7 @@ public class CiudadData {
       }
       
       public List <Paises>  listarPaises(){
-          String sql="Select* FROM pais ";
+          String sql="Select * FROM pais ";
           PreparedStatement ps;
           ArrayList<Paises> paises = new ArrayList();
           try{
@@ -65,21 +65,23 @@ public class CiudadData {
           }
           return paises;
         }
-      public List <Estados>  listarCiudades(int id){
-          String sql="Select* FROM estado where=ubicacionpaisid ";
+      public List<Estados> listarCiudades(int id){
+          String sql="Select * FROM estado where ubicacionpaisid=? ";
           PreparedStatement ps;
           ArrayList<Estados> ciudades = new ArrayList();
           try{
               ps=conb.prepareStatement(sql);
+              ps.setInt(1, id);
               ResultSet rs = ps.executeQuery();
               while (rs.next()) {
-                   Estados estado = new Estados();
-                   estado.setId(rs.getInt("id"));
+                  Estados estado = new Estados();
+                  estado.setId(rs.getInt("id"));
                   estado.setUbicacionpaisid(rs.getInt("ubicacionpaisid"));
                   estado.setEstadonombre(rs.getString("estadonombre"));
                   ciudades.add(estado);
               }
               ps.close();
+              
           }catch(SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla estados " + ex.getMessage());
               

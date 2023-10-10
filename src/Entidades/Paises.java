@@ -43,7 +43,7 @@ public class Paises {
 
     @Override
     public String toString() {
-        return "Paises{" + "id=" + id + ", paisnombre=" + paisnombre + '}';
+        return paisnombre;
     }
     
 }
