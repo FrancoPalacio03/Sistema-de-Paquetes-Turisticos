@@ -5,6 +5,8 @@
 package AccesoADatos;
 
 import Entidades.Ciudad;
+import Entidades.Estados;
+import Entidades.Paises;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,15 +44,19 @@ public class CiudadData {
           
       }
       
-      public List <String>  listarPaises(){
+      public List <Paises>  listarPaises(){
           String sql="Select* FROM pais ";
           PreparedStatement ps;
-          ArrayList<String> paises = new ArrayList();
+          ArrayList<Paises> paises = new ArrayList();
           try{
               ps=conb.prepareStatement(sql);
               ResultSet rs = ps.executeQuery();
               while (rs.next()) {
-                  paises.add(rs.getString("paisnombre"));
+                  Paises pais = new Paises();
+                  pais.setId(rs.getInt("id"));
+                  pais.setPaisnombre(rs.getString("paisnombre"));
+                  
+                  paises.add(pais);
               }
               ps.close();
           }catch(SQLException ex) {
@@ -59,17 +65,18 @@ public class CiudadData {
           }
           return paises;
         }
-      public List <String>  listarCiudades(String nombre){
-          String sql="Select* FROM estado where=nombrepais ";
+      public List <Estados>  listarCiudades(int id){
+          String sql="Select* FROM estado where=ubicacionid ";
           PreparedStatement ps;
-          ArrayList<String> ciudades = new ArrayList();
+          ArrayList<Estados> ciudades = new ArrayList();
           try{
               ps=conb.prepareStatement(sql);
               ResultSet rs = ps.executeQuery();
               while (rs.next()) {
-                  
-                  
-                  ciudades.add(rs.getString("estadonombre"));
+                   Estados estado = new Estados();
+                  estado.setUbicacionpaisid(rs.getInt("ubicacionid"));
+                  estado.setEstadonombre(rs.getString("estadonombre"));
+                  ciudades.add(estado);
               }
               ps.close();
           }catch(SQLException ex) {
@@ -79,9 +86,7 @@ public class CiudadData {
           return ciudades;
         }
 
-      public void ListarCiudad( Ciudad idCiudad){
-          
-      }
+      
       public void ModificarCiudad(Ciudad idCiudad){
     
 }

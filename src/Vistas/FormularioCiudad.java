@@ -6,6 +6,8 @@ package Vistas;
 
 import AccesoADatos.CiudadData;
 import AccesoADatos.Conexion;
+import Entidades.Estados;
+import Entidades.Paises;
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -14,13 +16,16 @@ import java.util.ArrayList;
  * @author diakz
  */
 public class FormularioCiudad extends javax.swing.JFrame {
-private Connection conb= Conexion.getConexionPaises();
+    
+    private Connection conb = Conexion.getConexionPaises();
+
     /**
      * Creates new form FormularioCiudad
      */
     public FormularioCiudad() {
         initComponents();
         cargarCombo();
+        cargarComboCiudad();
     }
 
     /**
@@ -35,10 +40,10 @@ private Connection conb= Conexion.getConexionPaises();
         jPanel1 = new javax.swing.JPanel();
         Cancelar = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
-        combopais = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        combopais1 = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
+        combopais = new javax.swing.JComboBox<>();
+        combociudad = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,35 +70,26 @@ private Connection conb= Conexion.getConexionPaises();
         });
         jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, 130, 50));
 
-        combopais.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combopais.setBorder(null);
-        combopais.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combopaisActionPerformed(evt);
-            }
-        });
-        jPanel1.add(combopais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 280, 40));
-
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione la Ciudad");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 340, -1));
 
-        combopais1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combopais1.setBorder(null);
-        combopais1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combopais1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 280, 40));
-
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Seleccione Pais ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 340, -1));
+
+        combopais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combopaisActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combopais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 200, -1));
+
+        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,7 +107,7 @@ private Connection conb= Conexion.getConexionPaises();
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Login re = new Login();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -120,7 +116,7 @@ private Connection conb= Conexion.getConexionPaises();
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
-        RegistroAlojamiento re=new RegistroAlojamiento();
+        RegistroAlojamiento re = new RegistroAlojamiento();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -128,12 +124,8 @@ private Connection conb= Conexion.getConexionPaises();
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
-
-    }//GEN-LAST:event_combopaisActionPerformed
-
-    private void combopais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopais1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combopais1ActionPerformed
+    }//GEN-LAST:event_combopaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,20 +161,33 @@ private Connection conb= Conexion.getConexionPaises();
             }
         });
     }
-private void  cargarCombo(){
-    combopais.removeAllItems();
-        CiudadData awp=new CiudadData(conb);
-       ArrayList<String> paises = new ArrayList();
-      paises= (ArrayList<String>) awp.listarPaises();
-       for(String elemento:paises){
+
+    private void cargarCombo() {
+        combopais.removeAllItems();
+        CiudadData awp = new CiudadData(conb);
+        ArrayList<Paises> paises = new ArrayList();
+        paises = (ArrayList<Paises>) awp.listarPaises();
+        for (Paises elemento : paises) {
            combopais.addItem(elemento);
-       }
-}
+        }
+    }
+
+    private void cargarComboCiudad() {
+        combociudad.removeAllItems();
+        CiudadData awp = new CiudadData(conb);
+        ArrayList<Estados> ciudades = new ArrayList();
+        int id = (int) combopais.getSelectedItem();
+        ciudades = (ArrayList<Estados>) awp.listarCiudades(id);
+        for (Estados elemento : ciudades) {
+            combociudad.addItem(elemento);
+
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
-    private javax.swing.JComboBox<String> combopais;
-    private javax.swing.JComboBox<String> combopais1;
+    private javax.swing.JComboBox<Estados> combociudad;
+    private javax.swing.JComboBox<Paises> combopais;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
