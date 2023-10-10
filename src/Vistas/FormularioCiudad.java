@@ -24,8 +24,10 @@ public class FormularioCiudad extends javax.swing.JFrame {
      */
     public FormularioCiudad() {
         initComponents();
-        cargarCombo();
-        cargarComboCiudad();
+       cargarCombo();
+      
+       
+        
     }
 
     /**
@@ -42,8 +44,8 @@ public class FormularioCiudad extends javax.swing.JFrame {
         Siguiente = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        combopais = new javax.swing.JComboBox<>();
         combociudad = new javax.swing.JComboBox<>();
+        combopais1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,14 +84,21 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jLabel2.setText("Seleccione Pais ");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 340, -1));
 
-        combopais.addActionListener(new java.awt.event.ActionListener() {
+        combociudad.setComponentPopupMenu(combociudad.getComponentPopupMenu());
+        combociudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combopaisActionPerformed(evt);
+                combociudadActionPerformed(evt);
             }
         });
-        jPanel1.add(combopais, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 200, -1));
+        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 220, -1));
 
-        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 200, -1));
+        combopais1.setComponentPopupMenu(combociudad.getComponentPopupMenu());
+        combopais1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combopais1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 220, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -123,9 +132,13 @@ public class FormularioCiudad extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_SiguienteActionPerformed
 
-    private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_combopaisActionPerformed
+    private void combociudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combociudadActionPerformed
+       
+    }//GEN-LAST:event_combociudadActionPerformed
+
+    private void combopais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopais1ActionPerformed
+          cargarComboCiudad();
+    }//GEN-LAST:event_combopais1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,23 +176,24 @@ public class FormularioCiudad extends javax.swing.JFrame {
     }
 
     private void cargarCombo() {
-        combopais.removeAllItems();
+        
         CiudadData awp = new CiudadData(conb);
-        ArrayList<Paises> paises = new ArrayList();
-        paises = (ArrayList<Paises>) awp.listarPaises();
-        for (Paises elemento : paises) {
-           combopais.addItem(elemento);
+        ArrayList<Paises> paisesl = new ArrayList();
+        paisesl = (ArrayList<Paises>) awp.listarPaises();
+        for (Paises elemento : paisesl) {
+           combopais1.addItem(elemento);
         }
     }
 
     private void cargarComboCiudad() {
-        combociudad.removeAllItems();
+//        combociudad.removeAllItems();
         CiudadData awp = new CiudadData(conb);
         ArrayList<Estados> ciudades = new ArrayList();
-        int id = (int) combopais.getSelectedItem();
+        Estados estado = (Estados) combociudad.getSelectedItem();
+        int id= estado.getId();
         ciudades = (ArrayList<Estados>) awp.listarCiudades(id);
         for (Estados elemento : ciudades) {
-            combociudad.addItem(elemento);
+           combociudad.addItem(elemento);
 
         }
     }
@@ -187,7 +201,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
     private javax.swing.JComboBox<Estados> combociudad;
-    private javax.swing.JComboBox<Paises> combopais;
+    private javax.swing.JComboBox<Paises> combopais1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

@@ -66,7 +66,7 @@ public class CiudadData {
           return paises;
         }
       public List <Estados>  listarCiudades(int id){
-          String sql="Select* FROM estado where=ubicacionid ";
+          String sql="Select* FROM estado where=ubicacionpaisid ";
           PreparedStatement ps;
           ArrayList<Estados> ciudades = new ArrayList();
           try{
@@ -74,7 +74,8 @@ public class CiudadData {
               ResultSet rs = ps.executeQuery();
               while (rs.next()) {
                    Estados estado = new Estados();
-                  estado.setUbicacionpaisid(rs.getInt("ubicacionid"));
+                   estado.setId(rs.getInt("id"));
+                  estado.setUbicacionpaisid(rs.getInt("ubicacionpaisid"));
                   estado.setEstadonombre(rs.getString("estadonombre"));
                   ciudades.add(estado);
               }
