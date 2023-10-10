@@ -74,6 +74,7 @@ public class CiudadData {
               ResultSet rs = ps.executeQuery();
               while (rs.next()) {
                    Estados estado = new Estados();
+                   estado.setId(rs.getInt("id"));
                   estado.setUbicacionpaisid(rs.getInt("ubicacionpaisid"));
                   estado.setEstadonombre(rs.getString("estadonombre"));
                   ciudades.add(estado);
