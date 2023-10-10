@@ -24,7 +24,8 @@ public class FormularioCiudad extends javax.swing.JFrame {
      */
     public FormularioCiudad() {
         initComponents();
-        cargarCombo();
+       cargarCombo();
+      
        
         
     }
@@ -132,11 +133,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void combociudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combociudadActionPerformed
-        cargarComboCiudad();
+       
     }//GEN-LAST:event_combociudadActionPerformed
 
     private void combopais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopais1ActionPerformed
-        // TODO add your handling code here:
+          cargarComboCiudad();
     }//GEN-LAST:event_combopais1ActionPerformed
 
     /**
@@ -188,7 +189,8 @@ public class FormularioCiudad extends javax.swing.JFrame {
 //        combociudad.removeAllItems();
         CiudadData awp = new CiudadData(conb);
         ArrayList<Estados> ciudades = new ArrayList();
-        int id = (int) combociudad.getSelectedIndex();
+        Estados estado = (Estados) combociudad.getSelectedItem();
+        int id= estado.getId();
         ciudades = (ArrayList<Estados>) awp.listarCiudades(id);
         for (Estados elemento : ciudades) {
            combociudad.addItem(elemento);
