@@ -9,42 +9,42 @@ import java.time.LocalDate;/**
  * @author Yo
  */
 public class Alojamiento {
-    private int idPaquete;
-    LocalDate ingreso;
-    LocalDate salida;
-    boolean estado;
-    String servicio;
-    double imorteDiario;
-    Ciudad CiudadDest;
+    private int idAlojamiento;
+    private LocalDate ingreso;
+    private LocalDate salida;
+    private boolean estado;
+    private String servicio;
+    private double importeDiario;
+    private String CiudadDest;
 
     public Alojamiento() {
     }
 
-    public Alojamiento(int idPaquete, LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double imorteDiario, Ciudad CiudadDest) {
-        this.idPaquete = idPaquete;
+    public Alojamiento(int idAlojamiento, LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, String CiudadDest) {
+        this.idAlojamiento= idAlojamiento;
         this.ingreso = ingreso;
         this.salida = salida;
         this.estado = estado;
         this.servicio = servicio;
-        this.imorteDiario = imorteDiario;
+        this.importeDiario = importeDiario;
         this.CiudadDest = CiudadDest;
     }
 
-    public Alojamiento(LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double imorteDiario, Ciudad CiudadDest) {
+    public Alojamiento(LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, String CiudadDest) {
         this.ingreso = ingreso;
         this.salida = salida;
         this.estado = estado;
         this.servicio = servicio;
-        this.imorteDiario = imorteDiario;
+        this.importeDiario = importeDiario;
         this.CiudadDest = CiudadDest;
     }
 
-    public int getIdPaquete() {
-        return idPaquete;
+    public int getIdAlojamiento() {
+        return idAlojamiento;
     }
 
-    public void setIdPaquete(int idPaquete) {
-        this.idPaquete = idPaquete;
+    public void setIdAlojamiento(int idAlojamiento) {
+        this.idAlojamiento = idAlojamiento;
     }
 
     public LocalDate getIngreso() {
@@ -79,25 +79,27 @@ public class Alojamiento {
         this.servicio = servicio;
     }
 
-    public double getImorteDiario() {
-        return imorteDiario;
+    public double getImporteDiario() {
+        return importeDiario;
     }
 
-    public void setImorteDiario(double imorteDiario) {
-        this.imorteDiario = imorteDiario;
+    public void setImporteDiario(double importeDiario) {
+        this.importeDiario = importeDiario;
     }
 
-    public Ciudad getCiudadDest() {
+    public String getCiudadDest() {
         return CiudadDest;
     }
 
-    public void setCiudadDest(Ciudad CiudadDest) {
+    public void setCiudadDest(String CiudadDest) {
         this.CiudadDest = CiudadDest;
     }
 
+ 
+
     @Override
     public String toString() {
-        return "Alojamiento{" + "idPaquete=" + idPaquete + ", ingreso=" + ingreso + ", salida=" + salida + ", estado=" + estado + ", servicio=" + servicio + ", imorteDiario=" + imorteDiario + ", CiudadDest=" + CiudadDest + '}';
+        return "Alojamiento{" + "idPaquete=" + idAlojamiento + ", ingreso=" + ingreso + ", salida=" + salida + ", estado=" + estado + ", servicio=" + servicio + ", imorteDiario=" + importeDiario + ", CiudadDest=" + CiudadDest + '}';
     }
     
     
