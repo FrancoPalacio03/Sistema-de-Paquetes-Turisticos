@@ -53,7 +53,7 @@ public class Estados {
 
     @Override
     public String toString() {
-        return "Estados{" + "id=" + id + ", ubicacionpaisid=" + ubicacionpaisid + ", estadonombre=" + estadonombre + '}';
+        return estadonombre;
     }
     
 }

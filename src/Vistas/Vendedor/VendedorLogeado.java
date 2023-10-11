@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas;
+package Vistas.Vendedor;
 
 /**
  *
@@ -84,10 +84,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         Tree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         Tree.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 TreeAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
@@ -147,7 +147,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private void ViajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViajeActionPerformed
         // TODO add your handling code here:
-        RegistroCiudadDestino re=new RegistroCiudadDestino();
+        Login re=new Login();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
