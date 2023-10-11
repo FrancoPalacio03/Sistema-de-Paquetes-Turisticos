@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas;
+package Vistas.Vendedor;
 
-import Vistas.Admin.RegistroVendedor;
+import Vistas.Admin.FormularioVendedor;
 import Vistas.Admin.Admin;
 import javax.swing.JOptionPane;
 
@@ -188,7 +188,7 @@ public class Login extends javax.swing.JFrame {
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
        
-        RegistroVendedor re=new RegistroVendedor();
+        FormularioVendedor re=new FormularioVendedor();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);

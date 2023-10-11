@@ -54,7 +54,7 @@ public class CiudadData {
                 if (rs.next()) {
                     int idCiudadGenerado = rs.getInt(1); // Obtenemos la clave generada
                     ciudad.setIdCiudad(idCiudadGenerado);
-                    JOptionPane.showMessageDialog(null, "Alumno añadido con éxito. ID: " + idAlumnoGenerado);
+                    JOptionPane.showMessageDialog(null, "Ciudad añadido con éxito. ID: " + idCiudadGenerado);
                 }
                 rs.close();
             }

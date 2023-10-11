@@ -5,7 +5,7 @@
 package paquetesturisticos;
 
 import AccesoADatos.Conexion;
-import Vistas.Login;
+import Vistas.Vendedor.Login;
 import java.sql.Connection;
 
 /**
