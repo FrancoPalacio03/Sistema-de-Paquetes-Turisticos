@@ -118,7 +118,7 @@ public class RegistroCiudad extends javax.swing.JFrame {
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
-        RegistroAlojamiento re=new RegistroAlojamiento();
+        SeleccionAlojamiento re=new SeleccionAlojamiento();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);

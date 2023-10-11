@@ -4,6 +4,8 @@
  */
 package Vistas;
 
+import Vistas.Admin.RegistroVendedor;
+import Vistas.Admin.Admin;
 import javax.swing.JOptionPane;
 
 /**

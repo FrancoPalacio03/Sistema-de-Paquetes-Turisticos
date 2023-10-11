@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -37,8 +38,31 @@ public class CiudadData {
         this.conb=conb;
     }
     
-      public void RegistroCiudad(){
-          
+       public void GuardarCiudad(Ciudad ciudad) {
+          String sql="INSERT INTO ciudad (nombre, pais, estado,provincia, url) VALUES (?, ?, ?, ?, ?)"; 
+          PreparedStatement ps;
+          try {
+           ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+           ps.setString(1, ciudad.getNombre());
+           ps.setInt(2, ciudad.getPais().getId());
+           ps.setBoolean(3, true);
+           ps.setInt(4, ciudad.getProvincia().getId());
+           ps.setString(5, ciudad.getUrlImagen());
+           int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                ResultSet rs = ps.getGeneratedKeys();
+                if (rs.next()) {
+                    int idCiudadGenerado = rs.getInt(1); // Obtenemos la clave generada
+                    ciudad.setIdCiudad(idCiudadGenerado);
+                    JOptionPane.showMessageDialog(null, "Alumno añadido con éxito. ID: " + idAlumnoGenerado);
+                }
+                rs.close();
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + ex.getMessage());
+        }
+         
       }
       public void BuscarCiudad(Ciudad idCiudad){
           

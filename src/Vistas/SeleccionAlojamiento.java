@@ -10,12 +10,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author franc
  */
-public class RegistroAlojamiento extends javax.swing.JFrame {
+public class SeleccionAlojamiento extends javax.swing.JFrame {
 private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form RegistroAlojamiento1
      */
-    public RegistroAlojamiento() {
+    public SeleccionAlojamiento() {
         initComponents();
         cargarTabla();
         
@@ -127,21 +127,23 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistroAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistroAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistroAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistroAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeleccionAlojamiento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new RegistroAlojamiento().setVisible(true);
+                new SeleccionAlojamiento().setVisible(true);
             }
         });
     }

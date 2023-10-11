@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas;
+package Vistas.Admin;
 
+import Vistas.Admin.Admin;
 import AccesoADatos.CiudadData;
 import AccesoADatos.Conexion;
+import Entidades.Ciudad;
 import Entidades.Estados;
 import Entidades.Paises;
 import java.sql.Connection;
@@ -50,8 +52,8 @@ public class FormularioCiudad extends javax.swing.JFrame {
         combopais1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        URL = new javax.swing.JTextField();
+        nombreCiudad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,11 +120,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jLabel4.setText("Nombre de la ciudad");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 340, -1));
 
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 440, 30));
+        URL.setBorder(null);
+        jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 440, 30));
 
-        jTextField2.setBorder(null);
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 220, 30));
+        nombreCiudad.setBorder(null);
+        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 220, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,6 +151,12 @@ public class FormularioCiudad extends javax.swing.JFrame {
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
+        String nombre=nombreCiudad.getText();
+        String url=URL.getText();
+        Paises pais= (Paises)combopais1.getSelectedItem();
+        Estados estado= (Estados)combociudad.getSelectedItem();
+        Ciudad ciudad=new Ciudad(nombre, pais, true, estado, url);
+        awp.GuardarCiudad(ciudad);
         Admin re = new Admin();
         re.pack();
         re.setVisible(true);
@@ -228,6 +236,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Registrar;
+    private javax.swing.JTextField URL;
     private javax.swing.JComboBox<Estados> combociudad;
     private javax.swing.JComboBox<Paises> combopais1;
     private javax.swing.JLabel jLabel1;
@@ -235,7 +244,6 @@ public class FormularioCiudad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nombreCiudad;
     // End of variables declaration//GEN-END:variables
 }
