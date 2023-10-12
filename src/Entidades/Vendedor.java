@@ -16,14 +16,14 @@ public class Vendedor {
         this.cont=0;
     }
     
-    public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni, boolean estado) {
+    public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni, int cont, boolean estado) {
         this.id = id;
         this.correo = correo;
         this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.cont=0;
+        this.cont=cont;
         this.estado=estado;
     }
 

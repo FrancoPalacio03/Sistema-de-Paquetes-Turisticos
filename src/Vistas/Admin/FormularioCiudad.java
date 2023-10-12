@@ -13,6 +13,7 @@ import Entidades.Paises;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -151,12 +152,33 @@ public class FormularioCiudad extends javax.swing.JFrame {
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
-        String nombre=nombreCiudad.getText();
-        String url=URL.getText();
-        Paises pais= (Paises)combopais1.getSelectedItem();
-        Estados estado= (Estados)combociudad.getSelectedItem();
-        Ciudad ciudad=new Ciudad(nombre, pais, true, estado, url);
+        // Obtén los valores de los campos
+        String nombre = nombreCiudad.getText().trim(); // Elimina espacios en blanco al principio y al final
+        String url = URL.getText().trim(); // Elimina espacios en blanco al principio y al final
+        Paises pais = (Paises) combopais1.getSelectedItem();
+        Estados estado = (Estados) combociudad.getSelectedItem();
+
+        // Validaciones
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El nombre de la ciudad no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Sale del método si el nombre está vacío
+        }
+
+        if (nombre.matches(".*\\d+.*")) {
+            JOptionPane.showMessageDialog(this, "El nombre de la ciudad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Sale del método si el nombre contiene números
+        }
+
+        if (url.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "La URL de la imagen no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Sale del método si la URL está vacía
+        }
+
+        // Si todas las validaciones pasan, crea la instancia de Ciudad y guárdala en la base de datos
+        Ciudad ciudad = new Ciudad(nombre, pais, true, estado, url);
         awp.GuardarCiudad(ciudad);
+
+        // Resto del código para cerrar la ventana actual y mostrar la ventana Admin
         Admin re = new Admin();
         re.pack();
         re.setVisible(true);

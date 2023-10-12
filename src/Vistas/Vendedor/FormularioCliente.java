@@ -4,14 +4,18 @@
  */
 package Vistas.Vendedor;
 
+import AccesoADatos.VendedorData;
+import Entidades.Vendedor;
+import Vistas.Admin.Admin;
 import Vistas.Vendedor.Login;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author franc
  */
 public class FormularioCliente extends javax.swing.JFrame {
-
+    VendedorData vendedata= new VendedorData();
     /**
      * Creates new form Registro1
      */
@@ -30,31 +34,32 @@ public class FormularioCliente extends javax.swing.JFrame {
 
         jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        Cancelar = new javax.swing.JButton();
-        Siguiente = new javax.swing.JButton();
-        jTextField2 = new javax.swing.JTextField();
+        Buscar = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
+        apellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        nombre = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        dni = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        correo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
+        contraseña = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        contraseña1 = new javax.swing.JPasswordField();
+        estado = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel8 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
         jSeparator5 = new javax.swing.JSeparator();
         Cancelar1 = new javax.swing.JButton();
-        Siguiente1 = new javax.swing.JButton();
+        Registrar = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -73,34 +78,34 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Cancelar.setText("Buscar");
-        Cancelar.setBorder(null);
-        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+        Buscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Buscar.setText("Buscar");
+        Buscar.setBorder(null);
+        Buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarActionPerformed(evt);
+                BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 90, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 90, 30));
 
-        Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Siguiente.setText("Modificar");
-        Siguiente.setBorder(null);
-        Siguiente.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Modificar.setText("Modificar");
+        Modificar.setBorder(null);
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SiguienteActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, 130, 50));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, 130, 50));
 
-        jTextField2.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        apellido.setBackground(new java.awt.Color(51, 51, 51));
+        apellido.setBorder(null);
+        apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                apellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 330, 30));
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 330, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -108,14 +113,14 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel5.setText("Ingrese Apellido:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, -1));
 
-        jTextField3.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField3.setBorder(null);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        nombre.setBackground(new java.awt.Color(51, 51, 51));
+        nombre.setBorder(null);
+        nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 330, 30));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 330, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -123,21 +128,21 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel6.setText("Ingrese DNI:");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 360, -1));
 
-        jTextField4.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField4.setBorder(null);
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        dni.setBackground(new java.awt.Color(51, 51, 51));
+        dni.setBorder(null);
+        dni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                dniActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 330, 30));
+        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 330, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Registro Cliente");
+        jLabel1.setText("Registro Vendedor");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -171,11 +176,11 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Ingrese Correo Electronico:");
 
-        jTextField1.setBackground(new java.awt.Color(102, 102, 102));
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        correo.setBackground(new java.awt.Color(102, 102, 102));
+        correo.setBorder(null);
+        correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                correoActionPerformed(evt);
             }
         });
 
@@ -184,11 +189,11 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Ingrese Contraseña:");
 
-        jPasswordField2.setBackground(new java.awt.Color(102, 102, 102));
-        jPasswordField2.setBorder(null);
-        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+        contraseña.setBackground(new java.awt.Color(102, 102, 102));
+        contraseña.setBorder(null);
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField2ActionPerformed(evt);
+                contraseñaActionPerformed(evt);
             }
         });
 
@@ -197,11 +202,19 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Repita Contraseña:");
 
-        jPasswordField1.setBackground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+        contraseña1.setBackground(new java.awt.Color(102, 102, 102));
+        contraseña1.setBorder(null);
+        contraseña1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+                contraseña1ActionPerformed(evt);
+            }
+        });
+
+        estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estado.setText("Alta / Baja");
+        estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoActionPerformed(evt);
             }
         });
 
@@ -213,12 +226,13 @@ public class FormularioCliente extends javax.swing.JFrame {
                 .addGap(41, 41, 41)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(contraseña1, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,16 +240,18 @@ public class FormularioCliente extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addComponent(jLabel7)
                 .addGap(28, 28, 28)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jLabel2)
                 .addGap(36, 36, 36)
-                .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(jLabel3)
                 .addGap(31, 31, 31)
-                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(contraseña1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(estado, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 430, 450));
@@ -249,14 +265,14 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel8.setText("ID:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, -1));
 
-        jTextField5.setBackground(new java.awt.Color(51, 51, 51));
-        jTextField5.setBorder(null);
-        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+        id.setBackground(new java.awt.Color(51, 51, 51));
+        id.setBorder(null);
+        id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField5ActionPerformed(evt);
+                idActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 330, 30));
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 330, 30));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, 10));
 
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -269,15 +285,15 @@ public class FormularioCliente extends javax.swing.JFrame {
         });
         jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 130, 50));
 
-        Siguiente1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Siguiente1.setText("Registrar");
-        Siguiente1.setBorder(null);
-        Siguiente1.addActionListener(new java.awt.event.ActionListener() {
+        Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Registrar.setText("Registrar");
+        Registrar.setBorder(null);
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Siguiente1ActionPerformed(evt);
+                RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 560, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 560, 130, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -295,59 +311,158 @@ public class FormularioCliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_correoActionPerformed
 
-    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        // Obtener el ID del vendedor que se desea buscar (de alguna manera, por ejemplo, desde un campo de entrada de texto)
+        String idVendedorStr = id.getText();
+
+        try {
+            int idVendedorABuscar = Integer.parseInt(idVendedorStr);
+
+            Vendedor vendedorEncontrado = vendedata.BuscarVendedor(idVendedorABuscar);
+
+        if (vendedorEncontrado != null) {
+            id.setText(String.valueOf(vendedorEncontrado.getId()));
+            nombre.setText(vendedorEncontrado.getNombre());
+            apellido.setText(vendedorEncontrado.getApellido());
+            correo.setText(vendedorEncontrado.getCorreo());
+            dni.setText(String.valueOf(vendedorEncontrado.getDni()));
+            contraseña.setText(vendedorEncontrado.getPass());
+            estado.setSelected(vendedorEncontrado.getEstado());
+            Modificar.setEnabled(true); // Puedes habilitar el botón 'Siguiente' si es relevante en este contexto.
+
+            JOptionPane.showMessageDialog(this, "Vendedor encontrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                // Opcional: mostrar un mensaje de error si el vendedor no se encuentra
+                JOptionPane.showMessageDialog(this, "Vendedor no encontrado. Verifique el ID.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "El ID del vendedor debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            }    
+    }//GEN-LAST:event_BuscarActionPerformed
+
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        // TODO add your handling code here:
+         String idVendedor = id.getText().trim();
+        String nombreVendedor = nombre.getText().trim();
+        String apellidoVendedor = apellido.getText().trim();
+        String correoVendedor = correo.getText().trim();
+        String dniVendedor = dni.getText().trim();
+        boolean estaSeleccionado = estado.isSelected();
+        int dni=0;
+        String contrasena = new String(contraseña.getPassword());
+        String contrasenaRepetida = new String(contraseña1.getPassword());
+
+        // Realizar validaciones
+        if (nombreVendedor.isEmpty() || apellidoVendedor.isEmpty() || correoVendedor.isEmpty() || dniVendedor.isEmpty() || contrasena.isEmpty() || contrasenaRepetida.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(idVendedor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "El id se asigna automaticamente ");
+        }
+        
+        if (!esDniValido(dniVendedor)) {
+            JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            dni= Integer.parseInt(dniVendedor);
+        }
+
+        if (!contrasena.equals(contrasenaRepetida)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        Vendedor vendedor = new Vendedor(correoVendedor, contrasena ,nombreVendedor, apellidoVendedor, dni, estaSeleccionado);
+        
+        vendedata.modificarVendedor(vendedor);
+        Admin re = new Admin();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.dispose();
-    }//GEN-LAST:event_CancelarActionPerformed
+    }//GEN-LAST:event_ModificarActionPerformed
 
-    private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
+    private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_SiguienteActionPerformed
+    }//GEN-LAST:event_apellidoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_dniActionPerformed
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void contraseña1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseña1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_contraseña1ActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_contraseñaActionPerformed
 
-    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+    private void idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField2ActionPerformed
-
-    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField5ActionPerformed
+    }//GEN-LAST:event_idActionPerformed
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Cancelar1ActionPerformed
 
-    private void Siguiente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Siguiente1ActionPerformed
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+        // TODO add your handling code here:                                     
+        String idVendedor = id.getText().trim();
+        String nombreVendedor = nombre.getText().trim();
+        String apellidoVendedor = apellido.getText().trim();
+        String correoVendedor = correo.getText().trim();
+        String dniVendedor = dni.getText().trim();
+        boolean estaSeleccionado = estado.isSelected();
+        int dni=0;
+        String contrasena = new String(contraseña.getPassword());
+        String contrasenaRepetida = new String(contraseña1.getPassword());
+
+        // Realizar validaciones
+        if (nombreVendedor.isEmpty() || apellidoVendedor.isEmpty() || correoVendedor.isEmpty() || dniVendedor.isEmpty() || contrasena.isEmpty() || contrasenaRepetida.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(idVendedor.isEmpty()){
+            JOptionPane.showMessageDialog(this, "El id se asigna automaticamente ");
+        }
+        
+        if (!esDniValido(dniVendedor)) {
+            JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else{
+            dni= Integer.parseInt(dniVendedor);
+        }
+
+        if (!contrasena.equals(contrasenaRepetida)) {
+            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        
+        Vendedor vendedor = new Vendedor(correoVendedor, contrasena ,nombreVendedor, apellidoVendedor, dni, estaSeleccionado);
+        
+        vendedata.altaVendedor(vendedor);
+        Admin re = new Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_Siguiente1ActionPerformed
+    }//GEN-LAST:event_estadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -446,12 +561,36 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean esDniValido(String dni) {
+    // Verificar que el DNI tiene exactamente 8 dígitos
+    if (dni.length() != 8) {
+        return false;
+    }
+
+    try {
+        // Intentar convertir el DNI a un número
+        Long.parseLong(dni);
+        return true;
+    } catch (NumberFormatException e) {
+        // Si se lanza una excepción, significa que no es un número válido
+        return false;
+    }
+}
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Buscar;
     private javax.swing.JButton Cancelar1;
-    private javax.swing.JButton Siguiente;
-    private javax.swing.JButton Siguiente1;
+    private javax.swing.JButton Modificar;
+    private javax.swing.JButton Registrar;
+    private javax.swing.JTextField apellido;
+    private javax.swing.JPasswordField contraseña;
+    private javax.swing.JPasswordField contraseña1;
+    private javax.swing.JTextField correo;
+    private javax.swing.JTextField dni;
+    private javax.swing.JCheckBox estado;
+    private javax.swing.JTextField id;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -464,16 +603,10 @@ public class FormularioCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

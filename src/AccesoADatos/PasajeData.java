@@ -86,10 +86,10 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                Pasaje pasaje = new Pasaje();
-               pasaje.setIdPasaje(idPasaje);
+               pasaje.setIdPasaje("idPasaje");
                pasaje.setTipoTransporte(sql);
                pasaje.getNombreCiudadOrigen().getIdCiudad();
-               pasaje.setImporte(importe);
+               pasaje.setImporte("importe");
                pasaje.setEstado(true);
                pasajes.add(pasaje);
             }
@@ -106,8 +106,8 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
 
         try {
             ps = con.prepareStatement(sql);
-               pasaje.setIdPasaje(idPasaje);
-               pasaje.setTipoTransporte(sql);
+               pasaje.setIdPasaje(pasaje.getIdPasaje());
+               pasaje.setTipoTransporte(pasaje.getTipoTransporte());
                pasaje.getNombreCiudadOrigen().getIdCiudad();
                pasaje.setImporte(importe);
                pasaje.setEstado(true);
