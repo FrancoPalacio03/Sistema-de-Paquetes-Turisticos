@@ -29,9 +29,9 @@ String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES
         try {
            ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
            ps.setInt(1, paquete.getOrigen().getIdCiudad());
-           ps.setInt(1, paquete.getDestino().getIdCiudad());
-           ps.setInt(1, paquete.getAlojamiento().getIdAlojamiento());
-           ps.setInt(1, paquete.getPasaje().getIdPasaje());
+           ps.setInt(2, paquete.getDestino().getIdCiudad());
+           ps.setInt(3, paquete.getAlojamiento().getIdAlojamiento());
+           ps.setInt(4, paquete.getPasaje().getIdPasaje());
            int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -52,7 +52,7 @@ String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES
     }
  public Paquete buscarPaquete(int idPaquete) {
         Paquete paquete = null;
-       String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES (?, ?, ?, ?)";  
+   String sql = "SELECT* FROM paquete WHERE idPaquete = ?";  
 
         PreparedStatement ps = null;
         try {
@@ -96,7 +96,7 @@ String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES
                paquete.getDestino().getIdCiudad();
                paquete.getAlojamiento().getIdAlojamiento();
                paquete.getPasaje().getIdPasaje();
-               paquete.add(paquete);
+               paquetes.add(paquete);
             }
             ps.close();
 
@@ -105,19 +105,17 @@ String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES
         }
         return paquetes;
     }
-        public void modificarPaquete(int paquete){
+        public void modificarPaquete(Paquete paquete){
         
-        String sql = "UPDATE INTO paquete (origen = ?, destino = ?,  alojamiento = ?, pasaje = ?) VALUES (?, ?, ?, ?)";  
+        String sql = "UPDATE  paquete SET origen = ?, destino = ?,  alojamiento = ?, pasaje = ? WHERE idPaquete = ?";  
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-              
-               paquete.setIdPaquete(paquete);
-               paquete.getOrigen().getIdCiudad();
-               paquete.getDestino().getIdCiudad();
-               paquete.getAlojamiento().getIdAlojamiento();
-               paquete.getPaquete().getIdPasaje();
+              ps.setInt(1, paquete.getIdPaquete());
+              ps.setInt(2, paquete.getOrigen().getIdCiudad());
+               ps.setInt(3, paquete.getDestino().getIdCiudad());
+                ps.setInt(1, paquete.getPasaje().getIdPasaje());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {

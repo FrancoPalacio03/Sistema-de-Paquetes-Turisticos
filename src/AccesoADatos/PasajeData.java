@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package AccesoADatos;
+
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -14,22 +15,24 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import Entidades.Pasaje;
 import Entidades.Ciudad;
+
 public class PasajeData {
-  private Connection con= Conexion.getConexion();
-private Connection conb= Conexion.getConexionPaises();
-  
-    
-public void registroPasaje(Pasaje pasaje){
-String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, estado) VALUES (?, ?, ?, ?)";  
- 
-  
+
+    private Connection con = Conexion.getConexion();
+    private Connection conb = Conexion.getConexionPaises();
+    private CiudadData awp = new CiudadData();
+
+    public void registroPasaje(Pasaje pasaje) {
+        String sql = "INSERT INTO pasaje (tipoTransporte, importe, nombreCiudadOrigen,   estado) VALUES (?, ?, ?, ?)";
+
         PreparedStatement ps;
         try {
-           ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           ps.setString(1, pasaje.getTipoTransporte());
-           ps.setInt(2, pasaje.getNombreCiudadOrigen().getIdCiudad());
-           ps.setBoolean(3, pasaje.isEstado());
-           int rowsAffected = ps.executeUpdate();
+            ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, pasaje.getTipoTransporte());
+            ps.setDouble(2, pasaje.getImporte());
+            ps.setInt(3, pasaje.getNombreCiudadOrigen().getIdCiudad());
+            ps.setBoolean(4, pasaje.isEstado());
+            int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
@@ -42,29 +45,34 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
             }
 
             ps.close();
-        }catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Materia" + ex.getMessage());
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasaje" + ex.getMessage());
             return;
         }
     }
- public Pasaje buscarPasaje(int idPasaje) {
-        Pasaje pasaje = null;
-        String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, estado) VALUES (?, ?, ?, ?)";  
 
+    public Pasaje buscarPasaje(int idPasaje) {
+
+        Pasaje pasaje = null;
+        String sql = "SELECT * FROM pasaje WHERE estado = 1 ";
         PreparedStatement ps = null;
+
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, idPasaje);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-               pasaje = new Pasaje();
-               pasaje.setIdPasaje(idPasaje);
-               pasaje.setTipoTransporte(sql);
-               pasaje.getNombreCiudadOrigen().getIdCiudad();
-               pasaje.setImporte(idPasaje);
-               pasaje.setEstado(true);
-               
+                
+              Ciudad  pass = awp.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+
+                pasaje = new Pasaje();
+                pasaje.setIdPasaje(idPasaje);
+                pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
+                pasaje.setImporte(rs.getDouble("importe"));
+                pasaje.setNombreCiudadOrigen(pass);
+                pasaje.setEstado(true);
+
                 ps.close();
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Pasaje");
@@ -77,21 +85,22 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
 
         return pasaje;
     }
-  public List<Pasaje> listarPasaje() {
-      List<Pasaje> pasajes = new ArrayList<Pasaje>();
+
+    public List<Pasaje> listarPasaje() {
+        List<Pasaje> pasajes = new ArrayList<Pasaje>();
 
         try {
             String sql = "SELECT * FROM pasaje WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               Pasaje pasaje = new Pasaje();
-               pasaje.setIdPasaje("idPasaje");
-               pasaje.setTipoTransporte(sql);
-               pasaje.getNombreCiudadOrigen().getIdCiudad();
-               pasaje.setImporte("importe");
-               pasaje.setEstado(true);
-               pasajes.add(pasaje);
+                Pasaje pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
+                pasaje.getNombreCiudadOrigen().getIdCiudad();
+                pasaje.setImporte(rs.getDouble("importe"));
+                pasaje.setEstado(true);
+                pasajes.add(pasaje);
             }
             ps.close();
 
@@ -100,17 +109,17 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
         }
         return pasajes;
     }
- public void modificarPasaje(Pasaje pasaje) {
-        String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, estado) VALUES (?, ?, ?, ?)";  
+
+    public void modificarPasaje(Pasaje pasaje) {
+        String sql = "UPDATE  pasaje SET tipoTransporte = ?, nombreCiudadOrigen = ?,  importe = ?, estado = ?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-               pasaje.setIdPasaje(pasaje.getIdPasaje());
-               pasaje.setTipoTransporte(pasaje.getTipoTransporte());
-               pasaje.getNombreCiudadOrigen().getIdCiudad();
-               pasaje.setImporte(importe);
-               pasaje.setEstado(true);
+            ps.setString(1, pasaje.getTipoTransporte());
+            ps.setInt(2, pasaje.getNombreCiudadOrigen().getIdCiudad());
+            ps.setDouble(3, pasaje.getImporte());
+            ps.setBoolean(4, pasaje.isEstado());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -124,7 +133,8 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
         }
 
     }
-  public void ba(int id) {
+
+    public void bajaPasaje(int id) {
 
         try {
             String sql = "UPDATE pasaje SET estado = 0 WHERE idPasaje = ? ";
@@ -141,4 +151,3 @@ String sql = "INSERT INTO pasaje (tipoTransporte, nombreCiudadOrigen,  importe, 
         }
     }
 }
- 

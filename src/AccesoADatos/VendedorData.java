@@ -45,7 +45,7 @@ public class VendedorData {
     }
     public Vendedor BuscarVendedor(int id){
         Vendedor vendedor = null;
-        String sql = "SELECT correo, pass, nombre, apellido, dni, cont, estado WHERE idVendedor = ? AND estado = 1";
+        String sql = "SELECT correo, pass, nombre, apellido, dni, cont, estado FROM VENDEDOR WHERE idVendedor = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
