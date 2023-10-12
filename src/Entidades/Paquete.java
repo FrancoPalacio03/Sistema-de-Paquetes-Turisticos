@@ -9,6 +9,7 @@ public class Paquete {
     private Alojamiento alojamiento;
     private Pasaje pasaje;
     
+    
     public Paquete(){
     }
 
