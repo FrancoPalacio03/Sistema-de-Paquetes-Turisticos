@@ -62,7 +62,7 @@ String sql = "INSERT INTO pasaje (tipoTransporte, importe, nombreCiudadOrigen,  
                pasaje.setIdPasaje(idPasaje);
                pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
                pasaje.setImporte(rs.getDouble("importe"));
-               pasaje.setNombreCiudadOrigen(rs.get)
+             
                pasaje.setEstado(true);
                
                 ps.close();
@@ -92,6 +92,7 @@ String sql = "INSERT INTO pasaje (tipoTransporte, importe, nombreCiudadOrigen,  
                pasaje.setImporte(rs.getDouble("importe"));
                pasaje.setEstado(true);
                pasajes.add(pasaje);
+               
             }
             ps.close();
 
