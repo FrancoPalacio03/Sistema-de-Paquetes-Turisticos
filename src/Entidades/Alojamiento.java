@@ -9,18 +9,19 @@ import java.time.LocalDate;/**
  * @author Yo
  */
 public class Alojamiento {
+    private String nombre;
     private int idAlojamiento;
     private LocalDate ingreso;
     private LocalDate salida;
     private boolean estado;
     private String servicio;
     private double importeDiario;
-    private String CiudadDest;
+    private Ciudad CiudadDest;
 
     public Alojamiento() {
     }
 
-    public Alojamiento(int idAlojamiento, LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, String CiudadDest) {
+    public Alojamiento(int idAlojamiento,String nombre, LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
         this.idAlojamiento= idAlojamiento;
         this.ingreso = ingreso;
         this.salida = salida;
@@ -28,16 +29,27 @@ public class Alojamiento {
         this.servicio = servicio;
         this.importeDiario = importeDiario;
         this.CiudadDest = CiudadDest;
+        this.nombre=nombre;
     }
 
-    public Alojamiento(LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, String CiudadDest) {
+    public Alojamiento(String nombre,LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
         this.ingreso = ingreso;
         this.salida = salida;
         this.estado = estado;
         this.servicio = servicio;
         this.importeDiario = importeDiario;
         this.CiudadDest = CiudadDest;
+        this.nombre=nombre;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+   
 
     public int getIdAlojamiento() {
         return idAlojamiento;
@@ -87,19 +99,18 @@ public class Alojamiento {
         this.importeDiario = importeDiario;
     }
 
-    public String getCiudadDest() {
+    public Ciudad getCiudadDest() {
         return CiudadDest;
     }
 
-    public void setCiudadDest(String CiudadDest) {
+    public void setCiudadDest(Ciudad CiudadDest) {
         this.CiudadDest = CiudadDest;
     }
 
- 
 
     @Override
     public String toString() {
-        return "Alojamiento{" + "idPaquete=" + idAlojamiento + ", ingreso=" + ingreso + ", salida=" + salida + ", estado=" + estado + ", servicio=" + servicio + ", imorteDiario=" + importeDiario + ", CiudadDest=" + CiudadDest + '}';
+        return this.nombre;
     }
     
     

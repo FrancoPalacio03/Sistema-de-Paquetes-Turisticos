@@ -4,17 +4,26 @@
  */
 package Vistas.Admin;
 
+import AccesoADatos.AlojamientoData;
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author franc
  */
 public class FormularioAlojamiento extends javax.swing.JFrame {
-
+    private AlojamientoData aloData=new AlojamientoData();
     /**
      * Creates new form FormularioAlojamiento
      */
     public FormularioAlojamiento() {
         initComponents();
+        estado.setSelected(true);
     }
 
     /**
@@ -26,21 +35,184 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        Cancelar = new javax.swing.JButton();
+        Registrar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        fechaIn = new com.toedter.calendar.JDateChooser();
+        fechaOn = new com.toedter.calendar.JDateChooser();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        Descripcion = new javax.swing.JTextArea();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        nombre = new javax.swing.JTextField();
+        Cuidad = new javax.swing.JComboBox<>();
+        jLabel7 = new javax.swing.JLabel();
+        importe = new javax.swing.JTextField();
+        estado = new javax.swing.JCheckBox();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar.setText("Cancelar");
+        Cancelar.setBorder(null);
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 710, 130, 50));
+
+        Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Registrar.setText("Registrar");
+        Registrar.setBorder(null);
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 710, 130, 50));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Ciudad Destino");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 590, 230, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("$");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 630, 20, 40));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Fecha Entrada");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 340, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Descripcion de Servicios");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 340, -1));
+        jPanel1.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 220, 30));
+        jPanel1.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 220, 30));
+
+        Descripcion.setColumns(20);
+        Descripcion.setRows(5);
+        jScrollPane1.setViewportView(Descripcion);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 420, 610, 140));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Importe Diario");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 340, -1));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Fecha Salida");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, 340, -1));
+
+        nombre.setBorder(null);
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 220, 30));
+
+        Cuidad.setBorder(null);
+        jPanel1.add(Cuidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 640, 210, 30));
+
+        jLabel7.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("Nombre");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 340, -1));
+
+        importe.setBorder(null);
+        jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 640, 60, 30));
+
+        estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estado.setText("Alta / Baja");
+        estado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                estadoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 796, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
+        // TODO add your handling code here:
+        Admin re = new Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_CancelarActionPerformed
+
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+        // TODO add your handling code here:
+        String nombreAlojamiento = nombre.getText();
+        LocalDate fechaEntrada = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate fechaSalida = fechaOn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        String descripcionServicios = Descripcion.getText();
+        Ciudad ciudadDestino = (Ciudad) Cuidad.getSelectedItem();
+        boolean estaSeleccionado = estado.isSelected();
+        double importeDiario=0;
+      
+        if (nombreAlojamiento.isEmpty() || fechaEntrada == null || fechaSalida == null || descripcionServicios.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si algún campo está vacío
+        }
+        try {
+            importeDiario = Double.parseDouble(importe.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El importe diario no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si el importe no es válido
+        }
+        
+        if (fechaEntrada.isBefore(fechaSalida)) {
+            Alojamiento alo=new Alojamiento(nombreAlojamiento,fechaEntrada,fechaSalida,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
+            aloData.RegistroAlojamiento(alo);
+        } else {
+            JOptionPane.showMessageDialog(this, "La fecha de entrada debe ser anterior a la fecha de salida.", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Salir del método si la fecha de entrada no es válida
+        }
+                
+        
+        
+        Admin re = new Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_estadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +250,23 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Cancelar;
+    private javax.swing.JComboBox<Ciudad> Cuidad;
+    private javax.swing.JTextArea Descripcion;
+    private javax.swing.JButton Registrar;
+    private javax.swing.JCheckBox estado;
+    private com.toedter.calendar.JDateChooser fechaIn;
+    private com.toedter.calendar.JDateChooser fechaOn;
+    private javax.swing.JTextField importe;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }
