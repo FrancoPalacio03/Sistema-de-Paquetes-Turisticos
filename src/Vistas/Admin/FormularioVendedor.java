@@ -20,6 +20,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
      */
     public FormularioVendedor() {
         initComponents();
+        estado.setSelected(true);
     }
 
     /**
