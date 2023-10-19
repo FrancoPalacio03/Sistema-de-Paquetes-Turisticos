@@ -4,17 +4,21 @@
  */
 package Vistas.Vendedor;
 
+import javax.swing.tree.DefaultTreeModel;
+
 /**
  *
  * @author franc
  */
 public class VendedorLogeado extends javax.swing.JFrame {
-
+ private DefaultTreeModel modelo;
     /**
      * Creates new form ClienteLogeado
      */
     public VendedorLogeado() {
         initComponents();
+        
+        arbol.setModel(modelo);
     }
 
     /**
@@ -33,7 +37,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         Salir = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Tree = new javax.swing.JTree();
+        arbol = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -86,10 +90,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 370, 290, 100));
 
-        Tree.setBackground(new java.awt.Color(51, 102, 255));
-        Tree.setBorder(null);
-        Tree.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        Tree.setForeground(new java.awt.Color(51, 51, 51));
+        arbol.setBackground(new java.awt.Color(51, 102, 255));
+        arbol.setBorder(null);
+        arbol.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
+        arbol.setForeground(new java.awt.Color(51, 51, 51));
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("INFORMACION");
         javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Medios de pago");
         treeNode1.add(treeNode2);
@@ -105,17 +109,17 @@ public class VendedorLogeado extends javax.swing.JFrame {
         treeNode1.add(treeNode2);
         treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
         treeNode1.add(treeNode2);
-        Tree.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        Tree.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                TreeAncestorAdded(evt);
-            }
+        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                arbolAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane2.setViewportView(Tree);
+        jScrollPane2.setViewportView(arbol);
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 162, 855));
 
@@ -320,9 +324,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    private void TreeAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_TreeAncestorAdded
+    private void arbolAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_arbolAncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_TreeAncestorAdded
+    }//GEN-LAST:event_arbolAncestorAdded
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
@@ -379,7 +383,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Salir;
-    private javax.swing.JTree Tree;
+    private javax.swing.JTree arbol;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
