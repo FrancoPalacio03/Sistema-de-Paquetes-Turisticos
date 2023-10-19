@@ -4,11 +4,15 @@
  */
 package Vistas.Admin.CreacionPaquete;
 
+import AccesoADatos.AlojamientoData;
 import Entidades.Alojamiento;
 import Entidades.Paquete;
 import Vistas.Vendedor.FormularioCliente;
 import Vistas.Vendedor.Login;
+import java.sql.Date;
 import java.util.List;
+import javafx.scene.chart.PieChart.Data;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +21,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SeleccionAlojamiento extends javax.swing.JFrame {
 private DefaultTableModel modelo = new DefaultTableModel();
+private AlojamientoData aloData= new AlojamientoData();
+
+
     Paquete paquete; 
     /**
      * Creates new form RegistroAlojamiento1
@@ -30,7 +37,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
         this.paquete=paquete;
         initComponents();
         cargarTabla();
-        llenarTabla();
+        llenarTabla(aloData.ListarAlojamientoXCiudad(paquete.getDestino().getIdCiudad()));
     }
 
     /**
@@ -120,12 +127,30 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            // Obtiene la información del alojamiento a partir del modelo de la tabla
+            int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+            String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            String Descripcion=jTable1.getValueAt(filaSeleccionada, 2).toString();
+            Date fechaIn=(Date)jTable1.getValueAt(filaSeleccionada, 3);
+            Date fechaon=(Date)jTable1.getValueAt(filaSeleccionada, 4);
+            Double precio=(Double) jTable1.getValueAt(filaSeleccionada, 5);
+            Alojamiento alojamiento= new Alojamiento(id,nombreAlojamiento,fechaIn.toLocalDate(),fechaon.toLocalDate(),true,Descripcion,precio,paquete.getDestino());
+            paquete.setAlojamiento(alojamiento);
+            FormularioCliente re=new FormularioCliente();
+            re.pack();
+            re.setVisible(true);
+            re.setLocationRelativeTo(null);
+            this.dispose();
+        }
+        else{
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
-        FormularioCliente re=new FormularioCliente();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
+        
+        
+        
     }//GEN-LAST:event_SiguienteActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -133,12 +158,13 @@ private DefaultTableModel modelo = new DefaultTableModel();
         int filaSeleccionada = jTable1.getSelectedRow();
             if (filaSeleccionada >= 0) {
                 // Obtiene la información del alojamiento a partir del modelo de la tabla
-                String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 0).toString();
-                String Descripcion=jTable1.getValueAt(filaSeleccionada, 1).toString();
-                String fechaIn=jTable1.getValueAt(filaSeleccionada, 2).toString();
-                String fechaon=jTable1.getValueAt(filaSeleccionada, 3).toString();
-                String precio=jTable1.getValueAt(filaSeleccionada, 4).toString();
-                // Agrega más campos aquí según sea necesario
+                int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+                String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
+                String Descripcion=jTable1.getValueAt(filaSeleccionada, 2).toString();
+                String fechaIn=jTable1.getValueAt(filaSeleccionada, 3).toString();
+                String fechaon=jTable1.getValueAt(filaSeleccionada, 4).toString();
+                String precio=jTable1.getValueAt(filaSeleccionada, 5).toString();
+                
 
                 // Crea una nueva ventana para mostrar los detalles del alojamiento
                 DetallesAlojamiento detallesFrame = new DetallesAlojamiento(nombreAlojamiento,Descripcion,fechaIn,fechaon,precio);
@@ -193,6 +219,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
     // Recorre la lista de alojamientos y agrega cada uno a la tabla
     for (Alojamiento alojamiento : alojamientos) {
         modelo.addRow(new Object[]{
+            alojamiento.getIdAlojamiento(),
             alojamiento.getNombre(),
             alojamiento.getServicio(),
             alojamiento.getIngreso(),
@@ -203,6 +230,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 }
 
     private void cargarTabla(){
+        modelo.addColumn("ID");
         modelo.addColumn("Alojamiento");
         modelo.addColumn("Servicios incluidos");
         modelo.addColumn("Fecha Ingreso");
