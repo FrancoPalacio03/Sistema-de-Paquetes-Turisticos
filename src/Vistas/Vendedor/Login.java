@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vistas.Vendedor;
+
 import java.sql.Connection;
 import AccesoADatos.Conexion;
 import AccesoADatos.VendedorData;
@@ -19,7 +20,8 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
- private Connection con =Conexion.getConexion(); 
+    private Connection con = Conexion.getConexion();
+
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -34,17 +36,25 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Registrar = new javax.swing.JButton();
         jMAIL = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Admin = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        Registrar = new javax.swing.JButton();
         Ingresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jTcorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jTpass = new javax.swing.JTextField();
+
+        Registrar.setText("Registrar vendedor");
+        Registrar.setBorder(null);
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarActionPerformed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -82,7 +92,6 @@ public class Login extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(204, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei UI", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Inicio de sesion vendedor");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -102,14 +111,6 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(76, Short.MAX_VALUE))
         );
 
-        Registrar.setText("Registrar vendedor");
-        Registrar.setBorder(null);
-        Registrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RegistrarActionPerformed(evt);
-            }
-        });
-
         Ingresar.setText("Ingresar");
         Ingresar.setBorder(null);
         Ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +123,6 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Correo Electronico");
 
-        jTcorreo.setForeground(new java.awt.Color(0, 0, 0));
         jTcorreo.setBorder(null);
         jTcorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +134,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña");
 
-        jTpass.setForeground(new java.awt.Color(0, 0, 0));
         jTpass.setBorder(null);
         jTpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -155,8 +154,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
                     .addGroup(jMAILLayout.createSequentialGroup()
-                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(167, 167, 167)
+                        .addGap(300, 300, 300)
                         .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTcorreo)
                     .addComponent(jLabel3)
@@ -175,9 +173,7 @@ public class Login extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
-                .addGroup(jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMAILLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -192,59 +188,60 @@ public class Login extends javax.swing.JFrame {
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
-       
-        FormularioVendedor re=new FormularioVendedor();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
+
+
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
-      VendedorData vend = new VendedorData(con);
-       List<Vendedor> vendedores = new ArrayList<Vendedor>();
-      vendedores=vend.ListarVendedores();
-        for(Vendedor elemento : vendedores){
-            if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText()) && elemento.getPass().equalsIgnoreCase(jTpass.getText())) {
-               JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
+        int cont = 0;
+        VendedorData vend = new VendedorData(con);
+        List<Vendedor> vendedores = new ArrayList<Vendedor>();
+        vendedores = vend.ListarVendedores();
+       boolean encontrado = false;
+for (Vendedor elemento : vendedores) {
 
-                VendedorLogeado re=new VendedorLogeado();
-                re.pack();
-                re.setVisible(true);
-                re.setLocationRelativeTo(null);
-                this.dispose();
-            }else{
+    if (!jTcorreo.equals("")) {
+
+        if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText())) {
+            if (elemento.getPass().equals(jTpass.getText())) {
+                encontrado = true;
+                break;
+            } else {
                 JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
                 jTcorreo.setText("");
-               
-                jTpass.setText("");    
-            
+                jTpass.setText("");
+            }
         }
-            
-        }
-      
-        
-        
-        
+    } else {
+        JOptionPane.showMessageDialog(null, "debe ingresar algun dato para loguear");
+    }
+}
+
+if (encontrado) {
+    JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
+    VendedorLogeado re = new VendedorLogeado();
+    re.pack();
+    re.setVisible(true);
+    re.setLocationRelativeTo(null);
+    this.dispose();
+}
     }//GEN-LAST:event_IngresarActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
-        String pass=JOptionPane.showInputDialog("Ingrese contraseña: ");
-        
-        if(pass.equals("admin")){
-            Admin re =new Admin();
+        String pass = JOptionPane.showInputDialog("Ingrese contraseña: ");
+
+        if (pass.equals("admin")) {
+            Admin re = new Admin();
             re.pack();
             re.setVisible(true);
             re.setLocationRelativeTo(null);
             this.dispose();
-        }
-        else if(pass == null){
+        } else if (pass == null) {
             return;
-        }
-        else{
+        } else {
             JOptionPane.showMessageDialog(null, "contraseña incorrecta");
-        }    
+        }
     }//GEN-LAST:event_AdminActionPerformed
 
     private void jTcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcorreoActionPerformed
@@ -289,7 +286,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin;
@@ -305,7 +302,3 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JTextField jTpass;
     // End of variables declaration//GEN-END:variables
 }
-
-
-
-

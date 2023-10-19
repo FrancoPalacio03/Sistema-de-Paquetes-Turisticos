@@ -125,7 +125,7 @@ public class VendedorData {
                 vendedor.setCorreo(rs.getString("correo"));
                 vendedor.setPass(rs.getString("pass"));
                 vendedor.setCont(rs.getInt("cont"));
-               vendedor.setEstado(true);
+               vendedor.setEstado(rs.getBoolean("estado"));
                 vendedores.add(vendedor);
             }
             ps.close();
