@@ -169,4 +169,36 @@ public class AlojamientoData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alojamiento");
         }
     }
+    
+    public List< Alojamiento> ListarAlojamientoXCiudad(int id) {
+
+        List<Alojamiento> alojamientos = new ArrayList<Alojamiento>();
+        try {
+            String sql = "SELECT * FROM alojamiento WHERE estado = 1 and Ciudad=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            ps.setInt(1, id);
+            while (rs.next()) {
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setNombre(rs.getString("nombre"));
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setIngreso(rs.getDate("fechain").toLocalDate());
+                alojamiento.setSalida(rs.getDate("fechaon").toLocalDate());
+                alojamiento.setEstado(true);
+                alojamiento.setServicio(rs.getString("servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
+                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("CiudadDest"));
+                alojamiento.setCiudadDest(ciudad);
+
+                alojamientos.add(alojamiento);
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alojamiento " + ex.getMessage());
+        }
+        return alojamientos;
+
+    }
 }

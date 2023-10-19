@@ -4,8 +4,15 @@
  */
 package Vistas.Admin.CreacionPaquete;
 
+import AccesoADatos.AlojamientoData;
+import Entidades.Alojamiento;
+import Entidades.Paquete;
 import Vistas.Vendedor.FormularioCliente;
 import Vistas.Vendedor.Login;
+import java.sql.Date;
+import java.util.List;
+import javafx.scene.chart.PieChart.Data;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,13 +21,23 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SeleccionAlojamiento extends javax.swing.JFrame {
 private DefaultTableModel modelo = new DefaultTableModel();
+private AlojamientoData aloData= new AlojamientoData();
+
+
+    Paquete paquete; 
     /**
      * Creates new form RegistroAlojamiento1
      */
     public SeleccionAlojamiento() {
         initComponents();
         cargarTabla();
-        
+    }
+    
+    public SeleccionAlojamiento(Paquete paquete) {
+        this.paquete=paquete;
+        initComponents();
+        cargarTabla();
+        llenarTabla(aloData.ListarAlojamientoXCiudad(paquete.getDestino().getIdCiudad()));
     }
 
     /**
@@ -74,6 +91,11 @@ private DefaultTableModel modelo = new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 720, 430));
@@ -96,7 +118,7 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Admin re=new Admin();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -105,12 +127,51 @@ private DefaultTableModel modelo = new DefaultTableModel();
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
-        FormularioCliente re=new FormularioCliente();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
+        int filaSeleccionada = jTable1.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            // Obtiene la información del alojamiento a partir del modelo de la tabla
+            int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+            String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
+            String Descripcion=jTable1.getValueAt(filaSeleccionada, 2).toString();
+            Date fechaIn=(Date)jTable1.getValueAt(filaSeleccionada, 3);
+            Date fechaon=(Date)jTable1.getValueAt(filaSeleccionada, 4);
+            Double precio=(Double) jTable1.getValueAt(filaSeleccionada, 5);
+            Alojamiento alojamiento= new Alojamiento(id,nombreAlojamiento,fechaIn.toLocalDate(),fechaon.toLocalDate(),true,Descripcion,precio,paquete.getDestino());
+            paquete.setAlojamiento(alojamiento);
+            FormularioCliente re=new FormularioCliente();
+            re.pack();
+            re.setVisible(true);
+            re.setLocationRelativeTo(null);
+            this.dispose();
+        }
+        else{
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione una ciudad antes de continuar.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_SiguienteActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+            if (filaSeleccionada >= 0) {
+                // Obtiene la información del alojamiento a partir del modelo de la tabla
+                int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+                String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
+                String Descripcion=jTable1.getValueAt(filaSeleccionada, 2).toString();
+                String fechaIn=jTable1.getValueAt(filaSeleccionada, 3).toString();
+                String fechaon=jTable1.getValueAt(filaSeleccionada, 4).toString();
+                String precio=jTable1.getValueAt(filaSeleccionada, 5).toString();
+                
+
+                // Crea una nueva ventana para mostrar los detalles del alojamiento
+                DetallesAlojamiento detallesFrame = new DetallesAlojamiento(nombreAlojamiento,Descripcion,fechaIn,fechaon,precio);
+                detallesFrame.setVisible(true);
+                detallesFrame.pack();
+                detallesFrame.setLocationRelativeTo(null);}
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -149,13 +210,33 @@ private DefaultTableModel modelo = new DefaultTableModel();
             }
         });
     }
+    
+    private void llenarTabla(List<Alojamiento> alojamientos) {
+    DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
+    // Borra cualquier fila existente en la tabla
+    modelo.setRowCount(0);
+
+    // Recorre la lista de alojamientos y agrega cada uno a la tabla
+    for (Alojamiento alojamiento : alojamientos) {
+        modelo.addRow(new Object[]{
+            alojamiento.getIdAlojamiento(),
+            alojamiento.getNombre(),
+            alojamiento.getServicio(),
+            alojamiento.getIngreso(),
+            alojamiento.getSalida(),
+            alojamiento.getImporteDiario(),
+        });
+    }
+}
 
     private void cargarTabla(){
+        modelo.addColumn("ID");
         modelo.addColumn("Alojamiento");
-         modelo.addColumn("Servicios incluidos");
-         modelo.addColumn("Temporada");
-          modelo.addColumn("Precio diario");
-          jTable1.setModel(modelo);
+        modelo.addColumn("Servicios incluidos");
+        modelo.addColumn("Fecha Ingreso");
+        modelo.addColumn("Fecha Salida");
+        modelo.addColumn("Precio Diario");
+        jTable1.setModel(modelo);
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
