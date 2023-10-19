@@ -3,9 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Vistas.Vendedor;
-
+import java.sql.Connection;
+import AccesoADatos.Conexion;
+import AccesoADatos.VendedorData;
+import Entidades.Vendedor;
 import Vistas.Admin.FormularioVendedor;
 import Vistas.Admin.Admin;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Login extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login
-     */
+ private Connection con =Conexion.getConexion(); 
     public Login() {
         initComponents();
         this.setLocationRelativeTo(null);
@@ -31,7 +34,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jMAIL = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         Admin = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
@@ -39,15 +42,15 @@ public class Login extends javax.swing.JFrame {
         Registrar = new javax.swing.JButton();
         Ingresar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTcorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        jTpass = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setForeground(new java.awt.Color(51, 51, 51));
+        jMAIL.setBackground(new java.awt.Color(51, 51, 51));
+        jMAIL.setForeground(new java.awt.Color(51, 51, 51));
 
         jPanel2.setBackground(new java.awt.Color(51, 51, 255));
         jPanel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -119,10 +122,11 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Correo Electronico");
 
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        jTcorreo.setForeground(new java.awt.Color(0, 0, 0));
+        jTcorreo.setBorder(null);
+        jTcorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTcorreoActionPerformed(evt);
             }
         });
 
@@ -130,57 +134,58 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña");
 
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jTpass.setForeground(new java.awt.Color(0, 0, 0));
+        jTpass.setBorder(null);
+        jTpass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jTpassActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jMAILLayout = new javax.swing.GroupLayout(jMAIL);
+        jMAIL.setLayout(jMAILLayout);
+        jMAILLayout.setHorizontalGroup(
+            jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMAILLayout.createSequentialGroup()
                 .addGap(305, 305, 305)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(jMAILLayout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(jMAILLayout.createSequentialGroup()
                         .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(167, 167, 167)
                         .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField1)
+                    .addComponent(jTcorreo)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField2)))
+                    .addComponent(jTpass)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jMAILLayout.setVerticalGroup(
+            jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jMAILLayout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(34, 34, 34)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addComponent(jTcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47)
+                .addGroup(jMAILLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMAILLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65))
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 610));
+        getContentPane().add(jMAIL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 610));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -196,12 +201,31 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
-        // TODO add your handling code here:
-        VendedorLogeado re=new VendedorLogeado();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
+      VendedorData vend = new VendedorData(con);
+       List<Vendedor> vendedores = new ArrayList<Vendedor>();
+      vendedores=vend.ListarVendedores();
+        for(Vendedor elemento : vendedores){
+            if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText()) && elemento.getPass().equalsIgnoreCase(jTpass.getText())) {
+               JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
+
+                VendedorLogeado re=new VendedorLogeado();
+                re.pack();
+                re.setVisible(true);
+                re.setLocationRelativeTo(null);
+                this.dispose();
+            }else{
+                JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
+                jTcorreo.setText("");
+               
+                jTpass.setText("");    
+            
+        }
+            
+        }
+      
+        
+        
+        
     }//GEN-LAST:event_IngresarActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
@@ -223,13 +247,13 @@ public class Login extends javax.swing.JFrame {
         }    
     }//GEN-LAST:event_AdminActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcorreoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_jTcorreoActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jTpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpassActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_jTpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -265,6 +289,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Admin;
@@ -273,10 +298,14 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jMAIL;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTcorreo;
+    private javax.swing.JTextField jTpass;
     // End of variables declaration//GEN-END:variables
 }
+
+
+
+
