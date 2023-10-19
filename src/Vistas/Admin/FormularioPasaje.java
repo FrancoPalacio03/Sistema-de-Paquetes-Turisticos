@@ -40,7 +40,9 @@ public class FormularioPasaje extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Cancelar.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar.setText("Cancelar");
         Cancelar.setBorder(null);
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -48,9 +50,11 @@ public class FormularioPasaje extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 130, 50));
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 130, 50));
 
+        Siguiente.setBackground(new java.awt.Color(102, 102, 102));
         Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Siguiente.setForeground(new java.awt.Color(255, 255, 255));
         Siguiente.setText("Siguiente");
         Siguiente.setBorder(null);
         Siguiente.addActionListener(new java.awt.event.ActionListener() {
@@ -58,7 +62,7 @@ public class FormularioPasaje extends javax.swing.JFrame {
                 SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 130, 50));
+        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 130, 50));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.setBorder(null);

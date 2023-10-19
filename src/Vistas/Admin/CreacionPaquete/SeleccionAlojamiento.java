@@ -60,7 +60,9 @@ private AlojamientoData aloData= new AlojamientoData();
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Cancelar.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar.setText("Cancelar");
         Cancelar.setBorder(null);
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -70,7 +72,9 @@ private AlojamientoData aloData= new AlojamientoData();
         });
         jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 130, 50));
 
+        Siguiente.setBackground(new java.awt.Color(102, 102, 102));
         Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Siguiente.setForeground(new java.awt.Color(255, 255, 255));
         Siguiente.setText("Siguiente");
         Siguiente.setBorder(null);
         Siguiente.addActionListener(new java.awt.event.ActionListener() {

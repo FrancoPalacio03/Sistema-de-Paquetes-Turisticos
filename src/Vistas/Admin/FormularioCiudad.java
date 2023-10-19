@@ -69,7 +69,9 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Modificar.setBackground(new java.awt.Color(102, 102, 102));
         Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Modificar.setForeground(new java.awt.Color(255, 255, 255));
         Modificar.setText("Modificar");
         Modificar.setBorder(null);
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -77,9 +79,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, 130, 50));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 130, 50));
 
+        Registrar.setBackground(new java.awt.Color(102, 102, 102));
         Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Registrar.setForeground(new java.awt.Color(255, 255, 255));
         Registrar.setText("Registrar");
         Registrar.setBorder(null);
         Registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -87,7 +91,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 580, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, 130, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -107,7 +111,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 combociudadActionPerformed(evt);
             }
         });
-        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 220, -1));
+        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 230, -1));
 
         combopais1.setComponentPopupMenu(combociudad.getComponentPopupMenu());
         combopais1.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +137,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 440, 30));
 
         nombreCiudad.setBorder(null);
-        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 220, 30));
+        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 230, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -142,9 +146,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 340, -1));
 
         id.setBorder(null);
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 220, 30));
+        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 170, 30));
 
+        Cancelar1.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar1.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar1.setText("Cancelar");
         Cancelar1.setBorder(null);
         Cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -152,9 +158,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 Cancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 580, 130, 50));
+        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 130, 50));
 
+        Buscar1.setBackground(new java.awt.Color(102, 102, 102));
         Buscar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Buscar1.setForeground(new java.awt.Color(255, 255, 255));
         Buscar1.setText("Buscar");
         Buscar1.setBorder(null);
         Buscar1.addActionListener(new java.awt.event.ActionListener() {
@@ -162,22 +170,23 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 Buscar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 50, 130, 50));
+        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 130, 50));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estado.setForeground(new java.awt.Color(255, 255, 255));
         estado.setText("Alta / Baja");
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, -1, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

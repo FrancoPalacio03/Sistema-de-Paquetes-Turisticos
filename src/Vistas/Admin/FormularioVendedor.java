@@ -78,7 +78,9 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Buscar.setBackground(new java.awt.Color(102, 102, 102));
         Buscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Buscar.setForeground(new java.awt.Color(255, 255, 255));
         Buscar.setText("Buscar");
         Buscar.setBorder(null);
         Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,9 +88,11 @@ public class FormularioVendedor extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 70, 90, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 90, 30));
 
+        Modificar.setBackground(new java.awt.Color(102, 102, 102));
         Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Modificar.setForeground(new java.awt.Color(255, 255, 255));
         Modificar.setText("Modificar");
         Modificar.setBorder(null);
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -140,8 +144,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 1, 28)); // NOI18N
         jLabel1.setText("Registro Vendedor");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -211,6 +214,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
         });
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estado.setForeground(new java.awt.Color(255, 255, 255));
         estado.setText("Alta / Baja");
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -275,7 +279,9 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 330, 30));
         jPanel1.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 310, 10));
 
+        Cancelar1.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar1.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar1.setText("Cancelar");
         Cancelar1.setBorder(null);
         Cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -285,7 +291,9 @@ public class FormularioVendedor extends javax.swing.JFrame {
         });
         jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 560, 130, 50));
 
+        Registrar.setBackground(new java.awt.Color(102, 102, 102));
         Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Registrar.setForeground(new java.awt.Color(255, 255, 255));
         Registrar.setText("Registrar");
         Registrar.setBorder(null);
         Registrar.addActionListener(new java.awt.event.ActionListener() {

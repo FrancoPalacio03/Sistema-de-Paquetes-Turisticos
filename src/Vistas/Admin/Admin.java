@@ -62,7 +62,7 @@ public class Admin extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 350, -1, 30));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, -1, 30));
 
         RAlojamiento.setBackground(new java.awt.Color(29, 29, 29));
         RAlojamiento.setForeground(new java.awt.Color(204, 204, 204));
@@ -287,7 +287,7 @@ public class Admin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();

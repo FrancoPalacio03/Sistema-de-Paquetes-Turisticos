@@ -60,9 +60,11 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         nombre.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
         nombre.setText("jLabel1");
 
         nombre1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        nombre1.setForeground(new java.awt.Color(255, 255, 255));
         nombre1.setText("Fecha ingreso:");
 
         descripcion.setColumns(20);
@@ -70,23 +72,32 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         jScrollPane1.setViewportView(descripcion);
 
         nombre2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        nombre2.setForeground(new java.awt.Color(255, 255, 255));
         nombre2.setText("Descripcion:");
 
         fechaSalida.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        fechaSalida.setForeground(new java.awt.Color(255, 255, 255));
         fechaSalida.setText("fecha");
 
+        nombre4.setBackground(new java.awt.Color(255, 255, 255));
         nombre4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        nombre4.setForeground(new java.awt.Color(255, 255, 255));
         nombre4.setText("Fecha ingreso:");
 
         fechaIngreso.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        fechaIngreso.setForeground(new java.awt.Color(255, 255, 255));
         fechaIngreso.setText("fecha");
 
         Precio.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        Precio.setForeground(new java.awt.Color(255, 255, 255));
         Precio.setText("precio");
 
         nombre5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        nombre5.setForeground(new java.awt.Color(255, 255, 255));
         nombre5.setText("Importe Diario");
 
+        Aceptar.setBackground(new java.awt.Color(102, 102, 102));
+        Aceptar.setForeground(new java.awt.Color(255, 255, 255));
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

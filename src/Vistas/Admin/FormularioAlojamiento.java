@@ -61,7 +61,9 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        Modificar.setBackground(new java.awt.Color(102, 102, 102));
         Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Modificar.setForeground(new java.awt.Color(255, 255, 255));
         Modificar.setText("Modificar");
         Modificar.setBorder(null);
         Modificar.addActionListener(new java.awt.event.ActionListener() {
@@ -69,9 +71,11 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 800, 130, 50));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 800, 130, 50));
 
+        Registrar.setBackground(new java.awt.Color(102, 102, 102));
         Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Registrar.setForeground(new java.awt.Color(255, 255, 255));
         Registrar.setText("Registrar");
         Registrar.setBorder(null);
         Registrar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +83,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 800, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, 130, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -138,16 +142,17 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 340, -1));
 
         importe.setBorder(null);
-        jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 730, 60, 30));
+        jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 730, 140, 30));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        estado.setForeground(new java.awt.Color(255, 255, 255));
         estado.setText("Alta / Baja");
         estado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 estadoActionPerformed(evt);
             }
         });
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, -1, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 170, -1, -1));
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 255));
         jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -158,7 +163,9 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         Id.setBorder(null);
         jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 60, 220, 30));
 
+        Cancelar1.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Cancelar1.setForeground(new java.awt.Color(255, 255, 255));
         Cancelar1.setText("Cancelar");
         Cancelar1.setBorder(null);
         Cancelar1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,9 +173,11 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 Cancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 800, 130, 50));
+        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 800, 130, 50));
 
+        Buscar.setBackground(new java.awt.Color(102, 102, 102));
         Buscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        Buscar.setForeground(new java.awt.Color(255, 255, 255));
         Buscar.setText("Buscar");
         Buscar.setBorder(null);
         Buscar.addActionListener(new java.awt.event.ActionListener() {
@@ -176,7 +185,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 40, 130, 50));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, 130, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
