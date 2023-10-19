@@ -36,6 +36,8 @@ public class SeleccionCiudad extends javax.swing.JFrame {
         Siguiente = new javax.swing.JButton();
         ciudadDestino = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        ciudadOrigen = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +52,7 @@ public class SeleccionCiudad extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 130, 50));
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 450, 130, 50));
 
         Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         Siguiente.setText("Siguiente");
@@ -60,7 +62,7 @@ public class SeleccionCiudad extends javax.swing.JFrame {
                 SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 200, 130, 50));
+        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 450, 130, 50));
 
         ciudadDestino.setBorder(null);
         ciudadDestino.addActionListener(new java.awt.event.ActionListener() {
@@ -68,13 +70,27 @@ public class SeleccionCiudad extends javax.swing.JFrame {
                 ciudadDestinoActionPerformed(evt);
             }
         });
-        jPanel1.add(ciudadDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 420, 40));
+        jPanel1.add(ciudadDestino, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 420, 40));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione Ciudad Destino");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 50, 340, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 340, -1));
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Seleccione Ciudad Origen");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 340, -1));
+
+        ciudadOrigen.setBorder(null);
+        ciudadOrigen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ciudadOrigenActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ciudadOrigen, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 420, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -86,7 +102,9 @@ public class SeleccionCiudad extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 560, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -104,10 +122,11 @@ public class SeleccionCiudad extends javax.swing.JFrame {
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
         Paquete paquete=new Paquete();
-        if(ciudadDestino==null){
+        if(ciudadDestino==null || ciudadOrigen==null){
             JOptionPane.showMessageDialog(null,"No debe dejar campos vacios.");
             return;
         }
+        paquete.setOrigen((Ciudad)ciudadOrigen.getSelectedItem());
         paquete.setDestino((Ciudad)ciudadDestino.getSelectedItem());        
         SeleccionAlojamiento re=new SeleccionAlojamiento(paquete);
         re.pack();
@@ -119,6 +138,10 @@ public class SeleccionCiudad extends javax.swing.JFrame {
     private void ciudadDestinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadDestinoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ciudadDestinoActionPerformed
+
+    private void ciudadOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadOrigenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ciudadOrigenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,7 +183,9 @@ public class SeleccionCiudad extends javax.swing.JFrame {
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
     private javax.swing.JComboBox<Ciudad> ciudadDestino;
+    private javax.swing.JComboBox<Ciudad> ciudadOrigen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

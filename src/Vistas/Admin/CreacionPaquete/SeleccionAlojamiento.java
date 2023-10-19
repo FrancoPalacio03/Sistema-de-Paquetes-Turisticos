@@ -118,7 +118,7 @@ private AlojamientoData aloData= new AlojamientoData();
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Admin re=new Admin();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
