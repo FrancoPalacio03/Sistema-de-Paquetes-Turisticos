@@ -20,7 +20,7 @@ public class Conexion {
     private static Conexion conexion = null;
      private static final String urlPaises =("jdbc:mariadb://localhost:3306/mundi");
 
-    private Conexion() {
+    public Conexion() {
         try {
             Class.forName("org.mariadb.jdbc.Driver");
 

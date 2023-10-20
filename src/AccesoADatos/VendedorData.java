@@ -16,6 +16,11 @@ import javax.swing.JOptionPane;
 public class VendedorData {
     private Connection con =Conexion.getConexion();
     
+
+
+    public VendedorData(Connection con) {
+      this.con = con;
+    }
     public void altaVendedor(Vendedor vendedor){
         String sql = "INSERT INTO Vendedor (correo, pass, nombre, apellido, dni, cont, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
@@ -43,6 +48,9 @@ public class VendedorData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + ex.getMessage());
         }
     }
+
+
+    
     public Vendedor BuscarVendedor(int id){
         Vendedor vendedor = null;
         String sql = "SELECT correo, pass, nombre, apellido, dni, cont, estado FROM VENDEDOR WHERE idVendedor = ? AND estado = 1";
@@ -105,7 +113,7 @@ public class VendedorData {
         List<Vendedor> vendedores = new ArrayList<Vendedor>();
 
         try {
-            String sql = "SELECT * FROM vendedor WHERE estado = 1 ";
+            String sql = "SELECT * FROM vendedor WHERE estado = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -117,7 +125,7 @@ public class VendedorData {
                 vendedor.setCorreo(rs.getString("correo"));
                 vendedor.setPass(rs.getString("pass"));
                 vendedor.setCont(rs.getInt("cont"));
-                vendedor.setEstado(true);
+               vendedor.setEstado(rs.getBoolean("estado"));
                 vendedores.add(vendedor);
             }
             ps.close();
@@ -146,5 +154,12 @@ public class VendedorData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
         }
     }
+
+
+    
+    
+    
+    
+    
 }
 
