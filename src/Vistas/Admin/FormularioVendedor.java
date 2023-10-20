@@ -4,9 +4,11 @@
  */
 package Vistas.Admin;
 
+import AccesoADatos.Conexion;
 import AccesoADatos.VendedorData;
 import Entidades.Vendedor;
 import Vistas.Vendedor.Login;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,7 +16,8 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class FormularioVendedor extends javax.swing.JFrame {
-    VendedorData vendedata= new VendedorData();
+     private Connection con =Conexion.getConexion();
+    VendedorData vendedata= new VendedorData(con);
     /**
      * Creates new form Registro1
      */
@@ -74,7 +77,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,7 +91,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 90, 90, 30));
+        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 90, 30));
 
         Modificar.setBackground(new java.awt.Color(102, 102, 102));
         Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -103,6 +106,8 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, 130, 50));
 
         apellido.setBackground(new java.awt.Color(51, 51, 51));
+        apellido.setForeground(new java.awt.Color(255, 255, 255));
+        apellido.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         apellido.setBorder(null);
         apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,9 +120,11 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Ingrese Apellido:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 360, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 360, -1));
 
         nombre.setBackground(new java.awt.Color(51, 51, 51));
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
+        nombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         nombre.setBorder(null);
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +140,8 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, 360, -1));
 
         dni.setBackground(new java.awt.Color(51, 51, 51));
+        dni.setForeground(new java.awt.Color(255, 255, 255));
+        dni.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         dni.setBorder(null);
         dni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -172,7 +181,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jLabel4.setText("Ingrese Nombre:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 360, -1));
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -180,6 +189,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jLabel7.setText("Ingrese Correo Electronico:");
 
         correo.setBackground(new java.awt.Color(102, 102, 102));
+        correo.setForeground(new java.awt.Color(255, 255, 255));
         correo.setBorder(null);
         correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,6 +203,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jLabel2.setText("Ingrese Contraseña:");
 
         contraseña.setBackground(new java.awt.Color(102, 102, 102));
+        contraseña.setForeground(new java.awt.Color(255, 255, 255));
         contraseña.setBorder(null);
         contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -200,12 +211,13 @@ public class FormularioVendedor extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Repita Contraseña:");
 
         contraseña1.setBackground(new java.awt.Color(102, 102, 102));
+        contraseña1.setForeground(new java.awt.Color(255, 255, 255));
         contraseña1.setBorder(null);
         contraseña1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -270,6 +282,8 @@ public class FormularioVendedor extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 190, -1));
 
         id.setBackground(new java.awt.Color(51, 51, 51));
+        id.setForeground(new java.awt.Color(255, 255, 255));
+        id.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         id.setBorder(null);
         id.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

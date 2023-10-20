@@ -4,10 +4,12 @@
  */
 package Vistas.Vendedor;
 
+import AccesoADatos.Conexion;
 import AccesoADatos.VendedorData;
 import Entidades.Vendedor;
 import Vistas.Admin.Admin;
 import Vistas.Vendedor.Login;
+import java.sql.Connection;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +17,8 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class FormularioCliente extends javax.swing.JFrame {
-    VendedorData vendedata= new VendedorData();
+     private Connection con =Conexion.getConexion();
+    VendedorData vendedata= new VendedorData(con);
     /**
      * Creates new form Registro1
      */
