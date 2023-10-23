@@ -1,8 +1,7 @@
-
 package AccesoADatos;
 
 import Entidades.Cliente;
-import Entidades.Vendedor;
+import Entidades.Paquete;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,42 +11,41 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class ClienteData {
-    private Connection con =Conexion.getConexion();
-    
-    public ClienteData(){}
-    
-    public void altaCliente(Vendedor vendedor){
-        String sql = "INSERT INTO Vendedor (correo, pass, nombre, apellido, dni, cont, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    private Connection con = Conexion.getConexion();
+
+    public ClienteData() {
+    }
+
+    public void altaCliente(Cliente cliente) {
+        String sql = "INSERT INTO Cliente (correo, nombre, apellido, dni, idPaquete) VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, vendedor.getCorreo());
-            ps.setString(2, vendedor.getPass());
-            ps.setString(3, vendedor.getNombre());
-            ps.setString(4, vendedor.getApellido());
-            ps.setInt(5, vendedor.getDni());
-            ps.setInt(6, vendedor.getCont());
-            ps.setBoolean(7, vendedor.getEstado());
+            ps.setString(1, cliente.getCorreo());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getApellido());
+            ps.setInt(4, cliente.getDni());
+            ps.setInt(5, cliente.getPaquete().getIdPaquete());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    int idVendedorGenerado = rs.getInt(1); // Obtenemos la clave generada
-                    vendedor.setId(idVendedorGenerado);
-                    JOptionPane.showMessageDialog(null, "Vendedor añadido con éxito. ID: " + idVendedorGenerado);
+                    int idClienteGenerado = rs.getInt(1);
+                    cliente.setId(idClienteGenerado);
+                    JOptionPane.showMessageDialog(null, "Cliente añadido con éxito. ID: " + idClienteGenerado);
                 }
                 rs.close();
             }
 
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente: " + ex.getMessage());
         }
     }
-    public Vendedor BuscarCliente(int id){
-        Vendedor vendedor = null;
-        String sql = "SELECT correo, pass, nombre, apellido, dni, cont, estado FROM VENDEDOR WHERE idVendedor = ? AND estado = 1";
+
+    public Cliente BuscarCliente(int id) {
+        Cliente cliente = null;
+        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM Cliente WHERE idCliente = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -55,88 +53,93 @@ public class ClienteData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                vendedor = new Vendedor();
-                vendedor.setId(id);
-                vendedor.setDni(rs.getInt("dni"));
-                vendedor.setApellido(rs.getString("apellido"));
-                vendedor.setNombre(rs.getString("nombre"));
-                vendedor.setCorreo(rs.getString("correo"));
-                vendedor.setPass(rs.getString("pass"));
-                vendedor.setCont(rs.getInt("cont"));
-                vendedor.setEstado(true);
-                ps.close();
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe el vendedor ");
-
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
-
-        }
-
-        return vendedor;
-    }
-    public void modificarCliente(Vendedor vendedor){
-        String sql = "UPDATE Vendedor SET correo = ? , pass = ?, nombre = ?, apellido = ?, dni = ?, cont = ?, estado= ? WHERE idVendedor = ?";
-        PreparedStatement ps = null;
-
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, vendedor.getCorreo());
-            ps.setString(2, vendedor.getPass());
-            ps.setString(3, vendedor.getNombre());
-            ps.setString(4, vendedor.getApellido());
-            ps.setInt(5, vendedor.getDni());
-            ps.setInt(6, vendedor.getCont());
-            ps.setBoolean(7, vendedor.getEstado());
-            ps.setInt(8, vendedor.getId());
-            int exito = ps.executeUpdate();
-
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
-            } else {
-                JOptionPane.showMessageDialog(null, "El Vendedor no existe");
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
-        }
-    }
-    
-    public List<Cliente> ListarClientes(){
-        List<Cliente> clientes = new ArrayList<Cliente>();
-
-        try {
-            String sql = "SELECT * FROM cliente";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                Cliente cliente = new Cliente();
-                cliente.setId(rs.getInt("idVendedor"));
+                cliente = new Cliente();
+                cliente.setId(id);
                 cliente.setDni(rs.getInt("dni"));
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
+                
+                int idPaquete = rs.getInt("idPaquete");
+                Paquete paquete = BuscarPaquete(idPaquete); // Implement a method to find a Paquete by id
+                cliente.setPaquete(paquete);
+                
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el cliente");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex.getMessage());
+        }
+
+        return cliente;
+    }
+
+    public void modificarCliente(Cliente cliente) {
+        String sql = "UPDATE Cliente SET correo = ?, nombre = ?, apellido = ?, dni = ?, idPaquete = ? WHERE idCliente = ?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, cliente.getCorreo());
+            ps.setString(2, cliente.getNombre());
+            ps.setString(3, cliente.getApellido());
+            ps.setInt(4, cliente.getDni());
+            ps.setInt(5, cliente.getPaquete().getIdPaquete()); // Use the idPaquete from the Paquete object
+            ps.setInt(6, cliente.getId());
+            int success = ps.executeUpdate();
+
+            if (success == 1) {
+                JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "El Cliente no existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex.getMessage());
+        }
+    }
+
+    public List<Cliente> ListarClientes() {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+
+        try {
+            String sql = "SELECT * FROM Cliente";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Cliente cliente = new Cliente();
+                cliente.setId(rs.getInt("idCliente"));
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setCorreo(rs.getString("correo"));
+
+                int idPaquete = rs.getInt("idPaquete");
+                Paquete paquete = BuscarPaquete(idPaquete); // Implement a method to find a Paquete by id
+                cliente.setPaquete(paquete);
+
                 clientes.add(cliente);
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla cliente " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex.getMessage());
         }
         return clientes;
     }
-    
-    public void BajaCliente(int id){
-        String sql = "DELETE from cliente WHERE idCliente = ?";
+
+    public void BajaCliente(int id) {
+        String sql = "DELETE FROM Cliente WHERE idCliente = ?";
         PreparedStatement ps = null;
 
         try {
+            ps = con.prepareStatement(sql);
             ps.setInt(1, id);
-            int exito = ps.executeUpdate();
+            int success = ps.executeUpdate();
 
-            if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Baja Exita");
+            if (success == 1) {
+                JOptionPane.showMessageDialog(null, "Baja Exitosa");
             } else {
                 JOptionPane.showMessageDialog(null, "El cliente no existe");
             }
@@ -144,5 +147,11 @@ public class ClienteData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex.getMessage());
         }
+    }
+
+    // Implement a method to find a Paquete by id
+    private Paquete BuscarPaquete(int idPaquete) {
+        // Implement the logic to find a Paquete by id
+        return null; // Replace with actual code
     }
 }

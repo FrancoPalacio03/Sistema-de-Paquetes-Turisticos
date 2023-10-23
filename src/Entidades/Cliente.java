@@ -3,7 +3,7 @@ package Entidades;
 
 
 public class Cliente {
-    private int id;
+    private int idCliente;
     private String correo;
     private String nombre;
     private String apellido;
@@ -13,8 +13,8 @@ public class Cliente {
     public Cliente() {
     }
     
-    public Cliente(int id, String correo, String nombre, String apellido, int dni, Paquete paquete) {
-        this.id = id;
+    public Cliente(int idCliente, String correo, String nombre, String apellido, int dni, Paquete paquete) {
+        this.idCliente = idCliente;
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -29,8 +29,8 @@ public class Cliente {
         this.dni = dni;
     }
 
-    public Cliente(int id, String correo, String nombre, String apellido, int dni) {
-        this.id = id;
+    public Cliente(int idCliente, String correo, String nombre, String apellido, int dni) {
+        this.idCliente = idCliente;
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -38,7 +38,7 @@ public class Cliente {
     }
 
     public int getId() {
-        return id;
+        return idCliente;
     }
 
     public String getCorreo() {
@@ -62,7 +62,7 @@ public class Cliente {
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.idCliente = id;
     }
 
     public void setCorreo(String correo) {
@@ -87,7 +87,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", correo=" + correo + ", pass=" + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return "Cliente{" + "id=" + idCliente + ", correo=" + correo + ", pass=" + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
     }
     
     

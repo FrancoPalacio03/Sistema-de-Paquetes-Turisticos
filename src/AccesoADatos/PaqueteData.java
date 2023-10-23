@@ -3,8 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package AccesoADatos;
+
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.List;
@@ -13,26 +13,23 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import Entidades.Paquete;
-import Entidades.Ciudad;
-import Entidades.Ciudad;
-import Entidades.Estados;
-public class PaqueteData {
-  private Connection con= Conexion.getConexion();
-private Connection conb= Conexion.getConexionPaises();
-  
-    
-public void registroPaquete(Paquete paquete){
-String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamiento, idpasaje) VALUES (?, ?, ?, ?)";  
 
-  
+public class PaqueteData {
+
+    private Connection con = Conexion.getConexion();
+    private Connection conb = Conexion.getConexionPaises();
+
+    public void registroPaquete(Paquete paquete) {
+        String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamiento, idpasaje) VALUES (?, ?, ?, ?)";
+
         PreparedStatement ps;
         try {
-           ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-           ps.setInt(1, paquete.getOrigen().getIdCiudad());
-           ps.setInt(2, paquete.getDestino().getIdCiudad());
-           ps.setInt(3, paquete.getAlojamiento().getIdAlojamiento());
-           ps.setInt(4, paquete.getPasaje().getIdPasaje());
-           int rowsAffected = ps.executeUpdate();
+            ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setInt(1, paquete.getOrigen().getIdCiudad());
+            ps.setInt(2, paquete.getDestino().getIdCiudad());
+            ps.setInt(3, paquete.getAlojamiento().getIdAlojamiento());
+            ps.setInt(4, paquete.getPasaje().getIdPasaje());
+            int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
@@ -45,14 +42,15 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
             }
 
             ps.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paquete" + ex.getMessage());
             return;
         }
     }
- public Paquete buscarPaquete(int idPaquete) {
+
+    public Paquete buscarPaquete(int idPaquete) {
         Paquete paquete = null;
-   String sql = "SELECT* FROM paquete WHERE idPaquete = ?";  
+        String sql = "SELECT* FROM paquete WHERE idPaquete = ?";
 
         PreparedStatement ps = null;
         try {
@@ -61,14 +59,13 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-               paquete = new Paquete();
-               paquete.setIdPaquete(idPaquete);
-               paquete.getOrigen().getIdCiudad();
-               paquete.getDestino().getIdCiudad();
-               paquete.getAlojamiento().getIdAlojamiento();
-               paquete.getPasaje().getIdPasaje();
-               
-               
+                paquete = new Paquete();
+                paquete.setIdPaquete(idPaquete);
+                paquete.getOrigen().getIdCiudad();
+                paquete.getDestino().getIdCiudad();
+                paquete.getAlojamiento().getIdAlojamiento();
+                paquete.getPasaje().getIdPasaje();
+
                 ps.close();
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Paquete");
@@ -81,22 +78,23 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
 
         return paquete;
     }
-  public List<Paquete> listarPaquete() {
-       Paquete paquete = null;
-      List<Paquete> paquetes = new ArrayList<Paquete>();
+
+    public List<Paquete> listarPaquete() {
+        Paquete paquete = null;
+        List<Paquete> paquetes = new ArrayList<Paquete>();
 
         try {
             String sql = "SELECT * FROM paquete WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-               paquete = new Paquete();
-               paquete.setIdPaquete(rs.getInt("idPaquete"));
-               paquete.getOrigen().getIdCiudad();
-               paquete.getDestino().getIdCiudad();
-               paquete.getAlojamiento().getIdAlojamiento();
-               paquete.getPasaje().getIdPasaje();
-               paquetes.add(paquete);
+                paquete = new Paquete();
+                paquete.setIdPaquete(rs.getInt("idPaquete"));
+                paquete.getOrigen().getIdCiudad();
+                paquete.getDestino().getIdCiudad();
+                paquete.getAlojamiento().getIdAlojamiento();
+                paquete.getPasaje().getIdPasaje();
+                paquetes.add(paquete);
             }
             ps.close();
 
@@ -105,17 +103,18 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
         }
         return paquetes;
     }
-        public void modificarPaquete(Paquete paquete){
-        
-        String sql = "UPDATE  paquete SET origen = ?, destino = ?,  alojamiento = ?, pasaje = ? WHERE idPaquete = ?";  
+
+    public void modificarPaquete(Paquete paquete) {
+
+        String sql = "UPDATE  paquete SET origen = ?, destino = ?,  alojamiento = ?, pasaje = ? WHERE idPaquete = ?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-              ps.setInt(1, paquete.getIdPaquete());
-              ps.setInt(2, paquete.getOrigen().getIdCiudad());
-               ps.setInt(3, paquete.getDestino().getIdCiudad());
-                ps.setInt(1, paquete.getPasaje().getIdPasaje());
+            ps.setInt(1, paquete.getIdPaquete());
+            ps.setInt(2, paquete.getOrigen().getIdCiudad());
+            ps.setInt(3, paquete.getDestino().getIdCiudad());
+            ps.setInt(1, paquete.getPasaje().getIdPasaje());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -129,7 +128,8 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
         }
 
     }
-  public void ba(int id) {
+
+    public void ba(int id) {
 
         try {
             String sql = "UPDATE pasaje SET estado = 0 WHERE idPasaje = ? ";
@@ -145,5 +145,30 @@ String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamient
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla pasajes");
         }
     }
+    
+    public List<Paquete> listarPaqueteXVendedor(int id) {
+        Paquete paquete = null;
+        List<Paquete> paquetes = new ArrayList<Paquete>();
+
+        try {
+            String sql = "SELECT * FROM paquete WHERE estado = 1 and idVendedor=?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                paquete = new Paquete();
+                paquete.setIdPaquete(rs.getInt("idPaquete"));
+                paquete.getOrigen().getIdCiudad();
+                paquete.getDestino().getIdCiudad();
+                paquete.getAlojamiento().getIdAlojamiento();
+                paquete.getPasaje().getIdPasaje();
+                paquetes.add(paquete);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Pasaje " + ex.getMessage());
+        }
+        return paquetes;
+    }
 }
- 
