@@ -46,7 +46,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTcorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTpass = new javax.swing.JTextField();
+        jTpass = new javax.swing.JPasswordField();
 
         Registrar.setText("Registrar vendedor");
         Registrar.setBorder(null);
@@ -134,13 +134,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña");
 
-        jTpass.setBorder(null);
-        jTpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTpassActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jMAILLayout = new javax.swing.GroupLayout(jMAIL);
         jMAIL.setLayout(jMAILLayout);
         jMAILLayout.setHorizontalGroup(
@@ -170,9 +163,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jTcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(50, 50, 50)
+                .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMAILLayout.createSequentialGroup()
@@ -195,51 +188,53 @@ public class Login extends javax.swing.JFrame {
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
         int cont = 0;
         VendedorData vend = new VendedorData(con);
-        Vendedor vendedor=null;
+        Vendedor vendedor = null;
         List<Vendedor> vendedores = new ArrayList<Vendedor>();
         vendedores = vend.ListarVendedores();
         boolean encontrado = false;
-        
+        String correo = jTcorreo.getText();
+        String pass = jTpass.getText();
+        if (correo.isEmpty() || pass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "debe ingresar algun dato para loguear");
+
+        }
         for (Vendedor elemento : vendedores) {
 
-            if (!jTcorreo.equals("")) {
+            if (!elemento.getCorreo().equalsIgnoreCase(correo)) {
+                if (!elemento.getPass().equals(pass)) {
+                    JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
+                    jTcorreo.setText("");
+                    jTpass.setText("");
+                } else {
 
-                if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText())) {
-                    if (elemento.getPass().equals(jTpass.getText())) {
-                        encontrado = true;
-                        vendedor=elemento;
-                        break;
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
-                        jTcorreo.setText("");
-                        jTpass.setText("");
-                    }
+                    encontrado = true;
+                    vendedor = elemento;
+                    break;
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "debe ingresar algun dato para loguear");
             }
-        }
 
+        }
         if (encontrado) {
             JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
-            VendedorLogeado re = new VendedorLogeado(vendedor);
+            VendedorLogeado re = new VendedorLogeado();
             re.pack();
             re.setVisible(true);
             re.setLocationRelativeTo(null);
             this.dispose();
         }
+
     }//GEN-LAST:event_IngresarActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
-        
+
         String pass = JOptionPane.showInputDialog("Ingrese contraseña: ");
         if (pass.equals("admin")) {
             Admin re = new Admin();
             re.pack();
             re.setVisible(true);
             re.setLocationRelativeTo(null);
-            
+
             this.dispose();
         } else if (pass == null) {
             return;
@@ -251,10 +246,6 @@ public class Login extends javax.swing.JFrame {
     private void jTcorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcorreoActionPerformed
-
-    private void jTpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTpassActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,16 +261,24 @@ public class Login extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -303,6 +302,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTcorreo;
-    private javax.swing.JTextField jTpass;
+    private javax.swing.JPasswordField jTpass;
     // End of variables declaration//GEN-END:variables
 }

@@ -65,7 +65,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         Cancelar1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        combocliente = new javax.swing.JComboBox<>();
         nombre1 = new javax.swing.JTextField();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -294,12 +294,13 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel8.setText("Seleccione el cliente a modificar");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 350, -1));
 
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        combocliente.setBorder(null);
+        combocliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                comboclienteActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 320, 30));
+        jPanel1.add(combocliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 320, 30));
 
         nombre1.setBackground(new java.awt.Color(51, 51, 51));
         nombre1.setBorder(null);
@@ -479,9 +480,9 @@ public class ModificarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estadoActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void comboclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboclienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+    }//GEN-LAST:event_comboclienteActionPerformed
 
     private void nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre1ActionPerformed
         // TODO add your handling code here:
@@ -672,6 +673,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField apellido;
+    private javax.swing.JComboBox<String> combocliente;
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JPasswordField contraseña1;
     private javax.swing.JTextField correo;
@@ -679,7 +681,6 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JCheckBox estado;
     private javax.swing.JTextField id;
     private javax.swing.JComboBox<Cliente> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
