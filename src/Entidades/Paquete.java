@@ -1,6 +1,4 @@
-
 package Entidades;
-
 
 public class Paquete {
     private int idPaquete;
@@ -8,24 +6,26 @@ public class Paquete {
     private Ciudad destino;
     private Alojamiento alojamiento;
     private Pasaje pasaje;
+    private Vendedor vendedor;
     
-    
-    public Paquete(){
+    public Paquete() {
     }
 
-    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(int idPaquete, Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje, Vendedor vendedor) {
         this.idPaquete = idPaquete;
         this.origen = origen;
         this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
+        this.vendedor = vendedor;
     }
 
-    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+    public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje, Vendedor vendedor) {
         this.origen = origen;
         this.destino = destino;
         this.alojamiento = alojamiento;
         this.pasaje = pasaje;
+        this.vendedor = vendedor;
     }
 
     public int getIdPaquete() {
@@ -48,6 +48,10 @@ public class Paquete {
         return pasaje;
     }
 
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
     public void setIdPaquete(int idPaquete) {
         this.idPaquete = idPaquete;
     }
@@ -66,6 +70,15 @@ public class Paquete {
 
     public void setPasaje(Pasaje pasaje) {
         this.pasaje = pasaje;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    @Override
+    public String toString() {
+        return this.idPaquete +" "+ this.destino.toString();
     }
     
     

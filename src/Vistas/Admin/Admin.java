@@ -4,7 +4,8 @@
  */
 package Vistas.Admin;
 
-import Vistas.Admin.CreacionPaquete.FormularioPaquete;
+
+import Vistas.Admin.CreacionPaquete.SeleccionCiudad;
 import Vistas.Vendedor.Login;
 
 /**
@@ -362,12 +363,10 @@ public class Admin extends javax.swing.JFrame {
     }//GEN-LAST:event_FormularioCiudad9ActionPerformed
 
     private void RPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPaqueteActionPerformed
-        // TODO add your handling code here:
-        FormularioPaquete re= new FormularioPaquete();
+        SeleccionCiudad re= new SeleccionCiudad();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_RPaqueteActionPerformed
 
     private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed

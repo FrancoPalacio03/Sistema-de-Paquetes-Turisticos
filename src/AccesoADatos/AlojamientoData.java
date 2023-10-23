@@ -30,6 +30,7 @@ public class AlojamientoData {
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, alojamiento.getNombre());
             ps.setDate(2, Date.valueOf(alojamiento.getIngreso()));
             ps.setDate(3, Date.valueOf(alojamiento.getSalida()));
             ps.setBoolean(4, alojamiento.isEstado());
@@ -37,7 +38,7 @@ public class AlojamientoData {
             ps.setDouble(6, alojamiento.getImporteDiario());
             Ciudad ciudad = alojamiento.getCiudadDest();
             ps.setInt(7, ciudad.getIdCiudad());
-            ps.setString(1, alojamiento.getNombre());
+            
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
@@ -176,8 +177,8 @@ public class AlojamientoData {
         try {
             String sql = "SELECT * FROM alojamiento WHERE estado = 1 and Ciudad=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();            
             while (rs.next()) {
                 Alojamiento alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
@@ -187,7 +188,7 @@ public class AlojamientoData {
                 alojamiento.setEstado(true);
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
-                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("CiudadDest"));
+                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
                 alojamiento.setCiudadDest(ciudad);
 
                 alojamientos.add(alojamiento);

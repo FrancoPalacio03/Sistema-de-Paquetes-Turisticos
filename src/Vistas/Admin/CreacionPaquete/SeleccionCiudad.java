@@ -4,9 +4,12 @@
  */
 package Vistas.Admin.CreacionPaquete;
 
+import AccesoADatos.CiudadData;
 import Entidades.Ciudad;
 import Entidades.Paquete;
 import Vistas.Vendedor.Login;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,11 +18,15 @@ import javax.swing.JOptionPane;
  */
 public class SeleccionCiudad extends javax.swing.JFrame {
 
+    private CiudadData ciuData = new CiudadData();
+
     /**
      * Creates new form RegistroCiudad
      */
     public SeleccionCiudad() {
         initComponents();
+        ciudadDestino.setEnabled(false);
+        llenarBoxes();
     }
 
     /**
@@ -116,7 +123,7 @@ public class SeleccionCiudad extends javax.swing.JFrame {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Login re = new Login();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -125,14 +132,14 @@ public class SeleccionCiudad extends javax.swing.JFrame {
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
-        Paquete paquete=new Paquete();
-        if(ciudadDestino==null || ciudadOrigen==null){
-            JOptionPane.showMessageDialog(null,"No debe dejar campos vacios.");
+        Paquete paquete = new Paquete();
+        if (ciudadDestino == null || ciudadOrigen == null) {
+            JOptionPane.showMessageDialog(null, "No debe dejar campos vacios.");
             return;
         }
-        paquete.setOrigen((Ciudad)ciudadOrigen.getSelectedItem());
-        paquete.setDestino((Ciudad)ciudadDestino.getSelectedItem());        
-        SeleccionAlojamiento re=new SeleccionAlojamiento(paquete);
+        paquete.setOrigen((Ciudad) ciudadOrigen.getSelectedItem());
+        paquete.setDestino((Ciudad) ciudadDestino.getSelectedItem());
+        SeleccionAlojamiento re = new SeleccionAlojamiento(paquete);
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -144,7 +151,21 @@ public class SeleccionCiudad extends javax.swing.JFrame {
     }//GEN-LAST:event_ciudadDestinoActionPerformed
 
     private void ciudadOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadOrigenActionPerformed
-        // TODO add your handling code here:
+        Ciudad ciudadOrigenSeleccionada = (Ciudad) ciudadOrigen.getSelectedItem();
+
+        // Habilitar el combo de destino
+        ciudadDestino.setEnabled(true);
+
+        // Limpiar el combo de destino
+        ciudadDestino.removeAllItems();
+
+        // Llenar el combo de destino sin la ciudad de origen seleccionada
+        List<Ciudad> ciudades = ciuData.listar();
+        for (Ciudad ciudad : ciudades) {
+            if (!ciudad.equals(ciudadOrigenSeleccionada)) {
+                ciudadDestino.addItem(ciudad);
+            }
+        }
     }//GEN-LAST:event_ciudadOrigenActionPerformed
 
     /**
@@ -181,6 +202,14 @@ public class SeleccionCiudad extends javax.swing.JFrame {
                 new SeleccionCiudad().setVisible(true);
             }
         });
+    }
+
+    public void llenarBoxes() {
+        List<Ciudad> ciudades = new ArrayList();
+        ciudades = ciuData.listar();
+        for (Ciudad elemento : ciudades) {
+            ciudadOrigen.addItem(elemento);
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

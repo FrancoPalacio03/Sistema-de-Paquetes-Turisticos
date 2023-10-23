@@ -63,7 +63,7 @@ public class CiudadData {
             }
             ps.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno: " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudad: " + ex.getMessage());
         }
 
     }
@@ -94,7 +94,7 @@ public class CiudadData {
                 JOptionPane.showMessageDialog(null, "No existe el vendedor ");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Vendedor " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ciudad " + ex.getMessage());
 
         }
         return ciudad;
@@ -107,7 +107,7 @@ public List<Paises> listarPaises() {
         PreparedStatement ps;
         ArrayList<Paises> paises = new ArrayList();
         try {
-            ps = conb.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Paises pais = new Paises();
@@ -129,7 +129,7 @@ public List<Paises> listarPaises() {
         PreparedStatement ps;
         ArrayList<Estados> ciudades = new ArrayList();
         try {
-            ps = conb.prepareStatement(sql);
+            ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -138,6 +138,29 @@ public List<Paises> listarPaises() {
                 estado.setUbicacionpaisid(rs.getInt("ubicacionpaisid"));
                 estado.setEstadonombre(rs.getString("estadonombre"));
                 ciudades.add(estado);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla estados " + ex.getMessage());
+
+        }
+        return ciudades;
+    }
+    
+    public List<Ciudad> listar() {
+        String sql = "Select * FROM ciudad where estado=1 ";
+        PreparedStatement ps;
+        ArrayList<Ciudad> ciudades = new ArrayList();
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudad ciudad = new Ciudad();
+                ciudad.setIdCiudad(rs.getInt("idCiudad"));
+                ciudad.setNombre(rs.getString("nombre"));
+                ciudad.setEstado(rs.getBoolean("estado"));
+                ciudades.add(ciudad);
             }
             ps.close();
 

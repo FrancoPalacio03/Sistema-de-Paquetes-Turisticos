@@ -2,10 +2,17 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas.Admin;
+package Vistas.Admin.CreacionPaquete;
 
+import AccesoADatos.PasajeData;
+import Entidades.Paquete;
+import Entidades.Pasaje;
+import Entidades.TipoTransporte;
 import Vistas.Vendedor.Login;
 import Vistas.Vendedor.RegistroVenta;
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -13,11 +20,21 @@ import Vistas.Vendedor.RegistroVenta;
  */
 public class FormularioPasaje extends javax.swing.JFrame {
 
+    private Paquete paquete;
+    
+
     /**
      * Creates new form RegistroTransporte1
      */
     public FormularioPasaje() {
         initComponents();
+        llenarBox();
+    }
+
+    public FormularioPasaje(Paquete paquete) {
+        initComponents();
+        this.paquete = paquete;
+        llenarBox();
     }
 
     /**
@@ -32,8 +49,10 @@ public class FormularioPasaje extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Cancelar = new javax.swing.JButton();
         Siguiente = new javax.swing.JButton();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
+        transporte = new javax.swing.JComboBox<>();
+        precioLabel = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,7 +69,7 @@ public class FormularioPasaje extends javax.swing.JFrame {
                 CancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 130, 50));
+        jPanel1.add(Cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 130, 50));
 
         Siguiente.setBackground(new java.awt.Color(102, 102, 102));
         Siguiente.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -62,22 +81,33 @@ public class FormularioPasaje extends javax.swing.JFrame {
                 SiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 200, 130, 50));
+        jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 260, 130, 50));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox2.setBorder(null);
-        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+        transporte.setBorder(null);
+        transporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox2ActionPerformed(evt);
+                transporteActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 280, 40));
+        jPanel1.add(transporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 360, 40));
 
-        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Seleccione Transporte");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 360, -1));
+        precioLabel.setBackground(new java.awt.Color(255, 255, 255));
+        precioLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        precioLabel.setForeground(new java.awt.Color(255, 255, 255));
+        precioLabel.setText("-");
+        jPanel1.add(precioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 310, -1));
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Seleccione Transporte");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 360, -1));
+
+        jLabel4.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Precio: $");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -89,7 +119,7 @@ public class FormularioPasaje extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
         );
 
         pack();
@@ -97,7 +127,7 @@ public class FormularioPasaje extends javax.swing.JFrame {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Login re = new Login();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -106,16 +136,25 @@ public class FormularioPasaje extends javax.swing.JFrame {
 
     private void SiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiguienteActionPerformed
         // TODO add your handling code here:
-        RegistroVenta re=new RegistroVenta();
+        TipoTransporte selected = (TipoTransporte) transporte.getSelectedItem();
+        
+        Pasaje pasaje = new Pasaje(selected.name(), selected.getImporte(), paquete.getOrigen(), true);
+        
+       
+        RegistroPaquete re = new RegistroPaquete(pasaje,paquete);
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_SiguienteActionPerformed
 
-    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+    private void transporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_transporteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox2ActionPerformed
+        TipoTransporte selected = (TipoTransporte) transporte.getSelectedItem();
+        String precio = Double.toString(selected.getImporte());
+        DecimalFormat df = new DecimalFormat("#,###");
+        precioLabel.setText(df.format(selected.getImporte()));        
+    }//GEN-LAST:event_transporteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,12 +197,25 @@ public class FormularioPasaje extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void llenarBox() {
+        
+        for (TipoTransporte elemento : TipoTransporte.values()) {
+            transporte.addItem(elemento);
+        }        
+    }
+
+//    private TipoTransporte seleccionado(){
+//        TipoTransporte selected= ()
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Cancelar;
     private javax.swing.JButton Siguiente;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel precioLabel;
+    private javax.swing.JComboBox<TipoTransporte> transporte;
     // End of variables declaration//GEN-END:variables
 }

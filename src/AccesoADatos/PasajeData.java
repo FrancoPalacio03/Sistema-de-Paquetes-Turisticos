@@ -22,9 +22,9 @@ public class PasajeData {
     private Connection conb = Conexion.getConexionPaises();
     private CiudadData awp = new CiudadData();
 
-    public void registroPasaje(Pasaje pasaje) {
-        String sql = "INSERT INTO pasaje (tipoTransporte, importe, nombreCiudadOrigen,   estado) VALUES (?, ?, ?, ?)";
-
+    public int registroPasaje(Pasaje pasaje) {
+        String sql = "INSERT INTO pasaje (tipoTransporte, importe, idCiudadOrigen, estado) VALUES (?, ?, ?, ?)";
+        int idPasajeGenerado=0;
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -37,7 +37,7 @@ public class PasajeData {
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    int idPasajeGenerado = rs.getInt(1); // Obtenemos la clave generada
+                    idPasajeGenerado = rs.getInt(1); // Obtenemos la clave generada
                     pasaje.setIdPasaje(rowsAffected);
                     JOptionPane.showMessageDialog(null, "PASAJE añadido con éxito. ID: " + idPasajeGenerado);
                 }
@@ -47,8 +47,8 @@ public class PasajeData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasaje" + ex.getMessage());
-            return;
         }
+        return idPasajeGenerado;
     }
 
     public Pasaje buscarPasaje(int idPasaje) {
@@ -111,7 +111,7 @@ public class PasajeData {
     }
 
     public void modificarPasaje(Pasaje pasaje) {
-        String sql = "UPDATE  pasaje SET tipoTransporte = ?, nombreCiudadOrigen = ?,  importe = ?, estado = ?";
+        String sql = "UPDATE  pasaje SET tipoTransporte = ?, idCiudadOrigen = ?,  importe = ?, estado = ?";
         PreparedStatement ps = null;
 
         try {

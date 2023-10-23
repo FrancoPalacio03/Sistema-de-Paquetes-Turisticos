@@ -22,7 +22,7 @@ private Connection conb= Conexion.getConexionPaises();
   
     
 public void registroPaquete(Paquete paquete){
-String sql = "INSERT INTO paquete (origen, destino,  alojamiento, pasaje) VALUES (?, ?, ?, ?)";  
+String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamiento, idpasaje) VALUES (?, ?, ?, ?)";  
 
   
         PreparedStatement ps;

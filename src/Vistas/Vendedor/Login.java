@@ -195,47 +195,51 @@ public class Login extends javax.swing.JFrame {
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
         int cont = 0;
         VendedorData vend = new VendedorData(con);
+        Vendedor vendedor=null;
         List<Vendedor> vendedores = new ArrayList<Vendedor>();
         vendedores = vend.ListarVendedores();
-       boolean encontrado = false;
-for (Vendedor elemento : vendedores) {
+        boolean encontrado = false;
+        
+        for (Vendedor elemento : vendedores) {
 
-    if (!jTcorreo.equals("")) {
+            if (!jTcorreo.equals("")) {
 
-        if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText())) {
-            if (elemento.getPass().equals(jTpass.getText())) {
-                encontrado = true;
-                break;
+                if (elemento.getCorreo().equalsIgnoreCase(jTcorreo.getText())) {
+                    if (elemento.getPass().equals(jTpass.getText())) {
+                        encontrado = true;
+                        vendedor=elemento;
+                        break;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
+                        jTcorreo.setText("");
+                        jTpass.setText("");
+                    }
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Alguno de los campos contiene ERROR");
-                jTcorreo.setText("");
-                jTpass.setText("");
+                JOptionPane.showMessageDialog(null, "debe ingresar algun dato para loguear");
             }
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "debe ingresar algun dato para loguear");
-    }
-}
 
-if (encontrado) {
-    JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
-    VendedorLogeado re = new VendedorLogeado();
-    re.pack();
-    re.setVisible(true);
-    re.setLocationRelativeTo(null);
-    this.dispose();
-}
+        if (encontrado) {
+            JOptionPane.showMessageDialog(null, "Ingreso Exitoso");
+            VendedorLogeado re = new VendedorLogeado(vendedor);
+            re.pack();
+            re.setVisible(true);
+            re.setLocationRelativeTo(null);
+            this.dispose();
+        }
     }//GEN-LAST:event_IngresarActionPerformed
 
     private void AdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminActionPerformed
         // TODO add your handling code here:
+        
         String pass = JOptionPane.showInputDialog("Ingrese contraseña: ");
-
         if (pass.equals("admin")) {
             Admin re = new Admin();
             re.pack();
             re.setVisible(true);
             re.setLocationRelativeTo(null);
+            
             this.dispose();
         } else if (pass == null) {
             return;

@@ -5,11 +5,14 @@
 package Vistas.Admin;
 
 import AccesoADatos.AlojamientoData;
+import AccesoADatos.CiudadData;
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,10 +21,12 @@ import javax.swing.JOptionPane;
  */
 public class FormularioAlojamiento extends javax.swing.JFrame {
     private AlojamientoData aloData=new AlojamientoData();
-
+    private CiudadData ciuData= new CiudadData();
+    
     public FormularioAlojamiento() {
         initComponents();
         estado.setSelected(true);
+        llenarCombo();
     }
 
     /**
@@ -47,7 +52,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
-        Cuidad = new javax.swing.JComboBox<>();
+        comboCiudad = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
         importe = new javax.swing.JTextField();
         estado = new javax.swing.JCheckBox();
@@ -88,7 +93,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Ciudad Destino");
+        jLabel1.setText("Ubicacion");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 680, 230, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -132,8 +137,8 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 220, 30));
 
-        Cuidad.setBorder(null);
-        jPanel1.add(Cuidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 730, 210, 30));
+        comboCiudad.setBorder(null);
+        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 730, 210, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -207,7 +212,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         LocalDate fechaEntrada = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaSalida = fechaOn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String descripcionServicios = Descripcion.getText();
-        Ciudad ciudadDestino = (Ciudad) Cuidad.getSelectedItem();
+        Ciudad ciudadDestino = (Ciudad) comboCiudad.getSelectedItem();
         boolean estaSeleccionado = estado.isSelected();
         double importeDiario=0;
       
@@ -243,7 +248,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         LocalDate fechaEntrada = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate fechaSalida = fechaOn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String descripcionServicios = Descripcion.getText();
-        Ciudad ciudadDestino = (Ciudad) Cuidad.getSelectedItem();
+        Ciudad ciudadDestino = (Ciudad) comboCiudad.getSelectedItem();
         boolean estaSeleccionado = estado.isSelected();
         double importeDiario=0;
       
@@ -306,7 +311,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         estado.setSelected(alojamiento.isEstado());
         
         // Seleccionar la ciudad de destino en el ComboBox
-        Cuidad.setSelectedItem(alojamiento.getCiudadDest());
+        comboCiudad.setSelectedItem(alojamiento.getCiudadDest());
         } else {
             JOptionPane.showMessageDialog(this, "Alojamiento no encontrado.", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -346,15 +351,23 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void llenarCombo(){
+        List<Ciudad> ciudades= new ArrayList();        
+        ciudades= ciuData.listar();       
+        for(Ciudad elemento : ciudades){
+            comboCiudad.addItem(elemento);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar;
     private javax.swing.JButton Cancelar1;
-    private javax.swing.JComboBox<Ciudad> Cuidad;
     private javax.swing.JTextArea Descripcion;
     private javax.swing.JTextField Id;
     private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
+    private javax.swing.JComboBox<Ciudad> comboCiudad;
     private javax.swing.JCheckBox estado;
     private com.toedter.calendar.JDateChooser fechaIn;
     private com.toedter.calendar.JDateChooser fechaOn;

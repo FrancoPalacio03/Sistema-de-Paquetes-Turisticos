@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
  * @author diakz
  */
 public class FormularioCiudad extends javax.swing.JFrame {
-    
+
     private Connection conb = Conexion.getConexionPaises();
     CiudadData awp = new CiudadData(conb);
 
@@ -34,8 +34,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
         initComponents();
         cargarCombo();
         estado.setSelected(true);
-       
-        
+
     }
 
     /**
@@ -203,7 +202,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
         String url = URL.getText().trim(); // Elimina espacios en blanco al principio y al final
         Paises pais = (Paises) combopais1.getSelectedItem();
         Estados estados = (Estados) combociudad.getSelectedItem();
-        boolean est=estado.isSelected();
+        boolean est = estado.isSelected();
 
         // Validaciones
         if (nombre.isEmpty()) {
@@ -231,7 +230,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.dispose();
-                                
+
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
@@ -241,7 +240,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
         String url = URL.getText().trim(); // Elimina espacios en blanco al principio y al final
         Paises pais = (Paises) combopais1.getSelectedItem();
         Estados estados = (Estados) combociudad.getSelectedItem();
-        boolean est=estado.isSelected();
+        boolean est = estado.isSelected();
 
         // Validaciones
         if (nombre.isEmpty()) {
@@ -272,7 +271,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void combociudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combociudadActionPerformed
-       
+
     }//GEN-LAST:event_combociudadActionPerformed
 
     private void combopais1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopais1ActionPerformed
@@ -286,21 +285,21 @@ public class FormularioCiudad extends javax.swing.JFrame {
 
     private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed
         // TODO add your handling code here
-        int idCiudad=0;
+        int idCiudad = 0;
         try {
             idCiudad = Integer.parseInt(id.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si el importe no es válido
         }
-        Ciudad ciudad= awp.BuscarCiudad(idCiudad);
+        Ciudad ciudad = awp.BuscarCiudad(idCiudad);
         if (ciudad != null) {
-        // Rellenar los campos con los datos del alojamiento
-        combopais1.setSelectedItem(ciudad.getPais());
-        combociudad.setSelectedItem(ciudad.getProvincia());
-        nombreCiudad.setText(ciudad.getNombre());
-        URL.setText(ciudad.getUrlImagen());
-        estado.setSelected(ciudad.isEstado());       
+            // Rellenar los campos con los datos del alojamiento
+            combopais1.setSelectedItem(ciudad.getPais());
+            combociudad.setSelectedItem(ciudad.getProvincia());
+            nombreCiudad.setText(ciudad.getNombre());
+            URL.setText(ciudad.getUrlImagen());
+            estado.setSelected(ciudad.isEstado());
         }
     }//GEN-LAST:event_Buscar1ActionPerformed
 
@@ -348,26 +347,26 @@ public class FormularioCiudad extends javax.swing.JFrame {
         ArrayList<Paises> paisesl = new ArrayList();
         paisesl = (ArrayList<Paises>) awp.listarPaises();
         for (Paises elemento : paisesl) {
-           combopais1.addItem(elemento);
+            combopais1.addItem(elemento);
         }
     }
 
-   private void cargarComboCiudad() {
-    // Eliminar todos los elementos existentes del cuadro combociudad
-    combociudad.removeAllItems();
-    
-    // Obtener el país seleccionado
-    Paises pais = (Paises) combopais1.getSelectedItem();
-    int id = pais.getId();
-    
-    // Llamar al método para cargar las ciudades en función del país seleccionado
-    List<Estados> ciudades = awp.listarCiudades(id);
-    
-    // Agregar las ciudades al cuadro combociudad
-    for (Estados elemento : ciudades) {
-        combociudad.addItem(elemento);
+    private void cargarComboCiudad() {
+        // Eliminar todos los elementos existentes del cuadro combociudad
+        combociudad.removeAllItems();
+
+        // Obtener el país seleccionado
+        Paises pais = (Paises) combopais1.getSelectedItem();
+        int id = pais.getId();
+
+        // Llamar al método para cargar las ciudades en función del país seleccionado
+        List<Estados> ciudades = awp.listarCiudades(id);
+
+        // Agregar las ciudades al cuadro combociudad
+        for (Estados elemento : ciudades) {
+            combociudad.addItem(elemento);
+        }
     }
-}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscar1;
     private javax.swing.JButton Cancelar1;

@@ -4,6 +4,7 @@
  */
 package Vistas.Vendedor;
 
+import Entidades.Vendedor;
 import javax.swing.tree.DefaultTreeModel;
 
 /**
@@ -11,13 +12,22 @@ import javax.swing.tree.DefaultTreeModel;
  * @author franc
  */
 public class VendedorLogeado extends javax.swing.JFrame {
- private DefaultTreeModel modelo;
+
+    private DefaultTreeModel modelo;
+    private Vendedor vendedor;
+
     /**
      * Creates new form ClienteLogeado
      */
     public VendedorLogeado() {
         initComponents();
-        
+
+        arbol.setModel(modelo);
+    }
+    
+    public VendedorLogeado(Vendedor vendedor) {
+        initComponents();
+        this.vendedor=vendedor;
         arbol.setModel(modelo);
     }
 
@@ -334,7 +344,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         // TODO add your handling code here:
-        Login re=new Login();
+        Login re = new Login();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
