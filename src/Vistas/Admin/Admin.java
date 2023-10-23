@@ -38,7 +38,7 @@ public class Admin extends javax.swing.JFrame {
         jTextField3 = new javax.swing.JTextField();
         RCiudad = new javax.swing.JButton();
         FormularioCiudad5 = new javax.swing.JButton();
-        FormularioCiudad7 = new javax.swing.JButton();
+        listadocliente = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
         FormularioCiudad6 = new javax.swing.JButton();
         RVendedor = new javax.swing.JButton();
@@ -134,18 +134,18 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel1.add(FormularioCiudad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 132, 42));
 
-        FormularioCiudad7.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad7.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad7.setText("Listado Cliente");
-        FormularioCiudad7.setBorder(null);
-        FormularioCiudad7.setBorderPainted(false);
-        FormularioCiudad7.setFocusPainted(false);
-        FormularioCiudad7.addActionListener(new java.awt.event.ActionListener() {
+        listadocliente.setBackground(new java.awt.Color(29, 29, 29));
+        listadocliente.setForeground(new java.awt.Color(204, 204, 204));
+        listadocliente.setText("Listado Cliente");
+        listadocliente.setBorder(null);
+        listadocliente.setBorderPainted(false);
+        listadocliente.setFocusPainted(false);
+        listadocliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad7ActionPerformed(evt);
+                listadoclienteActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad7, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 120, 42));
+        jPanel1.add(listadocliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 50, 120, 42));
 
         jTextField4.setBackground(new java.awt.Color(102, 102, 255));
         jTextField4.setForeground(new java.awt.Color(255, 255, 255));
@@ -333,9 +333,13 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    private void FormularioCiudad7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FormularioCiudad7ActionPerformed
+    private void listadoclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_listadoclienteActionPerformed
+        ListadoClientes re= new ListadoClientes();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_listadoclienteActionPerformed
 
     private void FormularioCiudad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad6ActionPerformed
         // TODO add your handling code here:
@@ -420,7 +424,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton FormularioCiudad2;
     private javax.swing.JButton FormularioCiudad5;
     private javax.swing.JButton FormularioCiudad6;
-    private javax.swing.JButton FormularioCiudad7;
     private javax.swing.JButton FormularioCiudad8;
     private javax.swing.JButton FormularioCiudad9;
     private javax.swing.JButton RAlojamiento;
@@ -437,5 +440,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
+    private javax.swing.JButton listadocliente;
     // End of variables declaration//GEN-END:variables
 }

@@ -2,8 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Vistas.Vendedor;
+package Vistas.Admin;
 
+import AccesoADatos.ClienteData;
+import Entidades.Cliente;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -11,13 +15,16 @@ import javax.swing.table.DefaultTableModel;
  * @author diego de armas
  */
 public class ListadoClientes extends javax.swing.JFrame {
-DefaultTableModel modelo = new DefaultTableModel(); 
+
+    DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form ListadoClientes
      */
     public ListadoClientes() {
         initComponents();
         cargarCombo();
+        cargartabla();
     }
 
     /**
@@ -31,13 +38,13 @@ DefaultTableModel modelo = new DefaultTableModel();
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tclientes = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        eliminar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -52,6 +59,19 @@ DefaultTableModel modelo = new DefaultTableModel();
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 410, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,21 +101,6 @@ DefaultTableModel modelo = new DefaultTableModel();
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, -1));
 
-        jPanel3.setBackground(new java.awt.Color(0, 0, 102));
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 410, Short.MAX_VALUE)
-        );
-
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, 410));
-
         tclientes.setBackground(new java.awt.Color(51, 51, 51));
         tclientes.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
         tclientes.setForeground(new java.awt.Color(51, 51, 51));
@@ -113,17 +118,22 @@ DefaultTableModel modelo = new DefaultTableModel();
         tclientes.setGridColor(new java.awt.Color(51, 51, 51));
         jScrollPane2.setViewportView(tclientes);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 330, 270));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 360, 270));
 
-        jButton1.setBackground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Eliminar Clientes");
-        jButton1.setBorder(null);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 390, 100, 30));
+        eliminar.setBackground(new java.awt.Color(204, 204, 204));
+        eliminar.setText("Salir");
+        eliminar.setBorder(null);
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 100, 30));
 
         jButton2.setBackground(new java.awt.Color(204, 204, 204));
         jButton2.setText("Modificar datos ");
         jButton2.setBorder(null);
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 100, 30));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -138,6 +148,10 @@ DefaultTableModel modelo = new DefaultTableModel();
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+       this.dispose();
+    }//GEN-LAST:event_eliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,8 +188,19 @@ DefaultTableModel modelo = new DefaultTableModel();
         });
     }
 
+    private void cargartabla() {
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        ClienteData cli = new ClienteData();
+        clientes = cli.ListarClientes();
+        for (Cliente elemento : clientes) {
+            modelo.addRow(new Object[]{elemento.getCorreo(), elemento.getNombre(), elemento.getApellido(), elemento.getDni(), elemento.getPaquete()
+
+            });
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton eliminar;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -186,12 +211,12 @@ DefaultTableModel modelo = new DefaultTableModel();
     private javax.swing.JTable jTable1;
     private javax.swing.JTable tclientes;
     // End of variables declaration//GEN-END:variables
-private void cargarCombo(){
-    modelo.addColumn("correo");
-    modelo.addColumn("nombre");
-    modelo.addColumn("apellido");
-    modelo.addColumn("DNI");
-    modelo.addColumn("paquete");
-    tclientes.setModel(modelo);
-}
+private void cargarCombo() {
+        modelo.addColumn("correo");
+        modelo.addColumn("nombre");
+        modelo.addColumn("apellido");
+        modelo.addColumn("DNI");
+        modelo.addColumn("paquete");
+        tclientes.setModel(modelo);
+    }
 }
