@@ -21,6 +21,8 @@ public class VendedorData {
     public VendedorData(Connection con) {
       this.con = con;
     }
+    public VendedorData() {
+    }
     public void altaVendedor(Vendedor vendedor){
         String sql = "INSERT INTO Vendedor (correo, pass, nombre, apellido, dni, cont, estado) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {

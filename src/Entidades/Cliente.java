@@ -22,11 +22,12 @@ public class Cliente {
         this.paquete = paquete;
     }
 
-    public Cliente(String correo, String nombre, String apellido, int dni) {
+    public Cliente(String correo, String nombre, String apellido, int dni, Paquete paquete) {
         this.correo = correo;
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
+        this.paquete = paquete;
     }
 
     public Cliente(int idCliente, String correo, String nombre, String apellido, int dni) {

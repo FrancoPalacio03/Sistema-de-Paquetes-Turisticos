@@ -8,6 +8,7 @@ import AccesoADatos.PaqueteData;
 import AccesoADatos.VendedorData;
 import Entidades.Paquete;
 import Entidades.Vendedor;
+import Vistas.Admin.Admin;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.tree.DefaultTreeModel;
@@ -20,8 +21,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private DefaultTreeModel modelo;
     private Vendedor vendedor;
-    private PaqueteData packData;
-    private VendedorData vendeData;
+    private PaqueteData packData= new PaqueteData();
+    private VendedorData vendeData= new VendedorData();
 
     /**
      * Creates new form ClienteLogeado
@@ -52,8 +53,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
-        Salir = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        venderPaquete = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         arbol = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
@@ -78,12 +78,15 @@ public class VendedorLogeado extends javax.swing.JFrame {
         salida = new javax.swing.JLabel();
         destino = new javax.swing.JLabel();
         origen = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        precioTransporte = new javax.swing.JLabel();
+        precioAlojamiento = new javax.swing.JLabel();
         alojamiento = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
+        transporte = new javax.swing.JLabel();
+        precioAlojamiento1 = new javax.swing.JLabel();
+        precioTransporte1 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
+        Salir1 = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -92,22 +95,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Salir.setBackground(new java.awt.Color(102, 102, 102));
-        Salir.setForeground(new java.awt.Color(255, 255, 255));
-        Salir.setText("Salir");
-        Salir.setBorder(null);
-        Salir.addActionListener(new java.awt.event.ActionListener() {
+        venderPaquete.setBackground(new java.awt.Color(102, 102, 102));
+        venderPaquete.setForeground(new java.awt.Color(255, 255, 255));
+        venderPaquete.setText("Vender Paquete");
+        venderPaquete.setBorder(null);
+        venderPaquete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SalirActionPerformed(evt);
+                venderPaqueteActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 630, 290, 90));
-
-        jButton1.setBackground(new java.awt.Color(102, 102, 102));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Eliminar cliente");
-        jButton1.setBorder(null);
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 370, 290, 100));
+        jPanel1.add(venderPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 260, 290, 90));
 
         arbol.setBackground(new java.awt.Color(51, 102, 255));
         arbol.setBorder(null);
@@ -199,7 +196,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Fecha De Llegada:");
+        jLabel6.setText("Fecha De Ingreso:");
 
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -271,21 +268,29 @@ public class VendedorLogeado extends javax.swing.JFrame {
         origen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         origen.setText("-");
 
-        jLabel19.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel19.setText("-");
+        precioTransporte.setForeground(new java.awt.Color(242, 242, 242));
+        precioTransporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        precioTransporte.setText("-");
 
-        jLabel20.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel20.setText("-");
+        precioAlojamiento.setForeground(new java.awt.Color(242, 242, 242));
+        precioAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        precioAlojamiento.setText("-");
 
         alojamiento.setForeground(new java.awt.Color(242, 242, 242));
         alojamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         alojamiento.setText("-");
 
-        jLabel22.setForeground(new java.awt.Color(242, 242, 242));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel22.setText("-");
+        transporte.setForeground(new java.awt.Color(242, 242, 242));
+        transporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        transporte.setText("-");
+
+        precioAlojamiento1.setForeground(new java.awt.Color(242, 242, 242));
+        precioAlojamiento1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        precioAlojamiento1.setText("$");
+
+        precioTransporte1.setForeground(new java.awt.Color(242, 242, 242));
+        precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        precioTransporte1.setText("$");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -296,7 +301,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addGap(38, 38, 38)
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(transporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(283, 283, 283)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
@@ -322,11 +327,19 @@ public class VendedorLogeado extends javax.swing.JFrame {
                     .addComponent(jLabel10)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(alojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(alojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(precioAlojamiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioTransporte1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(precioAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(precioTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,34 +347,34 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(33, 33, 33)
+                                .addGap(5, 5, 5)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(5, 5, 5)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel14)
-                                            .addComponent(jLabel13)))
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(jLabel8)
-                                        .addComponent(alojamiento)))
+                                    .addComponent(jLabel14)
+                                    .addComponent(jLabel13)))
+                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel8)
+                                .addComponent(alojamiento)))
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(58, 58, 58)
                                         .addComponent(jLabel4))
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(50, 50, 50)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel10)
-                                            .addComponent(jLabel20))))
+                                        .addComponent(jLabel10)))
                                 .addGap(55, 55, 55)
                                 .addComponent(jLabel5)
                                 .addGap(51, 51, 51)
                                 .addComponent(jLabel6))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(183, 183, 183)
-                                .addComponent(jLabel19))))
+                                .addGap(50, 50, 50)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(precioAlojamiento)
+                                    .addComponent(precioAlojamiento1)))))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addComponent(origen, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,7 +383,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
                         .addGap(55, 55, 55)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(salida)
-                            .addComponent(jLabel9))
+                            .addComponent(jLabel9)
+                            .addComponent(precioTransporte1)
+                            .addComponent(precioTransporte))
                         .addGap(51, 51, 51)
                         .addComponent(llegada)))
                 .addGap(93, 93, 93)
@@ -381,7 +396,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel7)
-                                .addComponent(jLabel22))
+                                .addComponent(transporte))
                             .addComponent(jLabel11)))))
         );
 
@@ -407,7 +422,18 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addContainerGap(88, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 20, 300, 190));
+        jPanel1.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 20, 300, 190));
+
+        Salir1.setBackground(new java.awt.Color(102, 102, 102));
+        Salir1.setForeground(new java.awt.Color(255, 255, 255));
+        Salir1.setText("Salir");
+        Salir1.setBorder(null);
+        Salir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Salir1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Salir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 640, 290, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -430,20 +456,51 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private void comboPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPaqueteActionPerformed
         // TODO add your handling code here:
+        Paquete paquete= (Paquete) comboPaquete.getSelectedItem();
+        // Verifica si se ha seleccionado un paquete válido
+    if (paquete != null) {
+        // Establece la información del paquete en los JLabel
+        origen.setText(paquete.getOrigen().getNombre());
+        destino.setText(paquete.getDestino().getNombre());
+        salida.setText(paquete.getAlojamiento().getSalida().toString());
+        llegada.setText(paquete.getAlojamiento().getIngreso().toString());
+        precioTransporte.setText(Double.toString(paquete.getPasaje().getImporte()));
+        alojamiento.setText(paquete.getAlojamiento().getNombre());
+        precioAlojamiento.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
+        transporte.setText(paquete.getPasaje().getTipoTransporte());
+        // Puedes calcular el precio total aquí y establecerlo en jTextField2
+        
+        
+    } else {
+        // Limpia los JLabel y jTextField si no se ha seleccionado un paquete válido
+        origen.setText("");
+        destino.setText("");
+        salida.setText("");
+        llegada.setText("");
+        precioTransporte.setText("");
+        alojamiento.setText("");
+        precioAlojamiento.setText("");
+        jTextField2.setText("");
+    }
     }//GEN-LAST:event_comboPaqueteActionPerformed
 
     private void arbolAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_arbolAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_arbolAncestorAdded
 
-    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
+    private void venderPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderPaqueteActionPerformed
         // TODO add your handling code here:
-        Login re = new Login();
+        
+        SeleccionPaquete re = new SeleccionPaquete();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_SalirActionPerformed
+        
+    }//GEN-LAST:event_venderPaqueteActionPerformed
+
+    private void Salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Salir1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,22 +549,18 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Salir;
+    private javax.swing.JButton Salir1;
     private javax.swing.JLabel alojamiento;
     private javax.swing.JTree arbol;
     private javax.swing.JComboBox<Paquete> comboPaquete;
     private javax.swing.JLabel destino;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -527,6 +580,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel llegada;
     private javax.swing.JLabel origen;
+    private javax.swing.JLabel precioAlojamiento;
+    private javax.swing.JLabel precioAlojamiento1;
+    private javax.swing.JLabel precioTransporte;
+    private javax.swing.JLabel precioTransporte1;
     private javax.swing.JLabel salida;
+    private javax.swing.JLabel transporte;
+    private javax.swing.JButton venderPaquete;
     // End of variables declaration//GEN-END:variables
 }
