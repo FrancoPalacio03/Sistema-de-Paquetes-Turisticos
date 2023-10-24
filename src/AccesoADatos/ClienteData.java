@@ -16,7 +16,8 @@ public class ClienteData {
     private Connection con = Conexion.getConexion();
     private PaqueteData packData = new PaqueteData();
 
-    public ClienteData() {
+    public ClienteData(Connection con) {
+        this.con = con;
     }
 
     public void altaCliente(Cliente cliente) {
@@ -78,7 +79,7 @@ public class ClienteData {
     }
 
     public void modificarCliente(Cliente cliente) {
-        String sql = "UPDATE Cliente SET correo = ?, nombre = ?, apellido = ?, dni = ?, idPaquete = ? WHERE idCliente = ?";
+        String sql = "UPDATE cliente SET correo = ?, nombre = ?, apellido = ?, dni = ? WHERE idCliente = ?";
         PreparedStatement ps = null;
 
         try {
@@ -87,8 +88,8 @@ public class ClienteData {
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getApellido());
             ps.setInt(4, cliente.getDni());
-            ps.setInt(5, cliente.getPaquete().getIdPaquete()); // Use the idPaquete from the Paquete object
-            ps.setInt(6, cliente.getId());
+
+            ps.setInt(5, cliente.getId());
             int success = ps.executeUpdate();
 
             if (success == 1) {
