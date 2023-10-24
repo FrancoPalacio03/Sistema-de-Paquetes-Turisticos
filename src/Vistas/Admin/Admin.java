@@ -212,7 +212,7 @@ public class Admin extends javax.swing.JFrame {
                 FormularioCiudad9ActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 290, 132, 42));
+        jPanel1.add(FormularioCiudad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 132, 42));
 
         RPaquete.setBackground(new java.awt.Color(29, 29, 29));
         RPaquete.setForeground(new java.awt.Color(204, 204, 204));
