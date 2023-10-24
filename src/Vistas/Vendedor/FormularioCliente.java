@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class FormularioCliente extends javax.swing.JFrame {
      private Connection con =Conexion.getConexion();
     private VendedorData vendeData= new VendedorData(con);
-    private ClienteData cliData= new ClienteData();
+    private ClienteData cliData= new ClienteData(con);
     private PaqueteVendidoData packData= new PaqueteVendidoData();
     private Vendedor vendedor;
     private Paquete paquete;

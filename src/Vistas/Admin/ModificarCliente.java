@@ -39,7 +39,6 @@ public class ModificarCliente extends javax.swing.JFrame {
         jDialog1 = new javax.swing.JDialog();
         Registrar = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
         estado = new javax.swing.JCheckBox();
         jLabel2 = new javax.swing.JLabel();
         contraseña = new javax.swing.JPasswordField();
@@ -65,8 +64,8 @@ public class ModificarCliente extends javax.swing.JFrame {
         jSeparator5 = new javax.swing.JSeparator();
         Cancelar1 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        combocliente = new javax.swing.JComboBox<>();
         nombre1 = new javax.swing.JTextField();
+        comboCliente = new javax.swing.JComboBox<>();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -98,8 +97,6 @@ public class ModificarCliente extends javax.swing.JFrame {
                 BuscarActionPerformed(evt);
             }
         });
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(255, 255, 255));
@@ -294,14 +291,6 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel8.setText("Seleccione el cliente a modificar");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 350, -1));
 
-        combocliente.setBorder(null);
-        combocliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboclienteActionPerformed(evt);
-            }
-        });
-        jPanel1.add(combocliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 320, 30));
-
         nombre1.setBackground(new java.awt.Color(51, 51, 51));
         nombre1.setBorder(null);
         nombre1.addActionListener(new java.awt.event.ActionListener() {
@@ -310,6 +299,13 @@ public class ModificarCliente extends javax.swing.JFrame {
             }
         });
         jPanel1.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 330, 30));
+
+        comboCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboClienteActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comboCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 310, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -480,13 +476,14 @@ public class ModificarCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_estadoActionPerformed
 
-    private void comboclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboclienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboclienteActionPerformed
-
     private void nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_nombre1ActionPerformed
+
+    private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comboClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -514,133 +511,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -673,14 +544,13 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField apellido;
-    private javax.swing.JComboBox<String> combocliente;
+    private javax.swing.JComboBox<Cliente> comboCliente;
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JPasswordField contraseña1;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField dni;
     private javax.swing.JCheckBox estado;
     private javax.swing.JTextField id;
-    private javax.swing.JComboBox<Cliente> jComboBox1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
