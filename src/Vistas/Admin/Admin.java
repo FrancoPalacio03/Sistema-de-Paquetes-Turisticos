@@ -47,9 +47,6 @@ public class Admin extends javax.swing.JFrame {
         FormularioCiudad9 = new javax.swing.JButton();
         RPaquete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        jTextField7 = new javax.swing.JTextField();
-        RVendedor1 = new javax.swing.JButton();
-        FormularioCiudad8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,7 +60,7 @@ public class Admin extends javax.swing.JFrame {
                 SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 360, -1, 30));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(712, 330, 90, 50));
 
         RAlojamiento.setBackground(new java.awt.Color(29, 29, 29));
         RAlojamiento.setForeground(new java.awt.Color(204, 204, 204));
@@ -199,7 +196,7 @@ public class Admin extends javax.swing.JFrame {
                 jTextField6ActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 420, 28));
+        jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 840, 28));
 
         FormularioCiudad9.setBackground(new java.awt.Color(29, 29, 29));
         FormularioCiudad9.setForeground(new java.awt.Color(204, 204, 204));
@@ -212,7 +209,7 @@ public class Admin extends javax.swing.JFrame {
                 FormularioCiudad9ActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 132, 42));
+        jPanel1.add(FormularioCiudad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 132, 42));
 
         RPaquete.setBackground(new java.awt.Color(29, 29, 29));
         RPaquete.setForeground(new java.awt.Color(204, 204, 204));
@@ -225,7 +222,7 @@ public class Admin extends javax.swing.JFrame {
                 RPaqueteActionPerformed(evt);
             }
         });
-        jPanel1.add(RPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 120, 42));
+        jPanel1.add(RPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, 120, 42));
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -238,47 +235,10 @@ public class Admin extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 420, Short.MAX_VALUE)
+            .addGap(0, 260, Short.MAX_VALUE)
         );
 
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 10, 420));
-
-        jTextField7.setBackground(new java.awt.Color(102, 102, 255));
-        jTextField7.setForeground(new java.awt.Color(255, 255, 255));
-        jTextField7.setText("Pasaje");
-        jTextField7.setBorder(null);
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 420, 28));
-
-        RVendedor1.setBackground(new java.awt.Color(29, 29, 29));
-        RVendedor1.setForeground(new java.awt.Color(204, 204, 204));
-        RVendedor1.setText("Registro Pasaje");
-        RVendedor1.setBorder(null);
-        RVendedor1.setBorderPainted(false);
-        RVendedor1.setFocusPainted(false);
-        RVendedor1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RVendedor1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(RVendedor1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 120, 42));
-
-        FormularioCiudad8.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad8.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad8.setText("Listado Pasaje");
-        FormularioCiudad8.setBorder(null);
-        FormularioCiudad8.setBorderPainted(false);
-        FormularioCiudad8.setFocusPainted(false);
-        FormularioCiudad8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad8ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(FormularioCiudad8, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 132, 42));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 0, 10, 260));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -373,18 +333,6 @@ public class Admin extends javax.swing.JFrame {
         re.setLocationRelativeTo(null);
     }//GEN-LAST:event_RPaqueteActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
-
-    private void RVendedor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RVendedor1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_RVendedor1ActionPerformed
-
-    private void FormularioCiudad8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FormularioCiudad8ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -424,13 +372,11 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JButton FormularioCiudad2;
     private javax.swing.JButton FormularioCiudad5;
     private javax.swing.JButton FormularioCiudad6;
-    private javax.swing.JButton FormularioCiudad8;
     private javax.swing.JButton FormularioCiudad9;
     private javax.swing.JButton RAlojamiento;
     private javax.swing.JButton RCiudad;
     private javax.swing.JButton RPaquete;
     private javax.swing.JButton RVendedor;
-    private javax.swing.JButton RVendedor1;
     private javax.swing.JButton Salir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -439,7 +385,6 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JButton listadocliente;
     // End of variables declaration//GEN-END:variables
 }

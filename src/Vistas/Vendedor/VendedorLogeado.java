@@ -18,6 +18,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.tree.DefaultTreeModel;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.temporal.ChronoUnit;
 
 /**
  *
@@ -77,7 +80,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField2 = new javax.swing.JTextField();
+        precio = new javax.swing.JTextField();
+        precio1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         llegada = new javax.swing.JLabel();
         salida = new javax.swing.JLabel();
@@ -94,6 +98,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         Salir1 = new javax.swing.JButton();
         ventas = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        temporada = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -176,8 +182,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addGap(23, 23, 23)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(comboPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addComponent(comboPaquete, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, 120));
@@ -236,27 +242,42 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
         jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jTextField2.setBackground(new java.awt.Color(255, 153, 0));
-        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("precio");
+        precio.setBackground(new java.awt.Color(255, 153, 0));
+        precio.setFont(new java.awt.Font("Microsoft JhengHei", 0, 36)); // NOI18N
+        precio.setForeground(new java.awt.Color(0, 0, 0));
+        precio.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        precio.setText("precio");
+
+        precio1.setBackground(new java.awt.Color(255, 153, 0));
+        precio1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 36)); // NOI18N
+        precio1.setForeground(new java.awt.Color(0, 0, 0));
+        precio1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        precio1.setText("$");
+        precio1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                precio1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+                .addContainerGap()
+                .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jLabel13.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
@@ -321,7 +342,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(67, 67, 67)
+                .addGap(48, 48, 48)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(14, 14, 14))
             .addGroup(jPanel4Layout.createSequentialGroup()
@@ -385,15 +406,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel8)
                                     .addComponent(alojamiento))
+                                .addGap(67, 67, 67)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addComponent(jLabel10))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(67, 67, 67)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(precioAlojamiento)
-                                            .addComponent(precioAlojamiento1)))))
+                                    .addComponent(jLabel10)
+                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(precioAlojamiento)
+                                        .addComponent(precioAlojamiento1))))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGap(95, 95, 95)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -424,14 +442,13 @@ public class VendedorLogeado extends javax.swing.JFrame {
                                 .addGap(71, 71, 71)))))
                 .addGap(54, 54, 54)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(jPanel4Layout.createSequentialGroup()
-                            .addComponent(jLabel11)
-                            .addGap(42, 42, 42))
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel7)
-                        .addComponent(transporte)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(transporte))
+                        .addGap(40, 40, 40)
+                        .addComponent(jLabel11)))
                 .addGap(44, 44, 44))
         );
 
@@ -476,6 +493,18 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel15.setText("Nro Ventas:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 120, 22));
 
+        jLabel16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("Temporada:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 120, 22));
+
+        temporada.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        temporada.setForeground(new java.awt.Color(255, 255, 255));
+        temporada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        temporada.setText("-");
+        jPanel1.add(temporada, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 130, 22));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -512,6 +541,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
             String urlImagen = paquete.getAlojamiento().getCiudadDest().getUrlImagen();
             setImagen(urlImagen);
+            
+            String temporadas= CalcularTemporada(paquete.getAlojamiento().getIngreso());
+            precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(),paquete.getAlojamiento().getIngreso(),paquete.getAlojamiento().getSalida())));
+            temporada.setText(temporadas);
         } else {
             // Limpia los JLabel y jTextField si no se ha seleccionado un paquete válido
             origen.setText("");
@@ -521,7 +554,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             precioTransporte.setText("");
             alojamiento.setText("");
             precioAlojamiento.setText("");
-            jTextField2.setText("");
+            precio.setText("");
         }
     }//GEN-LAST:event_comboPaqueteActionPerformed
 
@@ -547,6 +580,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
         re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_Salir1ActionPerformed
+
+    private void precio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_precio1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,7 +628,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             comboPaquete.addItem(elemento);
         }
         ventas.setText(Integer.toString(vendedor.getCont()));
-        
+
     }
 
     private void setImagen(String urlImagen) {
@@ -600,22 +637,41 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         try {
             URL imageUrl = new URL(urlImagen);
-
-            // Cargar la imagen desde la URL
             ImageIcon imageIcon = new ImageIcon(imageUrl);
-
-            // Escalar la imagen al tamaño deseado
             Image image = imageIcon.getImage().getScaledInstance(anchoImagen, altoImagen, Image.SCALE_SMOOTH);
-
-            // Crear una etiqueta de imagen y asignar la imagen escalada
             ImageIcon scaledImageIcon = new ImageIcon(image);
             url.setIcon(scaledImageIcon);
 
         } catch (MalformedURLException e) {
-            // Manejar errores si la URL no es válida
             e.printStackTrace();
         }
     }
+
+    public String CalcularTemporada(LocalDate fechaIn) {
+        if (fechaIn.getMonth() == Month.JANUARY || fechaIn.getMonth() == Month.JULY) {
+            return "Alta";
+        } else if (fechaIn.getMonth() == Month.FEBRUARY || fechaIn.getMonth() == Month.JUNE) {
+            return "Media";
+        } else {
+            return "Baja";
+        }
+    }
+
+    public double presupuestoTotal(double precioTransporte, double precioEstadia,LocalDate fechaIn, LocalDate fechaOn ) {
+        long diass = ChronoUnit.DAYS.between(fechaIn, fechaOn);      
+        int dias=(int) diass;
+        double estadia= precioEstadia*dias;
+        double precioFinal= estadia+precioTransporte;
+        String temporada= CalcularTemporada(fechaIn);
+        
+         if(temporada.equals("Alta")){
+             precioFinal=precioFinal*1.30;
+         }else if(temporada.equals("Media")) {
+            precioFinal = precioFinal * 1.15;
+        }
+        return precioFinal;
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelImagen;
     private javax.swing.JButton Salir1;
@@ -628,6 +684,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -643,15 +700,17 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel llegada;
     private javax.swing.JLabel origen;
+    private javax.swing.JTextField precio;
+    private javax.swing.JTextField precio1;
     private javax.swing.JLabel precioAlojamiento;
     private javax.swing.JLabel precioAlojamiento1;
     private javax.swing.JLabel precioTransporte;
     private javax.swing.JLabel precioTransporte1;
     private javax.swing.JLabel salida;
+    private javax.swing.JLabel temporada;
     private javax.swing.JLabel transporte;
     private javax.swing.JLabel url;
     private javax.swing.JButton venderPaquete;
