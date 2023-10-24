@@ -46,7 +46,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jTcorreo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTpass = new javax.swing.JTextField();
+        jTpass = new javax.swing.JPasswordField();
 
         Registrar.setText("Registrar vendedor");
         Registrar.setBorder(null);
@@ -134,13 +134,6 @@ public class Login extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Contraseña");
 
-        jTpass.setBorder(null);
-        jTpass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTpassActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jMAILLayout = new javax.swing.GroupLayout(jMAIL);
         jMAIL.setLayout(jMAILLayout);
         jMAILLayout.setHorizontalGroup(
@@ -170,9 +163,9 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jTcorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
+                .addGap(18, 18, 18)
+                .addComponent(jTpass, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
                 .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jMAILLayout.createSequentialGroup()
@@ -252,10 +245,6 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcorreoActionPerformed
 
-    private void jTpassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTpassActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTpassActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -303,6 +292,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTcorreo;
-    private javax.swing.JTextField jTpass;
+    private javax.swing.JPasswordField jTpass;
     // End of variables declaration//GEN-END:variables
 }

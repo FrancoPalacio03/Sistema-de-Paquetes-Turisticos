@@ -44,7 +44,7 @@ public class SeleccionPaquete extends javax.swing.JFrame {
         initComponents();        
         this.vendedor = vendedor;
         cargarTabla();
-        llenarTabla();    
+        llenarTabla();  
     }
 
     /**
@@ -129,10 +129,6 @@ public class SeleccionPaquete extends javax.swing.JFrame {
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        Admin re = new Admin();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_CancelarActionPerformed
 
@@ -225,6 +221,7 @@ public class SeleccionPaquete extends javax.swing.JFrame {
                 paquete.getIdPaquete(),
                 paquete.getOrigen().getNombre(),
                 paquete.getDestino().getNombre(),
+                paquete.getAlojamiento().getNombre(),
                 paquete.getAlojamiento().getIngreso(),
                 paquete.getAlojamiento().getSalida(),
                 paquete.getPasaje().getTipoTransporte(),});

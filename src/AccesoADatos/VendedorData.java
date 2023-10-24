@@ -55,7 +55,7 @@ public class VendedorData {
     
     public Vendedor BuscarVendedor(int id){
         Vendedor vendedor = null;
-        String sql = "SELECT correo, pass, nombre, apellido, dni, cont, estado FROM VENDEDOR WHERE idVendedor = ? AND estado = 1";
+        String sql = "SELECT * FROM VENDEDOR WHERE idVendedor = ? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -64,7 +64,7 @@ public class VendedorData {
 
             if (rs.next()) {
                 vendedor = new Vendedor();
-                vendedor.setId(id);
+                vendedor.setId(rs.getInt("IdVendedor"));
                 vendedor.setDni(rs.getInt("dni"));
                 vendedor.setApellido(rs.getString("apellido"));
                 vendedor.setNombre(rs.getString("nombre"));

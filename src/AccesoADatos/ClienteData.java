@@ -12,7 +12,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 
 public class ClienteData {
+
     private Connection con = Conexion.getConexion();
+    private PaqueteData packData = new PaqueteData();
 
     public ClienteData() {
     }
@@ -59,11 +61,11 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
-                
+
                 int idPaquete = rs.getInt("idPaquete");
-                Paquete paquete = BuscarPaquete(idPaquete); // Implement a method to find a Paquete by id
+                Paquete paquete = packData.buscarPaquete(idPaquete);
                 cliente.setPaquete(paquete);
-                
+
                 ps.close();
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el cliente");
@@ -116,7 +118,7 @@ public class ClienteData {
                 cliente.setCorreo(rs.getString("correo"));
 
                 int idPaquete = rs.getInt("idPaquete");
-                Paquete paquete = BuscarPaquete(idPaquete); // Implement a method to find a Paquete by id
+                Paquete paquete = packData.buscarPaquete(idPaquete);
                 cliente.setPaquete(paquete);
 
                 clientes.add(cliente);
@@ -150,8 +152,4 @@ public class ClienteData {
     }
 
     // Implement a method to find a Paquete by id
-    private Paquete BuscarPaquete(int idPaquete) {
-        // Implement the logic to find a Paquete by id
-        return null; // Replace with actual code
-    }
 }

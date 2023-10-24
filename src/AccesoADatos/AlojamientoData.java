@@ -72,12 +72,12 @@ public class AlojamientoData {
                 alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
-                ps.setDate(2, Date.valueOf(alojamiento.getIngreso()));
-                ps.setDate(3, Date.valueOf(alojamiento.getSalida()));
+                alojamiento.setIngreso(rs.getDate("fechain").toLocalDate());
+                alojamiento.setSalida(rs.getDate("fechaon").toLocalDate());
                 alojamiento.setEstado(true);
                 alojamiento.setServicio("servicio");
                 alojamiento.setImporteDiario(rs.getInt("importeDiario"));
-                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("CiudadDest"));
+                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
                 alojamiento.setCiudadDest(ciudad);
 
                 ps.close();
@@ -88,7 +88,7 @@ public class AlojamientoData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alumno " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla alojamiento " + ex.getMessage());
 
         }
         return alojamiento;
@@ -110,7 +110,7 @@ public class AlojamientoData {
                 alojamiento.setEstado(true);
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
-                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("CiudadDest"));
+                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
                 alojamiento.setCiudadDest(ciudad);
 
                 alojamientos.add(alojamiento);

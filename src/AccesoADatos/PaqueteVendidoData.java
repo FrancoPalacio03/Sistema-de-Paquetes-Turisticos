@@ -4,6 +4,8 @@
  */
 package AccesoADatos;
 
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -13,17 +15,22 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import Entidades.Paquete;
+import Entidades.Pasaje;
+import Entidades.Vendedor;
 
 
 public class PaqueteVendidoData {
 
     private Connection con = Conexion.getConexion();
-    private Connection conb = Conexion.getConexionPaises();
+    private CiudadData ciuData= new CiudadData();
+    private AlojamientoData aloData= new AlojamientoData();
+    private PasajeData passData= new PasajeData();
+    private VendedorData vendeData= new VendedorData();
     
 
-    public void registroPaquete(Paquete paquete) {
+    public int registroPaquete(Paquete paquete) {
         String sql = "INSERT INTO paquetevendido (idCiudadOrigen, idCiudadDestino,  IdAlojamiento, idPasaje, idVendedor) VALUES (?, ?, ?, ?, ?)";
-
+        int idPaqueteGenerado=0;
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -38,7 +45,7 @@ public class PaqueteVendidoData {
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    int idPaqueteGenerado = rs.getInt(1); // Obtenemos la clave generada
+                    idPaqueteGenerado = rs.getInt(1); // Obtenemos la clave generada
                     paquete.setIdPaquete(rowsAffected);
                     JOptionPane.showMessageDialog(null, "Paquete añadido con éxito. ID: " + idPaqueteGenerado);
                 }
@@ -48,28 +55,33 @@ public class PaqueteVendidoData {
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paquete" + ex.getMessage());
-            return;
         }
+        return idPaqueteGenerado;
     }
 
     
 
+    
     public List<Paquete> listarPaqueteXVendedor(int id) {
         Paquete paquete = null;
         List<Paquete> paquetes = new ArrayList<Paquete>();
 
         try {
-            String sql = "SELECT * FROM paquete WHERE estado = 1 and idVendedor=?";
+            String sql = "SELECT * FROM paquetevendido WHERE idVendedor=?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
             ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 paquete = new Paquete();
-                paquete.setIdPaquete(rs.getInt("idPaquete"));
-                paquete.getOrigen().getIdCiudad();
-                paquete.getDestino().getIdCiudad();
-                paquete.getAlojamiento().getIdAlojamiento();
-                paquete.getPasaje().getIdPasaje();
+                paquete.setIdPaquete(rs.getInt("idPaqueteVendido"));
+                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                paquete.setOrigen(origen);
+                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                paquete.setDestino(destino);
+                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                paquete.setAlojamiento(alojamiento);
+                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                paquete.setPasaje(pasaje);
                 paquetes.add(paquete);
             }
             ps.close();
@@ -79,6 +91,41 @@ public class PaqueteVendidoData {
         }
         return paquetes;
     }
-
     
+    public Paquete buscarPaquete(int idPaquete) {
+        Paquete paquete = null;
+        String sql = "SELECT * FROM paquetevendido WHERE idPaqueteVendido = ?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idPaquete);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                paquete = new Paquete();
+                paquete.setIdPaquete(rs.getInt("idPaqueteVendido"));
+                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                paquete.setOrigen(origen);
+                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                paquete.setDestino(destino);
+                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                paquete.setAlojamiento(alojamiento);
+                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                paquete.setPasaje(pasaje);
+                Vendedor vendedor= vendeData.BuscarVendedor(rs.getInt("idVendedor"));
+                paquete.setVendedor(vendedor);
+                    
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el Paquete");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Paquete " + ex.getMessage());
+
+        }
+
+        return paquete;
+    }
 }

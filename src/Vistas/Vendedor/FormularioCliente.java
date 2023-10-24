@@ -90,13 +90,14 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         apellido.setBackground(new java.awt.Color(51, 51, 51));
+        apellido.setForeground(new java.awt.Color(255, 255, 255));
         apellido.setBorder(null);
         apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 apellidoActionPerformed(evt);
             }
         });
-        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 330, 30));
+        jPanel1.add(apellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 330, 30));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -105,13 +106,14 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 360, -1));
 
         nombre.setBackground(new java.awt.Color(51, 51, 51));
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
         nombre.setBorder(null);
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 330, 30));
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 330, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -120,13 +122,14 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 360, -1));
 
         dni.setBackground(new java.awt.Color(51, 51, 51));
+        dni.setForeground(new java.awt.Color(255, 255, 255));
         dni.setBorder(null);
         dni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dniActionPerformed(evt);
             }
         });
-        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 330, 30));
+        jPanel1.add(dni, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, 330, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -167,6 +170,7 @@ public class FormularioCliente extends javax.swing.JFrame {
         jLabel7.setText("Ingrese Correo Electronico:");
 
         correo.setBackground(new java.awt.Color(102, 102, 102));
+        correo.setForeground(new java.awt.Color(255, 255, 255));
         correo.setBorder(null);
         correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -280,9 +284,13 @@ public class FormularioCliente extends javax.swing.JFrame {
             dnii= Integer.parseInt(dniCliente);
         }
 
-        paquete.setVendedor(vendedor);
-        Cliente Cliente = new Cliente(correoCliente, nombreCliente ,apellidoCliente, dnii, paquete);
-        packData.registroPaquete(paquete);
+        paquete.setVendedor(vendedor);  
+        int id = packData.registroPaquete(paquete);
+        
+        Paquete paqueteVendido= packData.buscarPaquete(id);
+        
+        Cliente Cliente = new Cliente(correoCliente, nombreCliente ,apellidoCliente, dnii, paqueteVendido);   
+        
         cliData.altaCliente(Cliente);
         vendedor.setCont((vendedor.getCont())+1);
         vendeData.modificarVendedor(vendedor);
@@ -319,70 +327,7 @@ public class FormularioCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(FormularioCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

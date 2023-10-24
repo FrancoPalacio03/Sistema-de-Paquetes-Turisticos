@@ -103,7 +103,7 @@ public class Vendedor {
    
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", correo=" + correo + ", pass=" + pass + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return "vendedor" + "id=" + id + ", correo=" + correo + ", pass=" + pass + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
     }
     
     

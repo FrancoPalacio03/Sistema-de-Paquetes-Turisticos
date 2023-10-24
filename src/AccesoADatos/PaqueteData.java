@@ -4,6 +4,8 @@
  */
 package AccesoADatos;
 
+import Entidades.Alojamiento;
+import Entidades.Ciudad;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -13,11 +15,14 @@ import javax.swing.JOptionPane;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import Entidades.Paquete;
+import Entidades.Pasaje;
 
 public class PaqueteData {
 
     private Connection con = Conexion.getConexion();
-    private Connection conb = Conexion.getConexionPaises();
+    private CiudadData ciuData= new CiudadData();
+    private AlojamientoData aloData= new AlojamientoData();
+    private PasajeData passData= new PasajeData();
 
     public void registroPaquete(Paquete paquete) {
         String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamiento, idpasaje) VALUES (?, ?, ?, ?)";
@@ -60,11 +65,15 @@ public class PaqueteData {
 
             if (rs.next()) {
                 paquete = new Paquete();
-                paquete.setIdPaquete(idPaquete);
-                paquete.getOrigen().getIdCiudad();
-                paquete.getDestino().getIdCiudad();
-                paquete.getAlojamiento().getIdAlojamiento();
-                paquete.getPasaje().getIdPasaje();
+                paquete.setIdPaquete(rs.getInt("idPaquete"));
+                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                paquete.setOrigen(origen);
+                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                paquete.setDestino(destino);
+                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                paquete.setAlojamiento(alojamiento);
+                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                paquete.setPasaje(pasaje);
 
                 ps.close();
             } else {
@@ -84,22 +93,26 @@ public class PaqueteData {
         List<Paquete> paquetes = new ArrayList<Paquete>();
 
         try {
-            String sql = "SELECT * FROM paquete WHERE estado = 1 ";
+            String sql = "SELECT * FROM paquete";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 paquete = new Paquete();
                 paquete.setIdPaquete(rs.getInt("idPaquete"));
-                paquete.getOrigen().getIdCiudad();
-                paquete.getDestino().getIdCiudad();
-                paquete.getAlojamiento().getIdAlojamiento();
-                paquete.getPasaje().getIdPasaje();
+                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                paquete.setOrigen(origen);
+                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                paquete.setDestino(destino);
+                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                paquete.setAlojamiento(alojamiento);
+                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                paquete.setPasaje(pasaje);
                 paquetes.add(paquete);
             }
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Pasaje " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla paquete " + ex.getMessage());
         }
         return paquetes;
     }
@@ -124,7 +137,7 @@ public class PaqueteData {
             }
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasaje " + ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla paquete " + ex.getMessage());
         }
 
     }
@@ -146,29 +159,5 @@ public class PaqueteData {
         }
     }
     
-    public List<Paquete> listarPaqueteXVendedor(int id) {
-        Paquete paquete = null;
-        List<Paquete> paquetes = new ArrayList<Paquete>();
-
-        try {
-            String sql = "SELECT * FROM paquete WHERE estado = 1 and idVendedor=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                paquete = new Paquete();
-                paquete.setIdPaquete(rs.getInt("idPaquete"));
-                paquete.getOrigen().getIdCiudad();
-                paquete.getDestino().getIdCiudad();
-                paquete.getAlojamiento().getIdAlojamiento();
-                paquete.getPasaje().getIdPasaje();
-                paquetes.add(paquete);
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Pasaje " + ex.getMessage());
-        }
-        return paquetes;
-    }
+    
 }
