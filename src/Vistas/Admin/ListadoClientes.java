@@ -21,33 +21,22 @@ import javax.swing.table.DefaultTableModel;
 public class ListadoClientes extends javax.swing.JFrame {
 
     private Connection con = Conexion.getConexion();
-    DefaultTableModel modelo = new DefaultTableModel(){
- @Override
- public boolean isCellEditable(int row, int column) {
-        if (column == 0||column==5) {
-            return false;
-        } else {
-            return true;
+    DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column == 0 || column == 5) {
+                return false;
+            } else {
+                return true;
+            }
+
         }
+    };
 
-    }
- };
- 
-    
-    
-
-
-    
-
-    
-
-   
-
-
-/**
- * Creates new form ListadoClientes
- */
-public ListadoClientes() {
+    /**
+     * Creates new form ListadoClientes
+     */
+    public ListadoClientes() {
         initComponents();
         cargarCombo();
         cargartabla();
@@ -184,7 +173,7 @@ public ListadoClientes() {
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-     ModificarCliente re = new ModificarCliente ();
+        ModificarCliente re = new ModificarCliente();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -206,27 +195,23 @@ public ListadoClientes() {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ListadoClientes.class  
+            java.util.logging.Logger.getLogger(ListadoClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(ListadoClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ListadoClientes.class  
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(ListadoClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ListadoClientes.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ListadoClientes.class  
-
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(ListadoClientes.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -243,7 +228,7 @@ public ListadoClientes() {
         ClienteData cli = new ClienteData(con);
         clientes = cli.ListarClientes();
         for (Cliente elemento : clientes) {
-            modelo.addRow(new Object[]{elemento.getId(), elemento.getCorreo(), elemento.getNombre(), elemento.getApellido(), elemento.getDni(), elemento.getPaquete()
+            modelo.addRow(new Object[]{elemento.getId(), elemento.getCorreo(), elemento.getNombre(), elemento.getApellido(), elemento.getDni()
 
             });
         }
@@ -267,7 +252,7 @@ private void cargarCombo() {
         modelo.addColumn("Nombre");
         modelo.addColumn("Apellido");
         modelo.addColumn("DNI");
-        modelo.addColumn("Paquete");
+
         tclientes.setModel(modelo);
     }
 }

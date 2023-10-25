@@ -343,14 +343,13 @@ public class ModificarCliente extends javax.swing.JFrame {
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
 
-        String nombreCliente = apellidot.getText().trim();
-        String apellidoCliente = apellido.getText().trim();
+        String nombreCliente = nombre1.getText().trim();
+        String apellidoCliente = apellidot.getText().trim();
         String correoCliente = correo.getText().trim();
         String dniCliente = dni.getText().trim();
         boolean estaSeleccionado = estado.isSelected();
         int dni = 0;
-        String contrasena = new String(contraseña.getPassword());
-        String contrasenaRepetida = new String(contraseña1.getPassword());
+       
 
         // Realizar validaciones
         if (nombreCliente.isEmpty() || apellidoCliente.isEmpty() || correoCliente.isEmpty() || dniCliente.isEmpty()) {
@@ -365,10 +364,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             dni = Integer.parseInt(dniCliente);
         }
 
-        if (!contrasena.equals(contrasenaRepetida)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
+        
 
         cliente = new Cliente(correoCliente,nombreCliente,apellidoCliente,dni);
          
