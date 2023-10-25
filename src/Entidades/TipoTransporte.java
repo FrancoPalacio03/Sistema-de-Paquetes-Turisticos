@@ -9,7 +9,8 @@ package Entidades;
  * @author franc
  */
 public enum TipoTransporte {
-    Avion(100000),
+    AvionNacional(100000),
+    AvionInternacional(300000),
     Tren(50000),
     Autobus(70000);
 

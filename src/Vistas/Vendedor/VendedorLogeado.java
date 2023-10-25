@@ -20,7 +20,9 @@ import javax.swing.tree.DefaultTreeModel;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.Month;
+import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.Date;
 
 /**
  *
@@ -83,8 +85,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precio = new javax.swing.JTextField();
         precio1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        llegada = new javax.swing.JLabel();
-        salida = new javax.swing.JLabel();
         destino = new javax.swing.JLabel();
         origen = new javax.swing.JLabel();
         precioTransporte = new javax.swing.JLabel();
@@ -93,6 +93,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         transporte = new javax.swing.JLabel();
         precioAlojamiento1 = new javax.swing.JLabel();
         precioTransporte1 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         PanelImagen = new javax.swing.JPanel();
         url = new javax.swing.JLabel();
         Salir1 = new javax.swing.JButton();
@@ -100,6 +102,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         temporada = new javax.swing.JLabel();
+        Salir2 = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -117,7 +120,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 venderPaqueteActionPerformed(evt);
             }
         });
-        jPanel1.add(venderPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 260, 290, 90));
+        jPanel1.add(venderPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 270, 290, 90));
 
         arbol.setBackground(new java.awt.Color(51, 102, 255));
         arbol.setBorder(null);
@@ -150,7 +153,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(arbol);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 162, 855));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 855));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -161,7 +164,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Seleccione el Paquete deseado");
 
@@ -190,6 +193,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel5.setBackground(new java.awt.Color(255, 153, 0));
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -199,60 +203,71 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel2.setText("Informacion Del Paquete");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 228, -1));
 
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 8, 1039, 50));
+
+        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(242, 242, 242));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Ciudad de Destino:");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 139, 175, -1));
 
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Fecha De Salida:");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 201, 159, -1));
 
-        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel6.setText("Fecha De Ingreso:");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 262, 159, -1));
 
-        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(242, 242, 242));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Transporte:");
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 329, 115, -1));
 
-        jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(242, 242, 242));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel8.setText("Nombre Alojamiento:");
+        jPanel4.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 91, 198, -1));
 
-        jLabel9.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel9.setText("Precio Transporte:");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 271, 166, -1));
 
-        jLabel10.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(242, 242, 242));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Precio Diario De Alojamiento:");
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 183, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(242, 242, 242));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Precio total:");
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 116, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         precio.setBackground(new java.awt.Color(255, 153, 0));
-        precio.setFont(new java.awt.Font("Microsoft JhengHei", 0, 36)); // NOI18N
+        precio.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         precio.setForeground(new java.awt.Color(0, 0, 0));
         precio.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         precio.setText("precio");
+        precio.setBorder(null);
 
         precio1.setBackground(new java.awt.Color(255, 153, 0));
-        precio1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 36)); // NOI18N
+        precio1.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
         precio1.setForeground(new java.awt.Color(0, 0, 0));
         precio1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         precio1.setText("$");
+        precio1.setBorder(null);
         precio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 precio1ActionPerformed(evt);
@@ -266,9 +281,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(precio1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(precio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(55, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,180 +295,67 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jLabel13.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, 330, -1));
+
+        jLabel13.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(242, 242, 242));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Ciudad de Origen:");
+        jPanel4.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 75, -1, -1));
 
-        llegada.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        llegada.setForeground(new java.awt.Color(242, 242, 242));
-        llegada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        llegada.setText("-");
-
-        salida.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        salida.setForeground(new java.awt.Color(242, 242, 242));
-        salida.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        salida.setText("-");
-
-        destino.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        destino.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         destino.setForeground(new java.awt.Color(242, 242, 242));
         destino.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         destino.setText("-");
+        jPanel4.add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 139, 130, -1));
 
-        origen.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        origen.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         origen.setForeground(new java.awt.Color(242, 242, 242));
         origen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         origen.setText("-");
+        jPanel4.add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 79, 120, 16));
 
-        precioTransporte.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        precioTransporte.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioTransporte.setForeground(new java.awt.Color(242, 242, 242));
         precioTransporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte.setText("-");
+        jPanel4.add(precioTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(806, 271, 132, -1));
 
-        precioAlojamiento.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        precioAlojamiento.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioAlojamiento.setForeground(new java.awt.Color(242, 242, 242));
         precioAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioAlojamiento.setText("-");
+        jPanel4.add(precioAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(806, 183, 170, -1));
 
-        alojamiento.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        alojamiento.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         alojamiento.setForeground(new java.awt.Color(242, 242, 242));
         alojamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         alojamiento.setText("-");
+        jPanel4.add(alojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(776, 91, 160, -1));
 
-        transporte.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        transporte.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         transporte.setForeground(new java.awt.Color(242, 242, 242));
         transporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         transporte.setText("-");
+        jPanel4.add(transporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(142, 329, 130, -1));
 
-        precioAlojamiento1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        precioAlojamiento1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioAlojamiento1.setForeground(new java.awt.Color(242, 242, 242));
         precioAlojamiento1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioAlojamiento1.setText("$");
+        jPanel4.add(precioAlojamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(778, 183, 22, -1));
 
-        precioTransporte1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
+        precioTransporte1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioTransporte1.setForeground(new java.awt.Color(242, 242, 242));
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
+        jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(778, 271, 22, -1));
+        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 201, 190, 25));
+        jPanel4.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 272, 190, 25));
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(68, 68, 68))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(84, 84, 84))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(origen, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(llegada, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(salida, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(destino, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(112, 112, 112)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(alojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(20, 20, 20)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(precioAlojamiento1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(precioTransporte1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(precioAlojamiento, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(precioTransporte, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(transporte, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel8)
-                                    .addComponent(alojamiento))
-                                .addGap(67, 67, 67)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel10)
-                                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                        .addComponent(precioAlojamiento)
-                                        .addComponent(precioAlojamiento1))))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(destino)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(salida))
-                                    .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(55, 55, 55)
-                                        .addComponent(jLabel5)
-                                        .addGap(51, 51, 51)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                            .addComponent(jLabel6)
-                                            .addComponent(llegada)))))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel13)
-                                .addComponent(origen, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(precioTransporte1)
-                                    .addComponent(precioTransporte))
-                                .addGap(71, 71, 71)))))
-                .addGap(54, 54, 54)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(transporte))
-                        .addGap(40, 40, 40)
-                        .addComponent(jLabel11)))
-                .addGap(44, 44, 44))
-        );
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 1040, 630));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 240, 1040, 530));
-
+        url.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         url.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         url.setText("Url");
 
@@ -461,64 +363,74 @@ public class VendedorLogeado extends javax.swing.JFrame {
         PanelImagen.setLayout(PanelImagenLayout);
         PanelImagenLayout.setHorizontalGroup(
             PanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(url, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+            .addGroup(PanelImagenLayout.createSequentialGroup()
+                .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         PanelImagenLayout.setVerticalGroup(
             PanelImagenLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(url, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+            .addComponent(url, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
 
-        jPanel1.add(PanelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 20, 290, 190));
+        jPanel1.add(PanelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 0, 390, 240));
 
         Salir1.setBackground(new java.awt.Color(102, 102, 102));
         Salir1.setForeground(new java.awt.Color(255, 255, 255));
-        Salir1.setText("Salir");
+        Salir1.setText("Modificar");
         Salir1.setBorder(null);
         Salir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Salir1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 640, 290, 90));
+        jPanel1.add(Salir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
 
-        ventas.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        ventas.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         ventas.setForeground(new java.awt.Color(255, 255, 255));
         ventas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ventas.setText("-");
         jPanel1.add(ventas, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 10, 130, 22));
 
-        jLabel15.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Nro Ventas:");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 120, 22));
 
-        jLabel16.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Temporada:");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 120, 22));
 
-        temporada.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        temporada.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         temporada.setForeground(new java.awt.Color(255, 255, 255));
         temporada.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         temporada.setText("-");
         jPanel1.add(temporada, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 50, 130, 22));
 
+        Salir2.setBackground(new java.awt.Color(102, 102, 102));
+        Salir2.setForeground(new java.awt.Color(255, 255, 255));
+        Salir2.setText("Salir");
+        Salir2.setBorder(null);
+        Salir2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Salir2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Salir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 290, 90));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1597, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -532,8 +444,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
             // Establece la información del paquete en los JLabel
             origen.setText(paquete.getOrigen().getNombre());
             destino.setText(paquete.getDestino().getNombre());
-            salida.setText(paquete.getAlojamiento().getSalida().toString());
-            llegada.setText(paquete.getAlojamiento().getIngreso().toString());
+            Date fechaSalida = Date.from(paquete.getAlojamiento().getSalida().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            Date fechaIngreso = Date.from(paquete.getAlojamiento().getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            jDateChooser1.setDate(fechaSalida);
+            jDateChooser2.setDate(fechaIngreso);
             precioTransporte.setText(Double.toString(paquete.getPasaje().getImporte()));
             alojamiento.setText(paquete.getAlojamiento().getNombre());
             precioAlojamiento.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
@@ -541,20 +455,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
             String urlImagen = paquete.getAlojamiento().getCiudadDest().getUrlImagen();
             setImagen(urlImagen);
-            
-            String temporadas= CalcularTemporada(paquete.getAlojamiento().getIngreso());
-            precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(),paquete.getAlojamiento().getIngreso(),paquete.getAlojamiento().getSalida())));
+
+            String temporadas = CalcularTemporada(paquete.getAlojamiento().getIngreso());
+            precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
             temporada.setText(temporadas);
         } else {
-            // Limpia los JLabel y jTextField si no se ha seleccionado un paquete válido
-            origen.setText("");
-            destino.setText("");
-            salida.setText("");
-            llegada.setText("");
-            precioTransporte.setText("");
-            alojamiento.setText("");
-            precioAlojamiento.setText("");
-            precio.setText("");
+            return;
         }
     }//GEN-LAST:event_comboPaqueteActionPerformed
 
@@ -584,6 +490,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private void precio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_precio1ActionPerformed
+
+    private void Salir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Salir2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -632,8 +542,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }
 
     private void setImagen(String urlImagen) {
-        int anchoImagen = 300;
-        int altoImagen = 200;  // Alto deseado
+        int anchoImagen = 400;
+        int altoImagen = 300;  // Alto deseado
 
         try {
             URL imageUrl = new URL(urlImagen);
@@ -657,16 +567,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
         }
     }
 
-    public double presupuestoTotal(double precioTransporte, double precioEstadia,LocalDate fechaIn, LocalDate fechaOn ) {
-        long diass = ChronoUnit.DAYS.between(fechaIn, fechaOn);      
-        int dias=(int) diass;
-        double estadia= precioEstadia*dias;
-        double precioFinal= estadia+precioTransporte;
-        String temporada= CalcularTemporada(fechaIn);
-        
-         if(temporada.equals("Alta")){
-             precioFinal=precioFinal*1.30;
-         }else if(temporada.equals("Media")) {
+    public double presupuestoTotal(double precioTransporte, double precioEstadia, LocalDate fechaIn, LocalDate fechaOn) {
+        long diass = ChronoUnit.DAYS.between(fechaIn, fechaOn);
+        int dias = (int) diass;
+        double estadia = precioEstadia * dias;
+        double precioFinal = estadia + precioTransporte;
+        String temporada = CalcularTemporada(fechaIn);
+
+        if (temporada.equals("Alta")) {
+            precioFinal = precioFinal * 1.30;
+        } else if (temporada.equals("Media")) {
             precioFinal = precioFinal * 1.15;
         }
         return precioFinal;
@@ -675,10 +585,13 @@ public class VendedorLogeado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PanelImagen;
     private javax.swing.JButton Salir1;
+    private javax.swing.JButton Salir2;
     private javax.swing.JLabel alojamiento;
     private javax.swing.JTree arbol;
     private javax.swing.JComboBox<Paquete> comboPaquete;
     private javax.swing.JLabel destino;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -701,7 +614,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JLabel llegada;
     private javax.swing.JLabel origen;
     private javax.swing.JTextField precio;
     private javax.swing.JTextField precio1;
@@ -709,7 +621,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JLabel precioAlojamiento1;
     private javax.swing.JLabel precioTransporte;
     private javax.swing.JLabel precioTransporte1;
-    private javax.swing.JLabel salida;
     private javax.swing.JLabel temporada;
     private javax.swing.JLabel transporte;
     private javax.swing.JLabel url;
