@@ -38,6 +38,13 @@ public class Cliente {
         this.dni = dni;
     }
 
+    public Cliente(String correo, String nombre, String apellido, int dni) {
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+    }
+
     public int getId() {
         return idCliente;
     }
@@ -88,7 +95,7 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + idCliente + ", correo=" + correo + ", pass=" + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return nombre+" "+apellido;
     }
     
     

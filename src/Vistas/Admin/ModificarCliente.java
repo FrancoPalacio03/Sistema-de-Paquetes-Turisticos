@@ -6,11 +6,13 @@ package Vistas.Admin;
 
 import Vistas.Vendedor.*;
 import AccesoADatos.Conexion;
-import AccesoADatos.VendedorData;
+import AccesoADatos.ClienteData;
 import Entidades.Cliente;
 import Entidades.Vendedor;
 import Vistas.Vendedor.Login;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,13 +20,17 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class ModificarCliente extends javax.swing.JFrame {
-     private Connection con =Conexion.getConexion();
-    VendedorData vendedata= new VendedorData(con);
+
+    private Connection con = Conexion.getConexion();
+    ClienteData clidata = new ClienteData(con);
+    Cliente cliente = null;
+
     /**
      * Creates new form Registro1
      */
     public ModificarCliente() {
         initComponents();
+       cargarCombo();
     }
 
     /**
@@ -50,7 +56,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         Modificar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        nombre = new javax.swing.JTextField();
+        apellidot = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -173,14 +179,15 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel5.setText("Ingrese Apellido:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 360, -1));
 
-        nombre.setBackground(new java.awt.Color(51, 51, 51));
-        nombre.setBorder(null);
-        nombre.addActionListener(new java.awt.event.ActionListener() {
+        apellidot.setBackground(new java.awt.Color(51, 51, 51));
+        apellidot.setForeground(new java.awt.Color(255, 255, 255));
+        apellidot.setBorder(null);
+        apellidot.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nombreActionPerformed(evt);
+                apellidotActionPerformed(evt);
             }
         });
-        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, 30));
+        jPanel1.add(apellidot, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 330, 30));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -221,6 +228,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel7.setText("Ingrese Correo Electronico:");
 
         correo.setBackground(new java.awt.Color(102, 102, 102));
+        correo.setForeground(new java.awt.Color(255, 255, 255));
         correo.setBorder(null);
         correo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -234,6 +242,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel6.setText("Ingrese DNI:");
 
         dni.setBackground(new java.awt.Color(102, 102, 102));
+        dni.setForeground(new java.awt.Color(255, 255, 255));
         dni.setBorder(null);
         dni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -292,6 +301,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 350, -1));
 
         nombre1.setBackground(new java.awt.Color(51, 51, 51));
+        nombre1.setForeground(new java.awt.Color(255, 255, 255));
         nombre1.setBorder(null);
         nombre1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -328,61 +338,31 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_correoActionPerformed
 
     private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
-        // Obtener el ID del vendedor que se desea buscar (de alguna manera, por ejemplo, desde un campo de entrada de texto)
-        String idVendedorStr = id.getText();
 
-        try {
-            int idVendedorABuscar = Integer.parseInt(idVendedorStr);
-
-            Vendedor vendedorEncontrado = vendedata.BuscarVendedor(idVendedorABuscar);
-
-        if (vendedorEncontrado != null) {
-            id.setText(String.valueOf(vendedorEncontrado.getId()));
-            nombre.setText(vendedorEncontrado.getNombre());
-            apellido.setText(vendedorEncontrado.getApellido());
-            correo.setText(vendedorEncontrado.getCorreo());
-            dni.setText(String.valueOf(vendedorEncontrado.getDni()));
-            contraseña.setText(vendedorEncontrado.getPass());
-            estado.setSelected(vendedorEncontrado.getEstado());
-            Modificar.setEnabled(true); // Puedes habilitar el botón 'Siguiente' si es relevante en este contexto.
-
-            JOptionPane.showMessageDialog(this, "Vendedor encontrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // Opcional: mostrar un mensaje de error si el vendedor no se encuentra
-                JOptionPane.showMessageDialog(this, "Vendedor no encontrado. Verifique el ID.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "El ID del vendedor debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            }    
     }//GEN-LAST:event_BuscarActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
-         String idVendedor = id.getText().trim();
-        String nombreVendedor = nombre.getText().trim();
-        String apellidoVendedor = apellido.getText().trim();
-        String correoVendedor = correo.getText().trim();
-        String dniVendedor = dni.getText().trim();
+
+        String nombreCliente = apellidot.getText().trim();
+        String apellidoCliente = apellido.getText().trim();
+        String correoCliente = correo.getText().trim();
+        String dniCliente = dni.getText().trim();
         boolean estaSeleccionado = estado.isSelected();
-        int dni=0;
+        int dni = 0;
         String contrasena = new String(contraseña.getPassword());
         String contrasenaRepetida = new String(contraseña1.getPassword());
 
         // Realizar validaciones
-        if (nombreVendedor.isEmpty() || apellidoVendedor.isEmpty() || correoVendedor.isEmpty() || dniVendedor.isEmpty() || contrasena.isEmpty() || contrasenaRepetida.isEmpty()) {
+        if (nombreCliente.isEmpty() || apellidoCliente.isEmpty() || correoCliente.isEmpty() || dniCliente.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }else if(idVendedor.isEmpty()){
-            JOptionPane.showMessageDialog(this, "El id se asigna automaticamente ");
         }
-        
-        if (!esDniValido(dniVendedor)) {
+
+        if (!esDniValido(dniCliente)) {
             JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
-        }else{
-            dni= Integer.parseInt(dniVendedor);
+        } else {
+            dni = Integer.parseInt(dniCliente);
         }
 
         if (!contrasena.equals(contrasenaRepetida)) {
@@ -390,24 +370,25 @@ public class ModificarCliente extends javax.swing.JFrame {
             return;
         }
 
-        
-        Vendedor vendedor = new Vendedor(correoVendedor, contrasena ,nombreVendedor, apellidoVendedor, dni, estaSeleccionado);
-        
-        vendedata.modificarVendedor(vendedor);
-        Admin re = new Admin();
+        cliente = new Cliente(correoCliente,nombreCliente,apellidoCliente,dni);
+         
+
+        clidata.modificarCliente(cliente);
+        ListadoClientes re = new ListadoClientes ();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.dispose();
+
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_apellidoActionPerformed
 
-    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
+    private void apellidotActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidotActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nombreActionPerformed
+    }//GEN-LAST:event_apellidotActionPerformed
 
     private void dniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dniActionPerformed
         // TODO add your handling code here:
@@ -426,50 +407,15 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Cancelar1ActionPerformed
-
-    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
-        // TODO add your handling code here:                                     
-        String idVendedor = id.getText().trim();
-        String nombreVendedor = nombre.getText().trim();
-        String apellidoVendedor = apellido.getText().trim();
-        String correoVendedor = correo.getText().trim();
-        String dniVendedor = dni.getText().trim();
-        boolean estaSeleccionado = estado.isSelected();
-        int dni=0;
-        String contrasena = new String(contraseña.getPassword());
-        String contrasenaRepetida = new String(contraseña1.getPassword());
-
-        // Realizar validaciones
-        if (nombreVendedor.isEmpty() || apellidoVendedor.isEmpty() || correoVendedor.isEmpty() || dniVendedor.isEmpty() || contrasena.isEmpty() || contrasenaRepetida.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(idVendedor.isEmpty()){
-            JOptionPane.showMessageDialog(this, "El id se asigna automaticamente ");
-        }
-        
-        if (!esDniValido(dniVendedor)) {
-            JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }else{
-            dni= Integer.parseInt(dniVendedor);
-        }
-
-        if (!contrasena.equals(contrasenaRepetida)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        
-        Vendedor vendedor = new Vendedor(correoVendedor, contrasena ,nombreVendedor, apellidoVendedor, dni, estaSeleccionado);
-        
-        vendedata.altaVendedor(vendedor);
-        Admin re = new Admin();
+        ListadoClientes re = new ListadoClientes();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
         this.dispose();
+    }//GEN-LAST:event_Cancelar1ActionPerformed
+
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+
     }//GEN-LAST:event_RegistrarActionPerformed
 
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
@@ -481,8 +427,17 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_nombre1ActionPerformed
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
-        // TODO add your handling code here:
+       
+       
+        cliente=  (Cliente) comboCliente.getSelectedItem();
+        nombre1.setText(cliente.getNombre());
+        apellidot.setText(cliente.getApellido());
+        correo.setText(cliente.getCorreo());
+        dni.setText(Integer.toString(cliente.getDni()));
         
+        
+
+
     }//GEN-LAST:event_comboClienteActionPerformed
 
     /**
@@ -511,7 +466,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(ModificarCliente.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -520,22 +475,30 @@ public class ModificarCliente extends javax.swing.JFrame {
             }
         });
     }
-    
-    private boolean esDniValido(String dni) {
-    // Verificar que el DNI tiene exactamente 8 dígitos
-    if (dni.length() != 8) {
-        return false;
-    }
-
-    try {
-        // Intentar convertir el DNI a un número
-        Long.parseLong(dni);
-        return true;
-    } catch (NumberFormatException e) {
-        // Si se lanza una excepción, significa que no es un número válido
-        return false;
-    }
+private void cargarCombo(){
+   
+    List<Cliente> clientes = new ArrayList<Cliente>();
+     clientes=clidata.ListarClientes();
+        for(Cliente elemento:clientes){
+            comboCliente.addItem(elemento);
+            
+        }
 }
+    private boolean esDniValido(String dni) {
+        // Verificar que el DNI tiene exactamente 8 dígitos
+        if (dni.length() != 8) {
+            return false;
+        }
+
+        try {
+            // Intentar convertir el DNI a un número
+            Long.parseLong(dni);
+            return true;
+        } catch (NumberFormatException e) {
+            // Si se lanza una excepción, significa que no es un número válido
+            return false;
+        }
+    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -544,6 +507,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField apellido;
+    private javax.swing.JTextField apellidot;
     private javax.swing.JComboBox<Cliente> comboCliente;
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JPasswordField contraseña1;
@@ -567,7 +531,6 @@ public class ModificarCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombre1;
     // End of variables declaration//GEN-END:variables
 }
