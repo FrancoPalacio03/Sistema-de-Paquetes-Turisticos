@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
  * @author franc
  */
 public class FormularioCliente extends javax.swing.JFrame {
-     private Connection con =Conexion.getConexion();
+    private Connection con =Conexion.getConexion();
     private VendedorData vendeData= new VendedorData(con);
-    private ClienteData cliData= new ClienteData(con);
+    private ClienteData cliData= new ClienteData();
     private PaqueteVendidoData packData= new PaqueteVendidoData();
     private Vendedor vendedor;
     private Paquete paquete;

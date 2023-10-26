@@ -43,14 +43,10 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         Registrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        fechaIn = new com.toedter.calendar.JDateChooser();
-        fechaOn = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         Descripcion = new javax.swing.JTextArea();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         comboCiudad = new javax.swing.JComboBox<>();
         jLabel7 = new javax.swing.JLabel();
@@ -102,19 +98,11 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jLabel2.setText("$");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 20, 40));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Fecha Entrada");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 230, 340, -1));
-
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Descripcion de Servicios");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 340, -1));
-        jPanel1.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 220, 30));
-        jPanel1.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 220, 30));
 
         Descripcion.setColumns(20);
         Descripcion.setRows(5);
@@ -127,12 +115,6 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Importe Diario");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 680, 340, -1));
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Fecha Salida");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 340, -1));
 
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 220, 30));
@@ -209,14 +191,12 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
         String nombreAlojamiento = nombre.getText();
-        LocalDate fechaEntrada = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate fechaSalida = fechaOn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String descripcionServicios = Descripcion.getText();
         Ciudad ciudadDestino = (Ciudad) comboCiudad.getSelectedItem();
         boolean estaSeleccionado = estado.isSelected();
         double importeDiario=0;
       
-        if (nombreAlojamiento.isEmpty() || fechaEntrada == null || fechaSalida == null || descripcionServicios.isEmpty()) {
+        if (nombreAlojamiento.isEmpty() || descripcionServicios.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si algún campo está vacío
         }
@@ -226,14 +206,9 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El importe diario no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si el importe no es válido
         }
-        
-        if (fechaEntrada.isBefore(fechaSalida)) {
-            Alojamiento alo=new Alojamiento(nombreAlojamiento,fechaEntrada,fechaSalida,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
-            aloData.ModificarAlojamiento(alo);
-        } else {
-            JOptionPane.showMessageDialog(this, "La fecha de entrada debe ser anterior a la fecha de salida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Salir del método si la fecha de entrada no es válida
-        }
+
+        Alojamiento alo=new Alojamiento(nombreAlojamiento,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
+        aloData.ModificarAlojamiento(alo);
         
         FormularioAlojamiento re = new FormularioAlojamiento();
         re.pack();
@@ -245,14 +220,12 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
         String nombreAlojamiento = nombre.getText();
-        LocalDate fechaEntrada = fechaIn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        LocalDate fechaSalida = fechaOn.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         String descripcionServicios = Descripcion.getText();
         Ciudad ciudadDestino = (Ciudad) comboCiudad.getSelectedItem();
         boolean estaSeleccionado = estado.isSelected();
         double importeDiario=0;
       
-        if (nombreAlojamiento.isEmpty() || fechaEntrada == null || fechaSalida == null || descripcionServicios.isEmpty()) {
+        if (nombreAlojamiento.isEmpty() || descripcionServicios.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si algún campo está vacío
         }
@@ -262,14 +235,8 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "El importe diario no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si el importe no es válido
         }
-        
-        if (fechaEntrada.isBefore(fechaSalida)) {
-            Alojamiento alo=new Alojamiento(nombreAlojamiento,fechaEntrada,fechaSalida,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
-            aloData.RegistroAlojamiento(alo);
-        } else {
-            JOptionPane.showMessageDialog(this, "La fecha de entrada debe ser anterior a la fecha de salida.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Salir del método si la fecha de entrada no es válida
-        }
+        Alojamiento alo=new Alojamiento(nombreAlojamiento,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
+        aloData.RegistroAlojamiento(alo);
                        
         FormularioAlojamiento re = new FormularioAlojamiento();
         re.pack();
@@ -304,8 +271,6 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         if (alojamiento != null) {
         // Rellenar los campos con los datos del alojamiento
         nombre.setText(alojamiento.getNombre());
-        fechaIn.setDate(Date.from(alojamiento.getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        fechaOn.setDate(Date.from(alojamiento.getSalida().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         Descripcion.setText(alojamiento.getServicio());
         importe.setText(String.valueOf(alojamiento.getImporteDiario()));
         estado.setSelected(alojamiento.isEstado());
@@ -369,15 +334,11 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
     private javax.swing.JButton Registrar;
     private javax.swing.JComboBox<Ciudad> comboCiudad;
     private javax.swing.JCheckBox estado;
-    private com.toedter.calendar.JDateChooser fechaIn;
-    private com.toedter.calendar.JDateChooser fechaOn;
     private javax.swing.JTextField importe;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;

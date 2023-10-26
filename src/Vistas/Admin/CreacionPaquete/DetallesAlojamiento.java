@@ -12,8 +12,6 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
     
     private String nombreAlojamiento;
     private String Descripcion;
-    private String fechaIn;
-    private String fechaon;
     private String precio;
     /**
      * Creates new form DetallesAlojamiento
@@ -22,12 +20,10 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         initComponents();
     }
 
-    public DetallesAlojamiento(String nombreAlojamiento, String Descripcion, String fechaIn, String fechaon, String precio) {
+    public DetallesAlojamiento(String nombreAlojamiento, String Descripcion, String precio) {
         initComponents();
         this.nombreAlojamiento=nombreAlojamiento;
         this.Descripcion=Descripcion;
-        this.fechaIn=fechaIn;
-        this.fechaon=fechaon;
         this.precio=precio;
         cargarDatos();
     }
@@ -43,13 +39,9 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         nombre = new javax.swing.JLabel();
-        nombre1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcion = new javax.swing.JTextArea();
         nombre2 = new javax.swing.JLabel();
-        fechaSalida = new javax.swing.JLabel();
-        nombre4 = new javax.swing.JLabel();
-        fechaIngreso = new javax.swing.JLabel();
         Precio = new javax.swing.JLabel();
         nombre5 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
@@ -64,10 +56,6 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         nombre.setForeground(new java.awt.Color(255, 255, 255));
         nombre.setText("jLabel1");
 
-        nombre1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        nombre1.setForeground(new java.awt.Color(255, 255, 255));
-        nombre1.setText("Fecha ingreso:");
-
         descripcion.setColumns(20);
         descripcion.setRows(5);
         jScrollPane1.setViewportView(descripcion);
@@ -75,19 +63,6 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         nombre2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
         nombre2.setForeground(new java.awt.Color(255, 255, 255));
         nombre2.setText("Descripcion:");
-
-        fechaSalida.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        fechaSalida.setForeground(new java.awt.Color(255, 255, 255));
-        fechaSalida.setText("fecha");
-
-        nombre4.setBackground(new java.awt.Color(255, 255, 255));
-        nombre4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        nombre4.setForeground(new java.awt.Color(255, 255, 255));
-        nombre4.setText("Fecha ingreso:");
-
-        fechaIngreso.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
-        fechaIngreso.setForeground(new java.awt.Color(255, 255, 255));
-        fechaIngreso.setText("fecha");
 
         Precio.setFont(new java.awt.Font("Microsoft JhengHei", 0, 18)); // NOI18N
         Precio.setForeground(new java.awt.Color(255, 255, 255));
@@ -116,29 +91,20 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(nombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(nombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(nombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGap(153, 153, 153)
-                            .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 468, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(fechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(179, 179, 179)
-                        .addComponent(fechaSalida, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(29, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nombre5, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(nombre6, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Precio, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(153, 153, 153)
+                        .addComponent(Aceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,15 +115,7 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
                 .addComponent(nombre2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nombre1)
-                    .addComponent(nombre4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(fechaSalida)
-                    .addComponent(fechaIngreso))
-                .addGap(33, 33, 33)
+                .addGap(133, 133, 133)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(nombre5)
@@ -227,14 +185,10 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
     private javax.swing.JButton Aceptar;
     private javax.swing.JLabel Precio;
     private javax.swing.JTextArea descripcion;
-    private javax.swing.JLabel fechaIngreso;
-    private javax.swing.JLabel fechaSalida;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel nombre;
-    private javax.swing.JLabel nombre1;
     private javax.swing.JLabel nombre2;
-    private javax.swing.JLabel nombre4;
     private javax.swing.JLabel nombre5;
     private javax.swing.JLabel nombre6;
     // End of variables declaration//GEN-END:variables
@@ -242,8 +196,6 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
     private void cargarDatos() {
         nombre.setText(nombreAlojamiento);
         descripcion.setText(Descripcion);
-        fechaIngreso.setText(fechaIn);
-        fechaSalida.setText(fechaon);
         Precio.setText(precio);
     }
 }

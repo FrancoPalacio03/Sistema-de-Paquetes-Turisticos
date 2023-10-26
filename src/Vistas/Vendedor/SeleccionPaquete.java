@@ -6,6 +6,7 @@ package Vistas.Vendedor;
 
 import Vistas.Admin.CreacionPaquete.*;
 import AccesoADatos.AlojamientoData;
+import AccesoADatos.AlojamientoVendidoData;
 import AccesoADatos.PaqueteData;
 import Entidades.Alojamiento;
 import Entidades.Ciudad;
@@ -27,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
 public class SeleccionPaquete extends javax.swing.JFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
-    private AlojamientoData aloData = new AlojamientoData();
+    private AlojamientoVendidoData aloData = new AlojamientoVendidoData();
     private PaqueteData packData= new PaqueteData();
     private Vendedor vendedor;
 

@@ -162,7 +162,7 @@ public class Login extends javax.swing.JFrame {
                 AdminActionPerformed(evt);
             }
         });
-        jMAIL.add(Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 440, 122, 43));
+        jMAIL.add(Admin, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 122, 43));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/logo.png"))); // NOI18N
         jMAIL.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
@@ -175,7 +175,7 @@ public class Login extends javax.swing.JFrame {
         jLabel5.setText("Correo Electronico");
         jMAIL.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, -1, 40));
 
-        getContentPane().add(jMAIL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 510));
+        getContentPane().add(jMAIL, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents

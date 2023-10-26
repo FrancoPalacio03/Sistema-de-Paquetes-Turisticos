@@ -21,7 +21,7 @@ public class PaqueteData {
 
     private Connection con = Conexion.getConexion();
     private CiudadData ciuData= new CiudadData();
-    private AlojamientoData aloData= new AlojamientoData();
+    private AlojamientoVendidoData aloData= new AlojamientoVendidoData();
     private PasajeData passData= new PasajeData();
 
     public void registroPaquete(Paquete paquete) {

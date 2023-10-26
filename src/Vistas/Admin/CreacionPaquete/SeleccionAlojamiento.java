@@ -141,14 +141,9 @@ public class SeleccionAlojamiento extends javax.swing.JFrame {
             int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
             String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
             String Descripcion = jTable1.getValueAt(filaSeleccionada, 2).toString();
-            LocalDate fechin= (LocalDate)jTable1.getValueAt(filaSeleccionada, 3);
-            LocalDate fechon= (LocalDate)jTable1.getValueAt(filaSeleccionada, 4);
-            Date fechaIn = Date.valueOf(fechin);
-            Date fechaon = Date.valueOf(fechon);
-            Double precio = (Double) jTable1.getValueAt(filaSeleccionada, 5);
-            Alojamiento alojamiento = new Alojamiento(id, nombreAlojamiento, fechaIn.toLocalDate(), fechaon.toLocalDate(), true, Descripcion, precio, paquete.getDestino());
-            paquete.setAlojamiento(alojamiento);
-            FormularioPasaje re = new FormularioPasaje(paquete);
+            Double precio = (Double) jTable1.getValueAt(filaSeleccionada, 3);
+            Alojamiento alojamiento = new Alojamiento(id, nombreAlojamiento, true, Descripcion, precio, paquete.getDestino());
+            SeleccionFechaAlojamiento re = new SeleccionFechaAlojamiento(alojamiento, paquete);
             re.pack();
             re.setVisible(true);
             re.setLocationRelativeTo(null);
@@ -168,12 +163,10 @@ public class SeleccionAlojamiento extends javax.swing.JFrame {
             int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
             String nombreAlojamiento = jTable1.getValueAt(filaSeleccionada, 1).toString();
             String Descripcion = jTable1.getValueAt(filaSeleccionada, 2).toString();
-            String fechaIn = jTable1.getValueAt(filaSeleccionada, 3).toString();
-            String fechaon = jTable1.getValueAt(filaSeleccionada, 4).toString();
-            String precio = jTable1.getValueAt(filaSeleccionada, 5).toString();
+            String precio = jTable1.getValueAt(filaSeleccionada, 3).toString();
 
             // Crea una nueva ventana para mostrar los detalles del alojamiento
-            DetallesAlojamiento detallesFrame = new DetallesAlojamiento(nombreAlojamiento, Descripcion, fechaIn, fechaon, precio);
+            DetallesAlojamiento detallesFrame = new DetallesAlojamiento(nombreAlojamiento, Descripcion, precio);
             detallesFrame.setVisible(true);
             detallesFrame.pack();
             detallesFrame.setLocationRelativeTo(null);
@@ -230,8 +223,6 @@ public class SeleccionAlojamiento extends javax.swing.JFrame {
                 alojamiento.getIdAlojamiento(),
                 alojamiento.getNombre(),
                 alojamiento.getServicio(),
-                alojamiento.getIngreso(),
-                alojamiento.getSalida(),
                 alojamiento.getImporteDiario(),});
         }
     }
@@ -240,8 +231,6 @@ public class SeleccionAlojamiento extends javax.swing.JFrame {
         modelo.addColumn("ID");
         modelo.addColumn("Alojamiento");
         modelo.addColumn("Servicios incluidos");
-        modelo.addColumn("Fecha Ingreso");
-        modelo.addColumn("Fecha Salida");
         modelo.addColumn("Precio Diario");
         jTable1.setModel(modelo);
     }

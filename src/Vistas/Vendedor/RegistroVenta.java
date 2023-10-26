@@ -77,6 +77,8 @@ public class RegistroVenta extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jLabel21 = new javax.swing.JLabel();
         jSeparator10 = new javax.swing.JSeparator();
+        Comprar1 = new javax.swing.JButton();
+        Descartar1 = new javax.swing.JButton();
 
         jLabel1.setText("IMAGE");
         jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
@@ -439,6 +441,24 @@ public class RegistroVenta extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 70, 590, 220));
 
+        Comprar1.setText("Comprar");
+        Comprar1.setBorder(null);
+        Comprar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Comprar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Comprar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 540, 96, 50));
+
+        Descartar1.setText("Descartar");
+        Descartar1.setBorder(null);
+        Descartar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Descartar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Descartar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(46, 537, 92, 50));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -529,6 +549,14 @@ public class RegistroVenta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField12ActionPerformed
 
+    private void Comprar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Comprar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Comprar1ActionPerformed
+
+    private void Descartar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Descartar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Descartar1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -566,7 +594,9 @@ public class RegistroVenta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Comprar;
+    private javax.swing.JButton Comprar1;
     private javax.swing.JButton Descartar;
+    private javax.swing.JButton Descartar1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

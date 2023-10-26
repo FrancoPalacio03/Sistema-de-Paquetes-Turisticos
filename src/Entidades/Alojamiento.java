@@ -21,6 +21,23 @@ public class Alojamiento {
     public Alojamiento() {
     }
 
+    public Alojamiento(String nombre, boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
+        this.estado = estado;
+        this.servicio = servicio;
+        this.importeDiario = importeDiario;
+        this.CiudadDest = CiudadDest;
+        this.nombre=nombre;
+    }
+    
+    public Alojamiento(int id,String nombre, boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
+        this.estado = estado;
+        this.servicio = servicio;
+        this.importeDiario = importeDiario;
+        this.CiudadDest = CiudadDest;
+        this.nombre=nombre;
+        this.idAlojamiento=id;
+    }
+    
     public Alojamiento(int idAlojamiento,String nombre, LocalDate ingreso, LocalDate salida, boolean estado, String servicio, double importeDiario, Ciudad CiudadDest) {
         this.idAlojamiento= idAlojamiento;
         this.ingreso = ingreso;

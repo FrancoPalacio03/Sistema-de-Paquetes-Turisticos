@@ -14,10 +14,13 @@ import javax.swing.JOptionPane;
 public class ClienteData {
 
     private Connection con = Conexion.getConexion();
-    private PaqueteData packData = new PaqueteData();
+    private PaqueteVendidoData packData = new PaqueteVendidoData();
 
     public ClienteData(Connection con) {
         this.con = con;
+    }
+    
+    public ClienteData() {
     }
 
     public void altaCliente(Cliente cliente) {
@@ -120,7 +123,6 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
-
                 int idPaquete = rs.getInt("idPaquete");
                 Paquete paquete = packData.buscarPaquete(idPaquete);
                 cliente.setPaquete(paquete);
@@ -156,4 +158,38 @@ public class ClienteData {
     }
 
     // Implement a method to find a Paquete by id
+
+    public Cliente BuscarClienteXPaquete(int idPaquete) {
+        Cliente cliente = null;
+        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM cliente WHERE idPaqueteVendido = ?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idPaquete);
+            ResultSet rs = ps.executeQuery();
+            Paquete pack = new Paquete();
+            if (rs.next()) {
+                cliente = new Cliente();
+                cliente.setId(rs.getInt("idCliente"));
+                cliente.setDni(rs.getInt("dni"));
+                cliente.setApellido(rs.getString("apellido"));
+                cliente.setNombre(rs.getString("nombre"));
+                cliente.setCorreo(rs.getString("correo"));
+                pack.setIdPaquete(rs.getInt("idPaquete"));
+
+                Paquete paquete = packData.buscarPaquete(idPaquete);
+
+                cliente.setPaquete(paquete);
+
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el cliente");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Cliente " + ex.getMessage());
+        }
+
+        return cliente;
+    
+    }
 }

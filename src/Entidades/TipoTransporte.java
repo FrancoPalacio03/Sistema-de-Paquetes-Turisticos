@@ -9,13 +9,10 @@ package Entidades;
  * @author franc
  */
 public enum TipoTransporte {
-<<<<<<< Updated upstream
     AvionNacional(100000),
     AvionInternacional(300000),
     Tren(50000),
-    Autobus(70000);
-
-=======
+    Autobus(70000),
     AvionaCordoba(100000),
     TrenaCordoba(50000),
     AutobusaCordoba(70000),
@@ -31,7 +28,7 @@ public enum TipoTransporte {
     TrenaSanLuis(9000),
     AutobusaSanLuis(19000),
     AvionaMiami(430000);
->>>>>>> Stashed changes
+    
     private final double importe;
 
     TipoTransporte(double importe) {

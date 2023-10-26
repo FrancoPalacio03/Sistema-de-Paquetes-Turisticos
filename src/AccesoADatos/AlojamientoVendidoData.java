@@ -20,29 +20,32 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class AlojamientoData {
+public class AlojamientoVendidoData {
 
     private Connection con = Conexion.getConexion();
     private CiudadData ciudata = new CiudadData();
 
-    public void RegistroAlojamiento(Alojamiento alojamiento) {
-        String sql = "INSERT INTO alojamiento (nombre,  estado, servicio, importeDiario, Ciudad) VALUES (?, ?, ?, ?, ?)";
+    public int RegistroAlojamiento(Alojamiento alojamiento) {
+        String sql = "INSERT INTO alojamientovendido (nombre, fechain, fechaon, estado, servicio, importeDiario, Ciudad) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        int idAlojamientoGenerado=0;
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, alojamiento.getNombre());
-            ps.setBoolean(2, alojamiento.isEstado());
-            ps.setString(3, alojamiento.getServicio());
-            ps.setDouble(4, alojamiento.getImporteDiario());
+            ps.setDate(2, Date.valueOf(alojamiento.getIngreso()));
+            ps.setDate(3, Date.valueOf(alojamiento.getSalida()));
+            ps.setBoolean(4, alojamiento.isEstado());
+            ps.setString(5, alojamiento.getServicio());
+            ps.setDouble(6, alojamiento.getImporteDiario());
             Ciudad ciudad = alojamiento.getCiudadDest();
-            ps.setInt(5, ciudad.getIdCiudad());
+            ps.setInt(7, ciudad.getIdCiudad());
             
             int rowsAffected = ps.executeUpdate();
 
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
                 if (rs.next()) {
-                    int idAlojamientoGenerado = rs.getInt(1); // Obtenemos la clave generada
+                    idAlojamientoGenerado = rs.getInt(1); // Obtenemos la clave generada
                     alojamiento.setIdAlojamiento(idAlojamientoGenerado);
                     JOptionPane.showMessageDialog(null, "Alojamiento añadido con éxito. ID: " + idAlojamientoGenerado);
                 }
@@ -54,12 +57,13 @@ public class AlojamientoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Alojamiento" + ex.getMessage());
 
         }
+        return idAlojamientoGenerado;
     }
 
     public Alojamiento BuscarAlojamiento(int idAlojamiento) {
 
         Alojamiento alojamiento = null;
-        String sql = "Select * FROM Alojamiento where idAlojamiento = ? ";
+        String sql = "Select * FROM alojamientovendido where idAlojamientoVendido = ? ";
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql);
@@ -69,7 +73,9 @@ public class AlojamientoData {
 
                 alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
-                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamientoVendido"));
+                alojamiento.setIngreso(rs.getDate("fechain").toLocalDate());
+                alojamiento.setSalida(rs.getDate("fechaon").toLocalDate());
                 alojamiento.setEstado(true);
                 alojamiento.setServicio("servicio");
                 alojamiento.setImporteDiario(rs.getInt("importeDiario"));
@@ -80,7 +86,7 @@ public class AlojamientoData {
 
             } else {
 
-                JOptionPane.showMessageDialog(null, "No existe el alojamiento");
+                JOptionPane.showMessageDialog(null, "No existe la materia");
             }
 
         } catch (SQLException ex) {
@@ -94,13 +100,15 @@ public class AlojamientoData {
 
         List<Alojamiento> alojamientos = new ArrayList<Alojamiento>();
         try {
-            String sql = "SELECT * FROM alojamiento WHERE estado = 1 ";
+            String sql = "SELECT * FROM alojamientovendido WHERE estado = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Alojamiento alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
-                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamientoVendido"));
+                alojamiento.setIngreso(rs.getDate("fechain").toLocalDate());
+                alojamiento.setSalida(rs.getDate("fechaon").toLocalDate());
                 alojamiento.setEstado(true);
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
@@ -120,16 +128,19 @@ public class AlojamientoData {
     }
 
     public void ModificarAlojamiento(Alojamiento alojamiento) {
-        String sql = "UPDATE alojamiento SET nombre= ?,  estado = ?, servicio =?, importeDiario = ?,Ciudad = ? WHERE idAlojamiento";
+        String sql = "UPDATE alojamientovendido SET nombre= ?, fechain = ?, fechaon= ?, estado = ?, servicio =?, importeDiario = ?,Ciudad = ? WHERE idAlojamientoVendido=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setBoolean(2, alojamiento.isEstado());
-            ps.setString(3, alojamiento.getServicio());
-            ps.setDouble(4, alojamiento.getImporteDiario());
+            ps.setDate(2, Date.valueOf(alojamiento.getIngreso()));
+            ps.setDate(3, Date.valueOf(alojamiento.getSalida()));
+            ps.setBoolean(4, alojamiento.isEstado());
+            ps.setString(5, alojamiento.getServicio());
+            ps.setDouble(6, alojamiento.getImporteDiario());
             Ciudad ciudad = alojamiento.getCiudadDest();
-            ps.setInt(5, ciudad.getIdCiudad());
+            ps.setInt(7, ciudad.getIdCiudad());
+            ps.setInt(8, alojamiento.getIdAlojamiento());
             ps.setString(1, alojamiento.getNombre());
 
             int exito = ps.executeUpdate();
@@ -149,7 +160,7 @@ public class AlojamientoData {
 
     public void BajaAlojamiento(int idAlojamiento) {
         try {
-            String sql = "UPDATE alojamiento SET estado = 0 WHERE idAlojamiento= ? ";
+            String sql = "UPDATE alojamientovendido SET estado = 0 WHERE idAlojamientoVendido= ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlojamiento);
             int fila = ps.executeUpdate();
@@ -167,14 +178,16 @@ public class AlojamientoData {
 
         List<Alojamiento> alojamientos = new ArrayList<Alojamiento>();
         try {
-            String sql = "SELECT * FROM alojamiento WHERE estado = 1 and Ciudad=?";
+            String sql = "SELECT * FROM alojamientovendido WHERE estado = 1 and Ciudad=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();            
             while (rs.next()) {
                 Alojamiento alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
-                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamientoVendido"));
+                alojamiento.setIngreso(rs.getDate("fechain").toLocalDate());
+                alojamiento.setSalida(rs.getDate("fechaon").toLocalDate());
                 alojamiento.setEstado(true);
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));

@@ -4,12 +4,15 @@
  */
 package Vistas.Vendedor;
 
+import AccesoADatos.ClienteData;
 import AccesoADatos.PaqueteData;
 import AccesoADatos.PaqueteVendidoData;
 import AccesoADatos.VendedorData;
+import Entidades.Cliente;
 import Entidades.Paquete;
 import Entidades.Vendedor;
 import Vistas.Admin.Admin;
+import Vistas.Admin.CreacionPaquete.FormularioPasaje;
 import java.awt.Image;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
@@ -23,6 +26,7 @@ import java.time.Month;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,6 +38,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private Vendedor vendedor;
     private PaqueteVendidoData packData = new PaqueteVendidoData();
     private VendedorData vendeData = new VendedorData();
+    private ClienteData cliData= new ClienteData();
 
     /**
      * Creates new form ClienteLogeado
@@ -93,16 +98,24 @@ public class VendedorLogeado extends javax.swing.JFrame {
         transporte = new javax.swing.JLabel();
         precioAlojamiento1 = new javax.swing.JLabel();
         precioTransporte1 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        fechaIn = new com.toedter.calendar.JDateChooser();
+        fechaOn = new com.toedter.calendar.JDateChooser();
+        dniCliente = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        idCliente = new javax.swing.JLabel();
+        nombreCliente = new javax.swing.JLabel();
+        apellidoCliente = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel12 = new javax.swing.JLabel();
         PanelImagen = new javax.swing.JPanel();
         url = new javax.swing.JLabel();
-        Salir1 = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
         ventas = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         temporada = new javax.swing.JLabel();
         Salir2 = new javax.swing.JButton();
+        NombreVendedor = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -199,6 +212,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Informacion Del Paquete");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 228, -1));
@@ -238,14 +252,14 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("Precio Transporte:");
-        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 271, 166, -1));
+        jLabel9.setText("Cantidad Viajantes:");
+        jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 166, -1));
 
         jLabel10.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(242, 242, 242));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel10.setText("Precio Diario De Alojamiento:");
-        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 183, -1, -1));
+        jPanel4.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(508, 150, 240, -1));
 
         jLabel11.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(242, 242, 242));
@@ -319,13 +333,13 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioTransporte.setForeground(new java.awt.Color(242, 242, 242));
         precioTransporte.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte.setText("-");
-        jPanel4.add(precioTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(806, 271, 132, -1));
+        jPanel4.add(precioTransporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 210, 132, -1));
 
         precioAlojamiento.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioAlojamiento.setForeground(new java.awt.Color(242, 242, 242));
         precioAlojamiento.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioAlojamiento.setText("-");
-        jPanel4.add(precioAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(806, 183, 170, -1));
+        jPanel4.add(precioAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 150, 160, -1));
 
         alojamiento.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         alojamiento.setForeground(new java.awt.Color(242, 242, 242));
@@ -343,15 +357,54 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioAlojamiento1.setForeground(new java.awt.Color(242, 242, 242));
         precioAlojamiento1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioAlojamiento1.setText("$");
-        jPanel4.add(precioAlojamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(778, 183, 22, -1));
+        jPanel4.add(precioAlojamiento1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 150, 22, -1));
 
         precioTransporte1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioTransporte1.setForeground(new java.awt.Color(242, 242, 242));
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
-        jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(778, 271, 22, -1));
-        jPanel4.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 201, 190, 25));
-        jPanel4.add(jDateChooser2, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 272, 190, 25));
+        jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 22, -1));
+        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 201, 190, 25));
+        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 190, 25));
+
+        dniCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        dniCliente.setForeground(new java.awt.Color(255, 255, 255));
+        dniCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        dniCliente.setText("-");
+        jPanel4.add(dniCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 530, 570, -1));
+
+        jLabel17.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setText("Cliente:");
+        jPanel4.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 440, 120, -1));
+
+        idCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        idCliente.setForeground(new java.awt.Color(255, 255, 255));
+        idCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        idCliente.setText("-");
+        jPanel4.add(idCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 440, 570, -1));
+
+        nombreCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        nombreCliente.setForeground(new java.awt.Color(255, 255, 255));
+        nombreCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        nombreCliente.setText("-");
+        jPanel4.add(nombreCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, 570, -1));
+
+        apellidoCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        apellidoCliente.setForeground(new java.awt.Color(255, 255, 255));
+        apellidoCliente.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        apellidoCliente.setText("-");
+        jPanel4.add(apellidoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, 570, -1));
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(242, 242, 242));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText("Precio Transporte:");
+        jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 210, 170, -1));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 1040, 630));
 
@@ -374,16 +427,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         jPanel1.add(PanelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 0, 390, 240));
 
-        Salir1.setBackground(new java.awt.Color(102, 102, 102));
-        Salir1.setForeground(new java.awt.Color(255, 255, 255));
-        Salir1.setText("Modificar");
-        Salir1.setBorder(null);
-        Salir1.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setBackground(new java.awt.Color(102, 102, 102));
+        Modificar.setForeground(new java.awt.Color(255, 255, 255));
+        Modificar.setText("Modificar");
+        Modificar.setBorder(null);
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Salir1ActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Salir1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
 
         ventas.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         ventas.setForeground(new java.awt.Color(255, 255, 255));
@@ -420,6 +473,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
         });
         jPanel1.add(Salir2, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 660, 290, 90));
 
+        NombreVendedor.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
+        NombreVendedor.setForeground(new java.awt.Color(255, 255, 255));
+        NombreVendedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        NombreVendedor.setText("Bienvenido/a ,");
+        jPanel1.add(NombreVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 202, 440, 30));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -446,8 +505,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
             destino.setText(paquete.getDestino().getNombre());
             Date fechaSalida = Date.from(paquete.getAlojamiento().getSalida().atStartOfDay(ZoneId.systemDefault()).toInstant());
             Date fechaIngreso = Date.from(paquete.getAlojamiento().getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            jDateChooser1.setDate(fechaSalida);
-            jDateChooser2.setDate(fechaIngreso);
+            fechaIn.setDate(fechaSalida);
+            fechaOn.setDate(fechaIngreso);
             precioTransporte.setText(Double.toString(paquete.getPasaje().getImporte()));
             alojamiento.setText(paquete.getAlojamiento().getNombre());
             precioAlojamiento.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
@@ -459,6 +518,14 @@ public class VendedorLogeado extends javax.swing.JFrame {
             String temporadas = CalcularTemporada(paquete.getAlojamiento().getIngreso());
             precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
             temporada.setText(temporadas);
+            
+            Cliente cli= cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
+            idCliente.setText("id: "+Integer.toString(cli.getId()));
+            nombreCliente.setText("Nombre: "+cli.getNombre());
+            apellidoCliente.setText("Apellido: "+cli.getApellido());
+            dniCliente.setText("Dni: "+Integer.toString(cli.getDni()));
+            
+            NombreVendedor.setText("Bienvenido/a al sistema usuario:  "+vendedor.getApellido()+ " "+vendedor.getNombre());
         } else {
             return;
         }
@@ -478,14 +545,48 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_venderPaqueteActionPerformed
 
-    private void Salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir1ActionPerformed
-        // TODO add your handling code here:
-        Login re = new Login();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_Salir1ActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+//        // TODO add your handling code here:
+//        LocalDate fechaActual = LocalDate.now();
+//
+//        // Obtiene las fechas seleccionadas
+//        Date fechaIngreso = fechaIn.getDate();
+//        Date fechaSalida = fechaOn.getDate();
+//
+//        if (fechaIngreso != null && fechaSalida != null) {
+//            // Convierte las fechas a objetos LocalDate
+//            LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//
+//            // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
+//            if (!fechaSalidaLocal.isBefore(fechaIngresoLocal)) {
+//                // Verifica que ambas fechas sean posteriores a la fecha actual
+//                if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
+//                    // Continúa con la lógica de tu aplicación
+//                    alojamiento.setIngreso(fechaIngresoLocal);
+//                    alojamiento.setSalida(fechaSalidaLocal);
+//                    int id = aloData.RegistroAlojamiento(alojamiento);
+//                    alojamiento.setIdAlojamiento(id);
+//                    paquete.setAlojamiento(alojamiento);
+//
+//                    FormularioPasaje re = new FormularioPasaje(paquete);
+//                    re.pack();
+//                    re.setVisible(true);
+//                    re.setLocationRelativeTo(null);
+//                    this.dispose();
+//                } else {
+//                    // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
+//                    JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
+//                }
+//            } else {
+//                // Muestra un mensaje de error si la fecha de salida es anterior a la fecha de ingreso
+//                JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de ingreso.");
+//            }
+//        } else {
+//            // Muestra un mensaje de error si alguna de las fechas está vacía
+//            JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
+//        }
+    }//GEN-LAST:event_ModificarActionPerformed
 
     private void precio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio1ActionPerformed
         // TODO add your handling code here:
@@ -493,6 +594,11 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private void Salir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Salir2ActionPerformed
         // TODO add your handling code here:
+        Login re = new Login();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_Salir2ActionPerformed
 
     /**
@@ -583,21 +689,28 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Modificar;
+    private javax.swing.JLabel NombreVendedor;
     private javax.swing.JPanel PanelImagen;
-    private javax.swing.JButton Salir1;
     private javax.swing.JButton Salir2;
     private javax.swing.JLabel alojamiento;
+    private javax.swing.JLabel apellidoCliente;
     private javax.swing.JTree arbol;
     private javax.swing.JComboBox<Paquete> comboPaquete;
     private javax.swing.JLabel destino;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
+    private javax.swing.JLabel dniCliente;
+    private com.toedter.calendar.JDateChooser fechaIn;
+    private com.toedter.calendar.JDateChooser fechaOn;
+    private javax.swing.JLabel idCliente;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -614,6 +727,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel nombreCliente;
     private javax.swing.JLabel origen;
     private javax.swing.JTextField precio;
     private javax.swing.JTextField precio1;

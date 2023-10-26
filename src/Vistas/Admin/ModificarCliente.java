@@ -32,6 +32,8 @@ public class ModificarCliente extends javax.swing.JFrame {
         initComponents();
         cargarCombo();
     }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -362,10 +364,11 @@ public class ModificarCliente extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
 
         } else {
-            cliente = new Cliente(correoCliente, nombreCliente, apellidoCliente, dniConver);
-
+            Cliente cliente= (Cliente)comboCliente.getSelectedItem();
+            cliente.setNombre(nombreCliente);
+            cliente.setApellido(apellidoCliente);
+            cliente.setDni(dnivali);
             clidata.modificarCliente(cliente);
-            JOptionPane.showMessageDialog(this, "modificado exitosamente");
         }
 
         ListadoClientes re = new ListadoClientes();
