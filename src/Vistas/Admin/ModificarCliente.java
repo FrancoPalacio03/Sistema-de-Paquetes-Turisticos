@@ -30,7 +30,7 @@ public class ModificarCliente extends javax.swing.JFrame {
      */
     public ModificarCliente() {
         initComponents();
-       cargarCombo();
+        cargarCombo();
     }
 
     /**
@@ -347,30 +347,28 @@ public class ModificarCliente extends javax.swing.JFrame {
         String apellidoCliente = apellidot.getText().trim();
         String correoCliente = correo.getText().trim();
         String dniCliente = dni.getText().trim();
-        boolean estaSeleccionado = estado.isSelected();
-        int dni = 0;
-       
+        int dniConver = Integer.parseInt(dniCliente);
+
+        int dnivali = 0;
 
         // Realizar validaciones
-        if (nombreCliente.isEmpty() || apellidoCliente.isEmpty() || correoCliente.isEmpty() || dniCliente.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         if (!esDniValido(dniCliente)) {
             JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         } else {
-            dni = Integer.parseInt(dniCliente);
+            dnivali = Integer.parseInt(dniCliente);
+        }
+        if (nombreCliente.isEmpty() && apellidoCliente.isEmpty() && correoCliente.isEmpty() && dniCliente.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        } else {
+            cliente = new Cliente(correoCliente, nombreCliente, apellidoCliente, dniConver);
+
+            clidata.modificarCliente(cliente);
+            JOptionPane.showMessageDialog(this, "modificado exitosamente");
         }
 
-        
-
-        cliente = new Cliente(correoCliente,nombreCliente,apellidoCliente,dni);
-         
-
-        clidata.modificarCliente(cliente);
-        ListadoClientes re = new ListadoClientes ();
+        ListadoClientes re = new ListadoClientes();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -423,15 +421,12 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_nombre1ActionPerformed
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
-       
-       
-        cliente=  (Cliente) comboCliente.getSelectedItem();
+
+        cliente = (Cliente) comboCliente.getSelectedItem();
         nombre1.setText(cliente.getNombre());
         apellidot.setText(cliente.getApellido());
         correo.setText(cliente.getCorreo());
         dni.setText(Integer.toString(cliente.getDni()));
-        
-        
 
 
     }//GEN-LAST:event_comboClienteActionPerformed
@@ -471,15 +466,17 @@ public class ModificarCliente extends javax.swing.JFrame {
             }
         });
     }
-private void cargarCombo(){
-   
-    List<Cliente> clientes = new ArrayList<Cliente>();
-     clientes=clidata.ListarClientes();
-        for(Cliente elemento:clientes){
+
+    private void cargarCombo() {
+
+        List<Cliente> clientes = new ArrayList<Cliente>();
+        clientes = clidata.ListarClientes();
+        for (Cliente elemento : clientes) {
             comboCliente.addItem(elemento);
-            
+
         }
-}
+    }
+
     private boolean esDniValido(String dni) {
         // Verificar que el DNI tiene exactamente 8 dígitos
         if (dni.length() != 8) {

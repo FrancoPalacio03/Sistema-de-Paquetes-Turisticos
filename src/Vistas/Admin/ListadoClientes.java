@@ -24,7 +24,7 @@ public class ListadoClientes extends javax.swing.JFrame {
     DefaultTableModel modelo = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
-            if (column == 0 || column == 5) {
+            if (column   <5) {
                 return false;
             } else {
                 return true;
