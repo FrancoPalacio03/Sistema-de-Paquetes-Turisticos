@@ -48,13 +48,13 @@ public class ClienteData {
 
     public Cliente BuscarCliente(int id) {
         Cliente cliente = null;
-        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM Cliente WHERE idCliente = ?";
+        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM cliente WHERE idCliente = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
-
+            Paquete pack = new Paquete();
             if (rs.next()) {
                 cliente = new Cliente();
                 cliente.setId(id);
@@ -62,9 +62,12 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
+                pack.setIdPaquete(rs.getInt("idPaquete"));
 
                 int idPaquete = rs.getInt("idPaquete");
+
                 Paquete paquete = packData.buscarPaquete(idPaquete);
+
                 cliente.setPaquete(paquete);
 
                 ps.close();
