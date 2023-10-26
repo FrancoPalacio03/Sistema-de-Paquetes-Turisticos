@@ -9,8 +9,44 @@ public class Cliente {
     private String apellido;
     private int dni;
     private Paquete paquete;
-
+    private int cantPersonas;
+    
     public Cliente() {
+    }
+    
+    public Cliente(int idCliente, String correo, String nombre, String apellido, int dni, int cantPersonas,Paquete paquete) {
+        this.idCliente = idCliente;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.paquete = paquete;
+        this.cantPersonas=cantPersonas;
+    }
+    
+    public Cliente(String correo, String nombre, String apellido, int dni, int cantPersonas,Paquete paquete) {
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.paquete = paquete;
+        this.cantPersonas=cantPersonas;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
+    public void setCantPersonas(int cantPersonas) {
+        this.cantPersonas = cantPersonas;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public int getCantPersonas() {
+        return cantPersonas;
     }
     
     public Cliente(int idCliente, String correo, String nombre, String apellido, int dni, Paquete paquete) {

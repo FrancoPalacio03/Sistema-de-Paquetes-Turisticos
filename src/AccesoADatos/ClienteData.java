@@ -24,14 +24,15 @@ public class ClienteData {
     }
 
     public void altaCliente(Cliente cliente) {
-        String sql = "INSERT INTO Cliente (correo, nombre, apellido, dni, idPaquete) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Cliente (correo, nombre, apellido, dni, cantPersonas,idPaquete) VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, cliente.getCorreo());
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getApellido());
             ps.setInt(4, cliente.getDni());
-            ps.setInt(5, cliente.getPaquete().getIdPaquete());
+            ps.setInt(5, cliente.getCantPersonas());
+            ps.setInt(6, cliente.getPaquete().getIdPaquete());
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 ResultSet rs = ps.getGeneratedKeys();
@@ -51,7 +52,7 @@ public class ClienteData {
 
     public Cliente BuscarCliente(int id) {
         Cliente cliente = null;
-        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM cliente WHERE idCliente = ?";
+        String sql = "SELECT correo, nombre, apellido, dni, cantPersonas ,idPaquete FROM cliente WHERE idCliente = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -65,6 +66,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
+                cliente.setCantPersonas(rs.getInt("cantPersonas"));
                 pack.setIdPaquete(rs.getInt("idPaquete"));
 
                 int idPaquete = rs.getInt("idPaquete");
@@ -85,7 +87,7 @@ public class ClienteData {
     }
 
     public void modificarCliente(Cliente cliente) {
-        String sql = "UPDATE cliente SET correo = ?, nombre = ?, apellido = ?, dni = ? WHERE idCliente = ?";
+        String sql = "UPDATE cliente SET correo = ?, nombre = ?, apellido = ?, dni = ?, cantPersonas= ? WHERE idCliente = ?";
         PreparedStatement ps = null;
 
         try {
@@ -94,8 +96,8 @@ public class ClienteData {
             ps.setString(2, cliente.getNombre());
             ps.setString(3, cliente.getApellido());
             ps.setInt(4, cliente.getDni());
-
-            ps.setInt(5, cliente.getId());
+            ps.setInt(5, cliente.getCantPersonas());
+            ps.setInt(6, cliente.getId());
             int success = ps.executeUpdate();
 
             if (success == 1) {
@@ -123,6 +125,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
+                cliente.setCantPersonas(rs.getInt("cantPersonas"));
                 int idPaquete = rs.getInt("idPaquete");
                 Paquete paquete = packData.buscarPaquete(idPaquete);
                 cliente.setPaquete(paquete);
@@ -161,7 +164,7 @@ public class ClienteData {
 
     public Cliente BuscarClienteXPaquete(int idPaquete) {
         Cliente cliente = null;
-        String sql = "SELECT correo, nombre, apellido, dni, idPaquete FROM cliente WHERE idPaqueteVendido = ?";
+        String sql = "SELECT * FROM cliente WHERE idPaquete = ?";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -175,6 +178,7 @@ public class ClienteData {
                 cliente.setApellido(rs.getString("apellido"));
                 cliente.setNombre(rs.getString("nombre"));
                 cliente.setCorreo(rs.getString("correo"));
+                cliente.setCantPersonas(rs.getInt("cantPersonas"));
                 pack.setIdPaquete(rs.getInt("idPaquete"));
 
                 Paquete paquete = packData.buscarPaquete(idPaquete);

@@ -4,10 +4,12 @@
  */
 package Vistas.Vendedor;
 
+import AccesoADatos.AlojamientoVendidoData;
 import AccesoADatos.ClienteData;
 import AccesoADatos.PaqueteData;
 import AccesoADatos.PaqueteVendidoData;
 import AccesoADatos.VendedorData;
+import Entidades.Alojamiento;
 import Entidades.Cliente;
 import Entidades.Paquete;
 import Entidades.Vendedor;
@@ -38,7 +40,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private Vendedor vendedor;
     private PaqueteVendidoData packData = new PaqueteVendidoData();
     private VendedorData vendeData = new VendedorData();
-    private ClienteData cliData= new ClienteData();
+    private AlojamientoVendidoData aloData= new AlojamientoVendidoData();
+    private ClienteData cliData = new ClienteData();
 
     /**
      * Creates new form ClienteLogeado
@@ -105,8 +108,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         idCliente = new javax.swing.JLabel();
         nombreCliente = new javax.swing.JLabel();
         apellidoCliente = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
+        viajantes = new javax.swing.JComboBox<>();
         PanelImagen = new javax.swing.JPanel();
         url = new javax.swing.JLabel();
         Modificar = new javax.swing.JButton();
@@ -228,13 +231,13 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(242, 242, 242));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel5.setText("Fecha De Salida:");
+        jLabel5.setText("Fecha De Partida:");
         jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 201, 159, -1));
 
         jLabel6.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(242, 242, 242));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Fecha De Ingreso:");
+        jLabel6.setText("Fecha De Regreso:");
         jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 262, 159, -1));
 
         jLabel7.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -364,8 +367,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
         jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 22, -1));
-        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(208, 201, 190, 25));
-        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 260, 190, 25));
+        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 190, 25));
+        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
 
         dniCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         dniCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -397,14 +400,14 @@ public class VendedorLogeado extends javax.swing.JFrame {
         apellidoCliente.setText("-");
         jPanel4.add(apellidoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 500, 570, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel4.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 270, -1, -1));
-
         jLabel12.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(242, 242, 242));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("Precio Transporte:");
         jPanel4.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 210, 170, -1));
+
+        viajantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+        jPanel4.add(viajantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 60, 40));
 
         jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 1040, 630));
 
@@ -518,14 +521,14 @@ public class VendedorLogeado extends javax.swing.JFrame {
             String temporadas = CalcularTemporada(paquete.getAlojamiento().getIngreso());
             precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
             temporada.setText(temporadas);
-            
-            Cliente cli= cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
-            idCliente.setText("id: "+Integer.toString(cli.getId()));
-            nombreCliente.setText("Nombre: "+cli.getNombre());
-            apellidoCliente.setText("Apellido: "+cli.getApellido());
-            dniCliente.setText("Dni: "+Integer.toString(cli.getDni()));
-            
-            NombreVendedor.setText("Bienvenido/a al sistema usuario:  "+vendedor.getApellido()+ " "+vendedor.getNombre());
+
+            Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
+            idCliente.setText("id: " + Integer.toString(cli.getId()));
+            nombreCliente.setText("Nombre: " + cli.getNombre());
+            apellidoCliente.setText("Apellido: " + cli.getApellido());
+            dniCliente.setText("Dni: " + Integer.toString(cli.getDni()));
+            viajantes.setSelectedItem(Integer.toString(cli.getCantPersonas()));
+            NombreVendedor.setText("Bienvenido/a al sistema usuario:  " + vendedor.getApellido() + " " + vendedor.getNombre());
         } else {
             return;
         }
@@ -546,46 +549,46 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }//GEN-LAST:event_venderPaqueteActionPerformed
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-//        // TODO add your handling code here:
-//        LocalDate fechaActual = LocalDate.now();
-//
-//        // Obtiene las fechas seleccionadas
-//        Date fechaIngreso = fechaIn.getDate();
-//        Date fechaSalida = fechaOn.getDate();
-//
-//        if (fechaIngreso != null && fechaSalida != null) {
-//            // Convierte las fechas a objetos LocalDate
-//            LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//
-//            // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
-//            if (!fechaSalidaLocal.isBefore(fechaIngresoLocal)) {
-//                // Verifica que ambas fechas sean posteriores a la fecha actual
-//                if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
-//                    // Continúa con la lógica de tu aplicación
-//                    alojamiento.setIngreso(fechaIngresoLocal);
-//                    alojamiento.setSalida(fechaSalidaLocal);
-//                    int id = aloData.RegistroAlojamiento(alojamiento);
-//                    alojamiento.setIdAlojamiento(id);
-//                    paquete.setAlojamiento(alojamiento);
-//
-//                    FormularioPasaje re = new FormularioPasaje(paquete);
-//                    re.pack();
-//                    re.setVisible(true);
-//                    re.setLocationRelativeTo(null);
-//                    this.dispose();
-//                } else {
-//                    // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
-//                    JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
-//                }
-//            } else {
-//                // Muestra un mensaje de error si la fecha de salida es anterior a la fecha de ingreso
-//                JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de ingreso.");
-//            }
-//        } else {
-//            // Muestra un mensaje de error si alguna de las fechas está vacía
-//            JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
-//        }
+        // TODO add your handling code here:
+        LocalDate fechaActual = LocalDate.now();
+        
+        // Obtiene las fechas seleccionadas
+        Date fechaIngreso = fechaIn.getDate();
+        Date fechaSalida = fechaOn.getDate();
+        int cantPasajeros= Integer.parseInt((String)viajantes.getSelectedItem());
+        
+        if (fechaIngreso != null && fechaSalida != null) {
+            // Convierte las fechas a objetos LocalDate
+            LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
+            if (!fechaIngresoLocal.isBefore(fechaSalidaLocal)) {
+                // Verifica que ambas fechas sean posteriores a la fecha actual
+                if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
+                    // Continúa con la lógica de tu aplicación
+                    Paquete paquete= (Paquete)comboPaquete.getSelectedItem();
+                    Alojamiento alo=paquete.getAlojamiento();
+                    alo.setIngreso(fechaIngresoLocal);
+                    alo.setSalida(fechaSalidaLocal);
+                    aloData.ModificarAlojamiento(alo);
+                    
+                    Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
+                    cli.setCantPersonas(cantPasajeros);
+                    cliData.modificarCliente(cli);
+                    
+                } else {
+                    // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
+                    JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
+                }
+            } else {
+                // Muestra un mensaje de error si la fecha de salida es anterior a la fecha de ingreso
+                JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de ingreso.");
+            }
+        } else {
+            // Muestra un mensaje de error si alguna de las fechas está vacía
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
+        }
     }//GEN-LAST:event_ModificarActionPerformed
 
     private void precio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio1ActionPerformed
@@ -702,7 +705,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser fechaIn;
     private com.toedter.calendar.JDateChooser fechaOn;
     private javax.swing.JLabel idCliente;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -740,5 +742,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JLabel url;
     private javax.swing.JButton venderPaquete;
     private javax.swing.JLabel ventas;
+    private javax.swing.JComboBox<String> viajantes;
     // End of variables declaration//GEN-END:variables
 }

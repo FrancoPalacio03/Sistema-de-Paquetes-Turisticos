@@ -367,6 +367,7 @@ public class ModificarCliente extends javax.swing.JFrame {
             Cliente cliente= (Cliente)comboCliente.getSelectedItem();
             cliente.setNombre(nombreCliente);
             cliente.setApellido(apellidoCliente);
+            cliente.setCorreo(correoCliente);
             cliente.setDni(dnivali);
             clidata.modificarCliente(cliente);
         }

@@ -66,6 +66,8 @@ public class FormularioCliente extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         correo = new javax.swing.JTextField();
+        viajantes = new javax.swing.JComboBox<>();
+        jLabel8 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -178,6 +180,13 @@ public class FormularioCliente extends javax.swing.JFrame {
             }
         });
 
+        viajantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
+
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setText("Personas que viajan (5) maximo");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -185,9 +194,14 @@ public class FormularioCliente extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(29, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(viajantes, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(141, 141, 141))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,7 +210,11 @@ public class FormularioCliente extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addGap(28, 28, 28)
                 .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(337, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(jLabel8)
+                .addGap(18, 18, 18)
+                .addComponent(viajantes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(193, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, 430, 450));
@@ -270,6 +288,9 @@ public class FormularioCliente extends javax.swing.JFrame {
         String apellidoCliente = apellido.getText().trim();
         String correoCliente = correo.getText().trim();
         String dniCliente = dni.getText().trim();
+        String pasajeros= (String) viajantes.getSelectedItem();
+        int cantPersonas= Integer.parseInt(pasajeros);
+        
         int dnii=0;
         // Realizar validaciones
         if (nombreCliente.isEmpty() || apellidoCliente.isEmpty() || correoCliente.isEmpty() || dniCliente.isEmpty()) {
@@ -289,7 +310,7 @@ public class FormularioCliente extends javax.swing.JFrame {
         
         Paquete paqueteVendido= packData.buscarPaquete(id);
         
-        Cliente Cliente = new Cliente(correoCliente, nombreCliente ,apellidoCliente, dnii, paqueteVendido);   
+        Cliente Cliente = new Cliente(correoCliente, nombreCliente ,apellidoCliente, dnii, cantPersonas ,paqueteVendido);   
         
         cliData.altaCliente(Cliente);
         vendedor.setCont((vendedor.getCont())+1);
@@ -365,6 +386,7 @@ public class FormularioCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -372,5 +394,6 @@ public class FormularioCliente extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextField nombre;
+    private javax.swing.JComboBox<String> viajantes;
     // End of variables declaration//GEN-END:variables
 }
