@@ -36,6 +36,13 @@ public class Ciudad {
         this.provincia = provincia;
         this.urlImagen= urlImagen;
     }
+    public Ciudad(String nombre, Paises pais,  Estados provincia,boolean estado) {
+        this.nombre = nombre;
+        this.pais = pais;
+        this.estado = estado;
+        this.provincia = provincia;
+        
+    }
 
     public int getIdCiudad() {
         return idCiudad;
