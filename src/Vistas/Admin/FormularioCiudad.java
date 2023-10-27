@@ -24,8 +24,7 @@ import javax.swing.JOptionPane;
  */
 public class FormularioCiudad extends javax.swing.JFrame {
 
-    private Connection conb = Conexion.getConexionPaises();
-    CiudadData awp = new CiudadData(conb);
+    CiudadData awp = new CiudadData();
 
     /**
      * Creates new form FormularioCiudad
@@ -343,7 +342,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
     }
 
     private void cargarCombo() {
-        CiudadData awp = new CiudadData(conb);
+        CiudadData awp = new CiudadData();
         ArrayList<Paises> paisesl = new ArrayList();
         paisesl = (ArrayList<Paises>) awp.listarPaises();
         for (Paises elemento : paisesl) {

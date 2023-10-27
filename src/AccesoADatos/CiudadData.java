@@ -26,19 +26,9 @@ public class CiudadData {
 
     private Connection con = Conexion.getConexion();
 
-    private Connection conb = Conexion.getConexionPaises();
 
     public CiudadData() {
 
-    }
-
-    public CiudadData(Connection con, Connection conb) {
-        this.con = con;
-        this.conb = conb;
-    }
-
-    public CiudadData(Connection conb) {
-        this.conb = conb;
     }
 
     public void GuardarCiudad(Ciudad ciudad) {

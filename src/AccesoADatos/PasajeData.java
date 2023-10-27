@@ -19,7 +19,6 @@ import Entidades.Ciudad;
 public class PasajeData {
 
     private Connection con = Conexion.getConexion();
-    private Connection conb = Conexion.getConexionPaises();
     private CiudadData awp = new CiudadData();
 
     public int registroPasaje(Pasaje pasaje) {

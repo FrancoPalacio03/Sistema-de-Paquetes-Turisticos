@@ -12,13 +12,11 @@ public class Conexion {
     Connection con = null;
     PreparedStatement ps = null;
     ResultSet rs = null;
-     Connection conb =null;
-    
+
     private static final String url = ("jdbc:mariadb://localhost:3306/despegar");
     private static final String usuario = "root";
     private static final String password = "";
     private static Conexion conexion = null;
-     private static final String urlPaises =("jdbc:mariadb://localhost:3306/mundi");
 
     public Conexion() {
         try {
@@ -45,20 +43,5 @@ public class Conexion {
 //JOptionPane.showMessageDialog(null, "concectado con exito");
         return con;
     }
-    public static Connection getConexionPaises() {
-        Connection conb = null;
-        if (conexion == null) {
 
-            conexion = new Conexion();
-        }
-        try {
-            // Setup the connection with the DB
-            conb = DriverManager.getConnection(urlPaises + "?useLegacyDatetimeCode=false&serverTimezone=UTC" + "&user=" + usuario + "&password=" + password);
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion ");
-        }
-//JOptionPane.showMessageDialog(null, "concectado con exito");
-        return conb;
-    }
 }

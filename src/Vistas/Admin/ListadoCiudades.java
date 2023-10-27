@@ -183,7 +183,7 @@ private void seteatabla() {
 }
     private void cargartabla() {
      List<Ciudad> ciudades = new ArrayList<Ciudad>();
-        CiudadData carga = new CiudadData(con);
+        CiudadData carga = new CiudadData();
         ciudades = carga.listar();
         for (Ciudad elemento : ciudades) {
             modelo.addRow(new Object[]{elemento.getNombre(),elemento.getPais(),elemento.getProvincia(),elemento.isEstado()
