@@ -149,7 +149,7 @@ public class AlojamientoData {
 
     public void BajaAlojamiento(int idAlojamiento) {
         try {
-            String sql = "UPDATE alojamiento SET estado = 0 WHERE idAlojamiento= ? ";
+            String sql = "DELETE from alojamiento WHERE idAlojamiento= ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlojamiento);
             int fila = ps.executeUpdate();

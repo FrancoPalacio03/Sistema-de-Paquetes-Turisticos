@@ -20,9 +20,9 @@ import Entidades.Pasaje;
 public class PaqueteData {
 
     private Connection con = Conexion.getConexion();
-    private CiudadData ciuData= new CiudadData();
-    private AlojamientoVendidoData aloData= new AlojamientoVendidoData();
-    private PasajeData passData= new PasajeData();
+    private CiudadData ciuData = new CiudadData();
+    private AlojamientoVendidoData aloData = new AlojamientoVendidoData();
+    private PasajeData passData = new PasajeData();
 
     public void registroPaquete(Paquete paquete) {
         String sql = "INSERT INTO paquete (idCiudadOrigen, idCiudadDestino, IdAlojamiento, idpasaje) VALUES (?, ?, ?, ?)";
@@ -66,13 +66,13 @@ public class PaqueteData {
             if (rs.next()) {
                 paquete = new Paquete();
                 paquete.setIdPaquete(rs.getInt("idPaquete"));
-                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                Ciudad origen = ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
                 paquete.setOrigen(origen);
-                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                Ciudad destino = ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
                 paquete.setDestino(destino);
-                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                Alojamiento alojamiento = aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
                 paquete.setAlojamiento(alojamiento);
-                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                Pasaje pasaje = passData.buscarPasaje(rs.getInt("idPasaje"));
                 paquete.setPasaje(pasaje);
 
                 ps.close();
@@ -99,13 +99,13 @@ public class PaqueteData {
             while (rs.next()) {
                 paquete = new Paquete();
                 paquete.setIdPaquete(rs.getInt("idPaquete"));
-                Ciudad origen= ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                Ciudad origen = ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
                 paquete.setOrigen(origen);
-                Ciudad destino= ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                Ciudad destino = ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
                 paquete.setDestino(destino);
-                Alojamiento alojamiento= aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                Alojamiento alojamiento = aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
                 paquete.setAlojamiento(alojamiento);
-                Pasaje pasaje= passData.buscarPasaje(rs.getInt("idPasaje"));
+                Pasaje pasaje = passData.buscarPasaje(rs.getInt("idPasaje"));
                 paquete.setPasaje(pasaje);
                 paquetes.add(paquete);
             }
@@ -133,7 +133,7 @@ public class PaqueteData {
             if (exito == 1) {
                 JOptionPane.showMessageDialog(null, "Modificado Exitosamente.");
             } else {
-                JOptionPane.showMessageDialog(null, "El pasaje no existe");
+                JOptionPane.showMessageDialog(null, "El paquete no existe");
             }
 
         } catch (SQLException ex) {
@@ -145,19 +145,49 @@ public class PaqueteData {
     public void ba(int id) {
 
         try {
-            String sql = "UPDATE pasaje SET estado = 0 WHERE idPasaje = ? ";
+            String sql = "DELETE from paquete WHERE idPaquete = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
-                JOptionPane.showMessageDialog(null, " Se do de baja el pasaje.");
+                JOptionPane.showMessageDialog(null, " Se dio de baja el paquete.");
             }
             ps.close();
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla pasajes");
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla paquete");
         }
     }
-    
-    
+
+    public List<Paquete> buscarPaqueteXAlojamiento(int idAlojamiento) {
+        List<Paquete> paquetes = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM paquete WHERE IdAlojamiento = ?";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlojamiento);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Paquete paquete = new Paquete();
+                paquete.setIdPaquete(rs.getInt("idPaquete"));
+                Ciudad origen = ciuData.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                paquete.setOrigen(origen);
+                Ciudad destino = ciuData.BuscarCiudad(rs.getInt("idCiudadDestino"));
+                paquete.setDestino(destino);
+                Alojamiento alojamiento = aloData.BuscarAlojamiento(rs.getInt("IdAlojamiento"));
+                paquete.setAlojamiento(alojamiento);
+                Pasaje pasaje = passData.buscarPasaje(rs.getInt("idPasaje"));
+                paquete.setPasaje(pasaje);
+                paquetes.add(paquete);
+            }
+
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al buscar paquetes por alojamiento: " + ex.getMessage());
+        }
+
+        return paquetes;
+    }
+
 }

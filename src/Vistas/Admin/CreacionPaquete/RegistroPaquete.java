@@ -43,6 +43,7 @@ public class RegistroPaquete extends javax.swing.JFrame {
         initComponents();
         this.paquete=paquete;
         this.pasaje=pasaje;
+        llenar();
     }
     
     
@@ -363,12 +364,12 @@ public class RegistroPaquete extends javax.swing.JFrame {
         jAloj.setText(paquete.getAlojamiento().getNombre());
         Date jFechain = Date.from(paquete.getAlojamiento().getSalida().atStartOfDay(ZoneId.systemDefault()).toInstant());
         Date jFechaon = Date.from(paquete.getAlojamiento().getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant());
-        jTransporte.setText(paquete.getPasaje().getTipoTransporte());
+        jTransporte.setText(pasaje.getTipoTransporte());
         jCiudadOrigen.setText(paquete.getOrigen().getNombre());
         jCiudadDestino.setText(paquete.getDestino().getNombre());   
-        jprecioPasaje.setText(Double.toString(paquete.getPasaje().getImporte()));
-       jPrecioDiarioAloj.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
-        jPrecioTotal.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
+        jprecioPasaje.setText(Double.toString(pasaje.getImporte()));
+        jPrecioDiarioAloj.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
+        jPrecioTotal.setText(Double.toString(presupuestoTotal(pasaje.getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
 
       
        

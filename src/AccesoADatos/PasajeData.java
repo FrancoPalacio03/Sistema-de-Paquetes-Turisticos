@@ -23,7 +23,7 @@ public class PasajeData {
 
     public int registroPasaje(Pasaje pasaje) {
         String sql = "INSERT INTO pasaje (tipoTransporte, importe, idCiudadOrigen, estado) VALUES (?, ?, ?, ?)";
-        int idPasajeGenerado=0;
+        int idPasajeGenerado = 0;
         PreparedStatement ps;
         try {
             ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -62,8 +62,8 @@ public class PasajeData {
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
-                
-              Ciudad  pass = awp.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+
+                Ciudad pass = awp.BuscarCiudad(rs.getInt("idCiudadOrigen"));
 
                 pasaje = new Pasaje();
                 pasaje.setIdPasaje(idPasaje);
@@ -136,7 +136,7 @@ public class PasajeData {
     public void bajaPasaje(int id) {
 
         try {
-            String sql = "UPDATE pasaje SET estado = 0 WHERE idPasaje = ? ";
+            String sql = "DELETE from pasaje WHERE idPasaje = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
@@ -149,4 +149,41 @@ public class PasajeData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla pasajes");
         }
     }
+
+    public Pasaje buscarPasajeXPaquete(int idPaquete) {
+        Pasaje pasaje = null;
+        String sql = "SELECT p.* FROM pasaje p "
+                + "INNER JOIN paquete pa ON p.idPasaje = pa.idPasaje "
+                + "WHERE pa.idPaquete = ?";
+
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, idPaquete);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                pasaje = new Pasaje();
+                pasaje.setIdPasaje(rs.getInt("idPasaje"));
+                pasaje.setTipoTransporte(rs.getString("tipoTransporte"));
+                pasaje.setImporte(rs.getDouble("importe"));
+
+                // Si tienes un campo en la tabla pasaje que almacena el ID de la ciudad de origen,
+                // puedes buscar la ciudad usando ese ID aquí.
+                // Ejemplo: Ciudad origen = awp.BuscarCiudad(rs.getInt("idCiudadOrigen"));
+                // pasaje.setNombreCiudadOrigen(origen);
+                pasaje.setEstado(true);
+
+                ps.close();
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe un Pasaje relacionado con el Paquete");
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasaje " + ex.getMessage());
+        }
+
+        return pasaje;
+    } 
 }

@@ -72,7 +72,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 800, 130, 50));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 590, 130, 50));
 
         Registrar.setBackground(new java.awt.Color(102, 102, 102));
         Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -84,43 +84,43 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 800, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 590, 130, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Ubicacion");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 680, 230, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 470, 230, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("$");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 720, 20, 40));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 20, 40));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Descripcion de Servicios");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 340, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 340, -1));
 
         Descripcion.setColumns(20);
         Descripcion.setRows(5);
         jScrollPane1.setViewportView(Descripcion);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 620, 140));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 620, 140));
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
         jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Importe Diario");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 680, 340, -1));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 470, 340, -1));
 
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 220, 30));
 
         comboCiudad.setBorder(null);
-        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 730, 210, 30));
+        jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 520, 210, 30));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
@@ -129,7 +129,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 340, -1));
 
         importe.setBorder(null);
-        jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 730, 140, 30));
+        jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 520, 140, 30));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,7 +160,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
                 Cancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 800, 130, 50));
+        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 590, 130, 50));
 
         Buscar.setBackground(new java.awt.Color(102, 102, 102));
         Buscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -182,7 +182,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 868, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
         );
 
         pack();
@@ -193,7 +193,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         String nombreAlojamiento = nombre.getText();
         String descripcionServicios = Descripcion.getText();
         Ciudad ciudadDestino = (Ciudad) comboCiudad.getSelectedItem();
-        boolean estaSeleccionado = estado.isSelected();
+        boolean estaSeleccionado = estado.isSelected();  
         double importeDiario=0;
       
         if (nombreAlojamiento.isEmpty() || descripcionServicios.isEmpty()) {
