@@ -8,6 +8,7 @@ import AccesoADatos.CiudadData;
 import AccesoADatos.Conexion;
 import Entidades.Ciudad;
 import Entidades.Estados;
+import Entidades.Paises;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +19,19 @@ import javax.swing.table.DefaultTableModel;
  * @author diakz
  */
 public class ListadoCiudades extends javax.swing.JFrame {
-private Connection con = Conexion.getConexion();
-    DefaultTableModel modelo = new DefaultTableModel() ;
+
+    private Connection con = Conexion.getConexion();
+    DefaultTableModel modelo = new DefaultTableModel();
+
     /**
      * Creates new form ListadoCiudades
      */
     public ListadoCiudades() {
         initComponents();
-        cargartabla();
+        cargarCombo();
         seteatabla();
+        
+
     }
 
     /**
@@ -45,6 +50,8 @@ private Connection con = Conexion.getConexion();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        combopais = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,7 +66,7 @@ private Connection con = Conexion.getConexion();
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(263, 263, 263)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -93,33 +100,59 @@ private Connection con = Conexion.getConexion();
 
         jButton2.setText("Eliminar Ciudad");
 
+        combopais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combopaisActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel2.setFont(new java.awt.Font("SimSun", 3, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Seleccione un pais");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(102, 102, 102)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                            .addComponent(combopais, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addGap(156, 156, 156))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(34, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addGap(212, 212, 212)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel2)
+                .addGap(13, 13, 13)
+                .addComponent(combopais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(22, 22, 22))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton1)
+                        .addGap(30, 30, 30))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -137,8 +170,19 @@ private Connection con = Conexion.getConexion();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       this.dispose();
+        Admin re = new Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
+       
+        
+        
+        cargartabla();
+    }//GEN-LAST:event_combopaisActionPerformed
 
     /**
      * @param args the command line arguments
@@ -174,27 +218,47 @@ private Connection con = Conexion.getConexion();
             }
         });
     }
-private void seteatabla() {
-        modelo.addColumn("Nombre");
-        modelo.addColumn("pais");
-        modelo.addColumn("ciudad");
+
+    private void seteatabla() {
+        modelo.addColumn("id");
+        modelo.addColumn("Nombre Ciudad");
+
         jTable1.setModel(modelo);
-        
-}
+
+    }
+
     private void cargartabla() {
-     List<Ciudad> ciudades = new ArrayList<Ciudad>();
+        List<Estados> ciudades = new ArrayList<Estados>();
         CiudadData carga = new CiudadData();
-        ciudades = carga.listar();
-        for (Ciudad elemento : ciudades) {
-            modelo.addRow(new Object[]{elemento.getNombre(),elemento.getPais(),elemento.getProvincia(),elemento.isEstado()
+        Paises id = (Paises) combopais.getSelectedItem();
+        int ubicacion = id.getId();
+
+        ciudades = carga.listarCiudades(ubicacion);
+
+        for (Estados elemento : ciudades) {
+            modelo.addRow(new Object[]{elemento.getId(), elemento.getEstadonombre(), elemento.getUbicacionpaisid()
 
             });
-        }}
-    
+        }
+    }
+
+    private void cargarCombo() {
+
+        List<Paises> ciudades = new ArrayList<Paises>();
+        CiudadData carga = new CiudadData();
+        ciudades = carga.listarPaises();
+        for (Paises elemento : ciudades) {
+            combopais.addItem(elemento);
+        }
+    }
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<Paises> combopais;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
