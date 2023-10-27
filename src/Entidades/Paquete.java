@@ -27,7 +27,13 @@ public class Paquete {
         this.pasaje = pasaje;
         this.vendedor = vendedor;
     }
-
+public Paquete(Ciudad origen, Ciudad destino, Alojamiento alojamiento, Pasaje pasaje) {
+        this.origen = origen;
+        this.destino = destino;
+        this.alojamiento = alojamiento;
+        this.pasaje = pasaje;
+        
+    }
     public int getIdPaquete() {
         return idPaquete;
     }

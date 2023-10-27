@@ -154,6 +154,10 @@ private Connection con = Conexion.getConexion();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Admin re = new Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 

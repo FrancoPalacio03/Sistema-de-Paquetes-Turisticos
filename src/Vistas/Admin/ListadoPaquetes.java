@@ -5,7 +5,11 @@
 package Vistas.Admin;
 
 import AccesoADatos.Conexion;
+import AccesoADatos.PaqueteData;
+import Entidades.Paquete;
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,13 +18,24 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ListadoPaquetes extends javax.swing.JFrame {
 private Connection con = Conexion.getConexion();
-    DefaultTableModel modelo = new DefaultTableModel() ;
+    DefaultTableModel modelo = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column   <5) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+    };
     /**
      * Creates new form ListadoPaquetes
      */
     public ListadoPaquetes() {
         initComponents();
         seteatabla();
+         cargartabla();
     }
 
     /**
@@ -94,21 +109,22 @@ private Connection con = Conexion.getConexion();
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(104, 104, 104)
-                        .addComponent(jButton1)))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(72, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(138, 138, 138))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -130,7 +146,11 @@ private Connection con = Conexion.getConexion();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-      this.dispose();
+    Admin re = new  Admin();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+        this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -168,13 +188,25 @@ private Connection con = Conexion.getConexion();
         });
     }
     private void seteatabla() {
-        modelo.addColumn("Nombre");
-        modelo.addColumn("pais");
-        modelo.addColumn("ciudad");
+        modelo.addColumn("Ciudad Origen");
+        modelo.addColumn("Ciudad Destino");
+        modelo.addColumn("alojamiento");
+        modelo.addColumn("Transporte");
         jTable1.setModel(modelo);
         
+        
 }
- private void cargartabla() {}
+ private void cargartabla() {
+ List<Paquete> paq = new ArrayList<Paquete>();
+        PaqueteData packs = new PaqueteData();
+        paq = packs.listarPaquete();
+        for (Paquete elemento : paq) {
+            modelo.addRow(new Object[]{elemento.getOrigen(),elemento.getDestino(),elemento.getAlojamiento().getNombre(),elemento.getPasaje().getTipoTransporte(),
+
+            });
+        }
+ 
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
