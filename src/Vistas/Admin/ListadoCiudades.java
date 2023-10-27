@@ -12,6 +12,7 @@ import Entidades.Paises;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -21,7 +22,17 @@ import javax.swing.table.DefaultTableModel;
 public class ListadoCiudades extends javax.swing.JFrame {
 
     private Connection con = Conexion.getConexion();
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel(){
+            @Override
+        public boolean isCellEditable(int row, int column) {
+            if (column   <3) {
+                return false;
+            } else {
+                return true;
+            }
+
+        }
+    };
 
     /**
      * Creates new form ListadoCiudades
@@ -99,6 +110,11 @@ public class ListadoCiudades extends javax.swing.JFrame {
         });
 
         jButton2.setText("Eliminar Ciudad");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         combopais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,15 +160,11 @@ public class ListadoCiudades extends javax.swing.JFrame {
                 .addComponent(combopais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(22, 22, 22))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(68, 68, 68)
-                        .addComponent(jButton1)
-                        .addGap(30, 30, 30))))
+                .addGap(68, 68, 68)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -183,6 +195,21 @@ public class ListadoCiudades extends javax.swing.JFrame {
         
         cargartabla();
     }//GEN-LAST:event_combopaisActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     CiudadData cdt =new CiudadData();
+     
+         int filaS = jTable1.getSelectedRow();
+        if (filaS != -1) {
+            cdt.BajaCiudad(filaS);
+            
+            modelo.removeRow(filaS);
+        } else {
+            JOptionPane.showMessageDialog(this, "usted debe seleccionar una fila para ser eliminada");
+        
+    }                                      
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,8 +261,9 @@ public class ListadoCiudades extends javax.swing.JFrame {
         int ubicacion = id.getId();
 
         ciudades = carga.listarCiudades(ubicacion);
-
+        
         for (Estados elemento : ciudades) {
+            jTable1.removeAll();
             modelo.addRow(new Object[]{elemento.getId(), elemento.getEstadonombre(), elemento.getUbicacionpaisid()
 
             });
@@ -243,11 +271,13 @@ public class ListadoCiudades extends javax.swing.JFrame {
     }
 
     private void cargarCombo() {
-
+combopais.removeAllItems();
         List<Paises> ciudades = new ArrayList<Paises>();
         CiudadData carga = new CiudadData();
         ciudades = carga.listarPaises();
         for (Paises elemento : ciudades) {
+            
+            
             combopais.addItem(elemento);
         }
     }

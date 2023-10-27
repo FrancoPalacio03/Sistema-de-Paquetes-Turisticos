@@ -165,7 +165,23 @@ public List<Paises> listarPaises() {
 
     }
 
-    public void BajaCiudad(Ciudad idCiudad) {
+    public void BajaCiudad(int id) {
+String sql = "DELETE  FROM ciudad where Idciudad = ? ";
+ try {
+            
+           
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
 
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se dio de baja la ciudad .");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla estados " + ex.getMessage());
+
+        }
     }
 }
