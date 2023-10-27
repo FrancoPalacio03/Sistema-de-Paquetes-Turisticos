@@ -1,8 +1,7 @@
-
 package Entidades;
 
-
 public class Vendedor {
+
     private int id;
     private String correo;
     private String pass;
@@ -13,9 +12,9 @@ public class Vendedor {
     private boolean estado;
 
     public Vendedor() {
-        this.cont=0;
+        this.cont = 0;
     }
-    
+
     public Vendedor(int id, String correo, String pass, String nombre, String apellido, int dni, int cont, boolean estado) {
         this.id = id;
         this.correo = correo;
@@ -23,8 +22,8 @@ public class Vendedor {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.cont=cont;
-        this.estado=estado;
+        this.cont = cont;
+        this.estado = estado;
     }
 
     public Vendedor(String correo, String pass, String nombre, String apellido, int dni, boolean estado) {
@@ -33,8 +32,18 @@ public class Vendedor {
         this.nombre = nombre;
         this.apellido = apellido;
         this.dni = dni;
-        this.cont=0;
-        this.estado=estado;
+        this.cont = 0;
+        this.estado = estado;
+    }
+
+    public Vendedor(int id,String correo, String nombre, String apellido, int dni, boolean estado, int cont) {
+        this.id = id;
+        this.correo = correo;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dni = dni;
+        this.cont = 0;
+        this.estado = estado;
     }
 
     public int getId() {
@@ -64,8 +73,8 @@ public class Vendedor {
     public int getCont() {
         return cont;
     }
-    
-    public boolean getEstado(){
+
+    public boolean getEstado() {
         return this.estado;
     }
 
@@ -96,15 +105,14 @@ public class Vendedor {
     public void setCont(int cont) {
         this.cont = cont;
     }
-    
-    public void setEstado(boolean estado){
-        this.estado=estado;
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
     }
-   
+
     @Override
     public String toString() {
-        return "vendedor" + "id=" + id + ", correo=" + correo + ", pass=" + pass + ", nombre=" + nombre + ", apellido=" + apellido + ", dni=" + dni + '}';
+        return nombre+" "+" "+apellido;
     }
-    
-    
+
 }
