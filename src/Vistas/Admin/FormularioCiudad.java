@@ -280,6 +280,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
         // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_Cancelar1ActionPerformed
 
     private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed

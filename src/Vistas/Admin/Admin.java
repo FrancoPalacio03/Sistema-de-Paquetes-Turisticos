@@ -34,17 +34,17 @@ public class Admin extends javax.swing.JFrame {
         Salir = new javax.swing.JButton();
         RAlojamiento = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
-        FormularioCiudad2 = new javax.swing.JButton();
+        ListadoAlojamiento = new javax.swing.JButton();
         jTextField3 = new javax.swing.JTextField();
         RCiudad = new javax.swing.JButton();
-        FormularioCiudad5 = new javax.swing.JButton();
+        ListadoCiudad = new javax.swing.JButton();
         listadocliente = new javax.swing.JButton();
         jTextField4 = new javax.swing.JTextField();
-        FormularioCiudad6 = new javax.swing.JButton();
+        ListadoVendedores = new javax.swing.JButton();
         RVendedor = new javax.swing.JButton();
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
-        FormularioCiudad9 = new javax.swing.JButton();
+        LsitadoPaquetes = new javax.swing.JButton();
         RPaquete = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
 
@@ -86,18 +86,18 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, 420, 28));
 
-        FormularioCiudad2.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad2.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad2.setText("Listado Alojamientos");
-        FormularioCiudad2.setBorder(null);
-        FormularioCiudad2.setBorderPainted(false);
-        FormularioCiudad2.setFocusPainted(false);
-        FormularioCiudad2.addActionListener(new java.awt.event.ActionListener() {
+        ListadoAlojamiento.setBackground(new java.awt.Color(29, 29, 29));
+        ListadoAlojamiento.setForeground(new java.awt.Color(204, 204, 204));
+        ListadoAlojamiento.setText("Listado Alojamientos");
+        ListadoAlojamiento.setBorder(null);
+        ListadoAlojamiento.setBorderPainted(false);
+        ListadoAlojamiento.setFocusPainted(false);
+        ListadoAlojamiento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad2ActionPerformed(evt);
+                ListadoAlojamientoActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 132, 42));
+        jPanel1.add(ListadoAlojamiento, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 132, 42));
 
         jTextField3.setBackground(new java.awt.Color(102, 102, 255));
         jTextField3.setForeground(new java.awt.Color(255, 255, 255));
@@ -118,18 +118,18 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel1.add(RCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 120, 42));
 
-        FormularioCiudad5.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad5.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad5.setText("Listado Ciudades");
-        FormularioCiudad5.setBorder(null);
-        FormularioCiudad5.setBorderPainted(false);
-        FormularioCiudad5.setFocusPainted(false);
-        FormularioCiudad5.addActionListener(new java.awt.event.ActionListener() {
+        ListadoCiudad.setBackground(new java.awt.Color(29, 29, 29));
+        ListadoCiudad.setForeground(new java.awt.Color(204, 204, 204));
+        ListadoCiudad.setText("Listado Ciudades");
+        ListadoCiudad.setBorder(null);
+        ListadoCiudad.setBorderPainted(false);
+        ListadoCiudad.setFocusPainted(false);
+        ListadoCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad5ActionPerformed(evt);
+                ListadoCiudadActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad5, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 132, 42));
+        jPanel1.add(ListadoCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 50, 132, 42));
 
         listadocliente.setBackground(new java.awt.Color(29, 29, 29));
         listadocliente.setForeground(new java.awt.Color(204, 204, 204));
@@ -150,18 +150,18 @@ public class Admin extends javax.swing.JFrame {
         jTextField4.setBorder(null);
         jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 0, 420, 28));
 
-        FormularioCiudad6.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad6.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad6.setText("Listado Vendedores");
-        FormularioCiudad6.setBorder(null);
-        FormularioCiudad6.setBorderPainted(false);
-        FormularioCiudad6.setFocusPainted(false);
-        FormularioCiudad6.addActionListener(new java.awt.event.ActionListener() {
+        ListadoVendedores.setBackground(new java.awt.Color(29, 29, 29));
+        ListadoVendedores.setForeground(new java.awt.Color(204, 204, 204));
+        ListadoVendedores.setText("Listado Vendedores");
+        ListadoVendedores.setBorder(null);
+        ListadoVendedores.setBorderPainted(false);
+        ListadoVendedores.setFocusPainted(false);
+        ListadoVendedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad6ActionPerformed(evt);
+                ListadoVendedoresActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad6, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 132, 42));
+        jPanel1.add(ListadoVendedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 170, 132, 42));
 
         RVendedor.setBackground(new java.awt.Color(29, 29, 29));
         RVendedor.setForeground(new java.awt.Color(204, 204, 204));
@@ -198,18 +198,18 @@ public class Admin extends javax.swing.JFrame {
         });
         jPanel1.add(jTextField6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 840, 28));
 
-        FormularioCiudad9.setBackground(new java.awt.Color(29, 29, 29));
-        FormularioCiudad9.setForeground(new java.awt.Color(204, 204, 204));
-        FormularioCiudad9.setText("Listado Paquete");
-        FormularioCiudad9.setBorder(null);
-        FormularioCiudad9.setBorderPainted(false);
-        FormularioCiudad9.setFocusPainted(false);
-        FormularioCiudad9.addActionListener(new java.awt.event.ActionListener() {
+        LsitadoPaquetes.setBackground(new java.awt.Color(29, 29, 29));
+        LsitadoPaquetes.setForeground(new java.awt.Color(204, 204, 204));
+        LsitadoPaquetes.setText("Listado Paquete");
+        LsitadoPaquetes.setBorder(null);
+        LsitadoPaquetes.setBorderPainted(false);
+        LsitadoPaquetes.setFocusPainted(false);
+        LsitadoPaquetes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FormularioCiudad9ActionPerformed(evt);
+                LsitadoPaquetesActionPerformed(evt);
             }
         });
-        jPanel1.add(FormularioCiudad9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 132, 42));
+        jPanel1.add(LsitadoPaquetes, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 300, 132, 42));
 
         RPaquete.setBackground(new java.awt.Color(29, 29, 29));
         RPaquete.setForeground(new java.awt.Color(204, 204, 204));
@@ -268,12 +268,15 @@ public class Admin extends javax.swing.JFrame {
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_RAlojamientoActionPerformed
 
-    private void FormularioCiudad2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad2ActionPerformed
+    private void ListadoAlojamientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListadoAlojamientoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FormularioCiudad2ActionPerformed
+        ListadoAlojamiento re= new ListadoAlojamiento();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ListadoAlojamientoActionPerformed
 
     private void RCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RCiudadActionPerformed
         // TODO add your handling code here:
@@ -281,13 +284,16 @@ public class Admin extends javax.swing.JFrame {
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_RCiudadActionPerformed
 
-    private void FormularioCiudad5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad5ActionPerformed
+    private void ListadoCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListadoCiudadActionPerformed
         // TODO add your handling code here:
         
-    }//GEN-LAST:event_FormularioCiudad5ActionPerformed
+        ListadoCiudades re= new ListadoCiudades();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ListadoCiudadActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -298,12 +304,15 @@ public class Admin extends javax.swing.JFrame {
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_listadoclienteActionPerformed
 
-    private void FormularioCiudad6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FormularioCiudad6ActionPerformed
+    private void ListadoVendedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListadoVendedoresActionPerformed
+        // TODO add your handling code here:       
+        ListadoVendedores re= new ListadoVendedores();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+    }//GEN-LAST:event_ListadoVendedoresActionPerformed
 
     private void RVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RVendedorActionPerformed
         // TODO add your handling code here:
@@ -311,7 +320,6 @@ public class Admin extends javax.swing.JFrame {
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
-        this.dispose();
     }//GEN-LAST:event_RVendedorActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -322,9 +330,13 @@ public class Admin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField6ActionPerformed
 
-    private void FormularioCiudad9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FormularioCiudad9ActionPerformed
+    private void LsitadoPaquetesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LsitadoPaquetesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_FormularioCiudad9ActionPerformed
+        ListadoPaquetes re= new ListadoPaquetes();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+    }//GEN-LAST:event_LsitadoPaquetesActionPerformed
 
     private void RPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RPaqueteActionPerformed
         SeleccionCiudad re= new SeleccionCiudad();
@@ -369,10 +381,10 @@ public class Admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton FormularioCiudad2;
-    private javax.swing.JButton FormularioCiudad5;
-    private javax.swing.JButton FormularioCiudad6;
-    private javax.swing.JButton FormularioCiudad9;
+    private javax.swing.JButton ListadoAlojamiento;
+    private javax.swing.JButton ListadoCiudad;
+    private javax.swing.JButton ListadoVendedores;
+    private javax.swing.JButton LsitadoPaquetes;
     private javax.swing.JButton RAlojamiento;
     private javax.swing.JButton RCiudad;
     private javax.swing.JButton RPaquete;

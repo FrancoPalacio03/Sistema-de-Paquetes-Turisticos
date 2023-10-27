@@ -251,10 +251,6 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
         // TODO add your handling code here:
-        Admin re = new Admin();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_Cancelar1ActionPerformed
 

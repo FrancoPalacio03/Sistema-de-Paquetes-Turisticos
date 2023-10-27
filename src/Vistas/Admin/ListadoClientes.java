@@ -59,7 +59,7 @@ public class ListadoClientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tclientes = new javax.swing.JTable();
-        eliminar = new javax.swing.JButton();
+        Salir = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -134,15 +134,15 @@ public class ListadoClientes extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 460, 270));
 
-        eliminar.setBackground(new java.awt.Color(204, 204, 204));
-        eliminar.setText("Salir");
-        eliminar.setBorder(null);
-        eliminar.addActionListener(new java.awt.event.ActionListener() {
+        Salir.setBackground(new java.awt.Color(204, 204, 204));
+        Salir.setText("Salir");
+        Salir.setBorder(null);
+        Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eliminarActionPerformed(evt);
+                SalirActionPerformed(evt);
             }
         });
-        jPanel1.add(eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 370, 100, 30));
+        jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 100, 30));
 
         modificar.setBackground(new java.awt.Color(204, 204, 204));
         modificar.setText("Modificar datos ");
@@ -152,7 +152,7 @@ public class ListadoClientes extends javax.swing.JFrame {
                 modificarActionPerformed(evt);
             }
         });
-        jPanel1.add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 370, 100, 30));
+        jPanel1.add(modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 360, 100, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -168,9 +168,9 @@ public class ListadoClientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+    private void SalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_eliminarActionPerformed
+    }//GEN-LAST:event_SalirActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         ModificarCliente re = new ModificarCliente();
@@ -235,7 +235,7 @@ public class ListadoClientes extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton eliminar;
+    private javax.swing.JButton Salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

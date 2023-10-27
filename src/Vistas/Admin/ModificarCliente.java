@@ -405,10 +405,7 @@ public class ModificarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_idActionPerformed
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
-        ListadoClientes re = new ListadoClientes();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
+
         this.dispose();
     }//GEN-LAST:event_Cancelar1ActionPerformed
 
