@@ -191,8 +191,6 @@ public class ListadoCiudades extends javax.swing.JFrame {
 
     private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
        
-        
-        
         cargartabla();
     }//GEN-LAST:event_combopaisActionPerformed
 
@@ -201,6 +199,7 @@ public class ListadoCiudades extends javax.swing.JFrame {
      
          int filaS = jTable1.getSelectedRow();
         if (filaS != -1) {
+            
             cdt.BajaCiudad(filaS);
             
             modelo.removeRow(filaS);
