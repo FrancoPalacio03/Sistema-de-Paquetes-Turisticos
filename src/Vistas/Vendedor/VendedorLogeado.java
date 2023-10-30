@@ -695,7 +695,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     public double presupuestoTotal(double precioTransporte, double precioEstadia, LocalDate fechaIn, LocalDate fechaOn, int cantPersonas) {
         long diass = ChronoUnit.DAYS.between(fechaOn, fechaIn);
         int dias = (int) diass;
-        System.out.println(dias);
         double estadia = precioEstadia * dias;
         double precioFinal = 0;
         String temporada = CalcularTemporada(fechaIn);
