@@ -561,7 +561,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
             LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
-            if (fechaIngresoLocal.isBefore(fechaSalidaLocal)) {
+            if (!fechaIngresoLocal.isBefore(fechaSalidaLocal)) {
                 // Verifica que ambas fechas sean posteriores a la fecha actual
                 if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
                     // Continúa con la lógica de tu aplicación
