@@ -8,10 +8,12 @@ import AccesoADatos.AlojamientoVendidoData;
 import AccesoADatos.ClienteData;
 import AccesoADatos.PaqueteData;
 import AccesoADatos.PaqueteVendidoData;
+import AccesoADatos.PasajeData;
 import AccesoADatos.VendedorData;
 import Entidades.Alojamiento;
 import Entidades.Cliente;
 import Entidades.Paquete;
+import Entidades.Pasaje;
 import Entidades.Vendedor;
 import Vistas.Admin.Admin;
 import Vistas.Admin.CreacionPaquete.FormularioPasaje;
@@ -41,6 +43,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private Vendedor vendedor;
     private PaqueteVendidoData packData = new PaqueteVendidoData();
     private VendedorData vendeData = new VendedorData();
+    private PasajeData passData = new PasajeData();
     private AlojamientoVendidoData aloData = new AlojamientoVendidoData();
     private ClienteData cliData = new ClienteData();
 
@@ -537,9 +540,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
             dniCliente.setText("Dni: " + Integer.toString(cli.getDni()));
             viajantes.setSelectedItem(Integer.toString(cli.getCantPersonas()));
             precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas())));
-
-            double precioTotal = presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas());
-
+            
+            Pasaje pasaje= passData.buscarPasaje(paquete.getPasaje().getIdPasaje());
+            double precioTotal = presupuestoTotal(pasaje.getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas());
+            System.out.println(pasaje.getImporte());
             // Crear un objeto DecimalFormat para formatear el número
             // Formatear el precio con separadores de miles
             String precioFormateado = formato.format(precioTotal);
@@ -689,8 +693,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }
 
     public double presupuestoTotal(double precioTransporte, double precioEstadia, LocalDate fechaIn, LocalDate fechaOn, int cantPersonas) {
-        long diass = ChronoUnit.DAYS.between(fechaIn, fechaOn);
+        long diass = ChronoUnit.DAYS.between(fechaOn, fechaIn);
         int dias = (int) diass;
+        System.out.println(dias);
         double estadia = precioEstadia * dias;
         double precioFinal = 0;
         String temporada = CalcularTemporada(fechaIn);
