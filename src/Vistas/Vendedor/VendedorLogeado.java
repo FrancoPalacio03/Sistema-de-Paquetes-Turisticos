@@ -116,13 +116,14 @@ public class VendedorLogeado extends javax.swing.JFrame {
         viajantes = new javax.swing.JComboBox<>();
         PanelImagen = new javax.swing.JPanel();
         url = new javax.swing.JLabel();
-        Modificar = new javax.swing.JButton();
+        Imprimir = new javax.swing.JButton();
         ventas = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         temporada = new javax.swing.JLabel();
         Salir2 = new javax.swing.JButton();
         NombreVendedor = new javax.swing.JLabel();
+        Modificar1 = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -259,7 +260,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(242, 242, 242));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setText("Cantidad Viajantes:");
+        jLabel9.setText("Cantidad Pasajeros:");
         jPanel4.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 166, -1));
 
         jLabel10.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
@@ -369,8 +370,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
         jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 22, -1));
-        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
-        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 190, 25));
+        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 190, 25));
+        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
 
         dniCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         dniCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -432,16 +433,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         jPanel1.add(PanelImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 0, 390, 240));
 
-        Modificar.setBackground(new java.awt.Color(102, 102, 102));
-        Modificar.setForeground(new java.awt.Color(255, 255, 255));
-        Modificar.setText("Modificar");
-        Modificar.setBorder(null);
-        Modificar.addActionListener(new java.awt.event.ActionListener() {
+        Imprimir.setBackground(new java.awt.Color(102, 102, 102));
+        Imprimir.setForeground(new java.awt.Color(255, 255, 255));
+        Imprimir.setText("Imprimir Factura");
+        Imprimir.setBorder(null);
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarActionPerformed(evt);
+                ImprimirActionPerformed(evt);
             }
         });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
+        jPanel1.add(Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 430, 290, 90));
 
         ventas.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         ventas.setForeground(new java.awt.Color(255, 255, 255));
@@ -483,6 +484,17 @@ public class VendedorLogeado extends javax.swing.JFrame {
         NombreVendedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         NombreVendedor.setText("Bienvenido/a ,");
         jPanel1.add(NombreVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 202, 440, 30));
+
+        Modificar1.setBackground(new java.awt.Color(102, 102, 102));
+        Modificar1.setForeground(new java.awt.Color(255, 255, 255));
+        Modificar1.setText("Modificar");
+        Modificar1.setBorder(null);
+        Modificar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Modificar1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -570,42 +582,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     }//GEN-LAST:event_venderPaqueteActionPerformed
 
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
         // TODO add your handling code here:
-        LocalDate fechaActual = LocalDate.now();
-
-        // Obtiene las fechas seleccionadas
-        Date fechaIngreso = fechaIn.getDate();
-        Date fechaSalida = fechaOn.getDate();
-        int cantPasajeros = Integer.parseInt((String) viajantes.getSelectedItem());
-
-        if (fechaIngreso != null && fechaSalida != null) {
-            // Convierte las fechas a objetos LocalDate
-            LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
-            if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
-                // Continúa con la lógica de tu aplicación
-                Paquete paquete = (Paquete) comboPaquete.getSelectedItem();
-                Alojamiento alo = paquete.getAlojamiento();
-                alo.setIngreso(fechaIngresoLocal);
-                alo.setSalida(fechaSalidaLocal);
-                aloData.ModificarAlojamiento(alo);
-
-                Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
-                cli.setCantPersonas(cantPasajeros);
-                cliData.modificarCliente(cli);
-
-            } else {
-                // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
-                JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
-            }
-        } else {
-            // Muestra un mensaje de error si alguna de las fechas está vacía
-            JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
-        }
-    }//GEN-LAST:event_ModificarActionPerformed
+        JOptionPane.showMessageDialog(null, "Imprimiendo...");
+    }//GEN-LAST:event_ImprimirActionPerformed
 
     private void precio1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_precio1ActionPerformed
         // TODO add your handling code here:
@@ -619,6 +599,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
         re.setLocationRelativeTo(null);
         this.dispose();
     }//GEN-LAST:event_Salir2ActionPerformed
+
+    private void Modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Modificar1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -710,7 +694,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Modificar;
+    private javax.swing.JButton Imprimir;
+    private javax.swing.JButton Modificar1;
     private javax.swing.JLabel NombreVendedor;
     private javax.swing.JPanel PanelImagen;
     private javax.swing.JButton Salir2;
