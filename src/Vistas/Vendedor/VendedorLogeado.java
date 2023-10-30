@@ -23,6 +23,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.tree.DefaultTreeModel;
 import java.net.URL;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZoneId;
@@ -40,7 +41,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private Vendedor vendedor;
     private PaqueteVendidoData packData = new PaqueteVendidoData();
     private VendedorData vendeData = new VendedorData();
-    private AlojamientoVendidoData aloData= new AlojamientoVendidoData();
+    private AlojamientoVendidoData aloData = new AlojamientoVendidoData();
     private ClienteData cliData = new ClienteData();
 
     /**
@@ -508,16 +509,25 @@ public class VendedorLogeado extends javax.swing.JFrame {
             Date fechaIngreso = Date.from(paquete.getAlojamiento().getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant());
             fechaIn.setDate(fechaSalida);
             fechaOn.setDate(fechaIngreso);
-            precioTransporte.setText(Double.toString(paquete.getPasaje().getImporte()));
+            double importeTransporte = paquete.getPasaje().getImporte();
+            DecimalFormat formato = new DecimalFormat("#,###.##");
+            String importeTransporteFormateado = formato.format(importeTransporte);
+            precioTransporte.setText(importeTransporteFormateado);
             alojamiento.setText(paquete.getAlojamiento().getNombre());
             precioAlojamiento.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
+
+            double importeDiario = paquete.getAlojamiento().getImporteDiario();
+
+            String importeDiarioFormateado = formato.format(importeDiario);
+
+            precioAlojamiento.setText(importeDiarioFormateado);
+
             transporte.setText(paquete.getPasaje().getTipoTransporte());
 
             String urlImagen = paquete.getAlojamiento().getCiudadDest().getUrlImagen();
             setImagen(urlImagen);
 
             String temporadas = CalcularTemporada(paquete.getAlojamiento().getIngreso());
-            precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida())));
             temporada.setText(temporadas);
 
             Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
@@ -526,6 +536,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
             apellidoCliente.setText("Apellido: " + cli.getApellido());
             dniCliente.setText("Dni: " + Integer.toString(cli.getDni()));
             viajantes.setSelectedItem(Integer.toString(cli.getCantPersonas()));
+            precio.setText(Double.toString(presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas())));
+
+            double precioTotal = presupuestoTotal(paquete.getPasaje().getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas());
+
+            // Crear un objeto DecimalFormat para formatear el número
+            // Formatear el precio con separadores de miles
+            String precioFormateado = formato.format(precioTotal);
+
+            precio.setText(precioFormateado);
+
             NombreVendedor.setText("Bienvenido/a al sistema usuario:  " + vendedor.getApellido() + " " + vendedor.getNombre());
         } else {
             return;
@@ -549,36 +569,35 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
         // TODO add your handling code here:
         LocalDate fechaActual = LocalDate.now();
-        
+
         // Obtiene las fechas seleccionadas
         Date fechaIngreso = fechaIn.getDate();
         Date fechaSalida = fechaOn.getDate();
-        int cantPasajeros= Integer.parseInt((String)viajantes.getSelectedItem());
-        
+        int cantPasajeros = Integer.parseInt((String) viajantes.getSelectedItem());
+
         if (fechaIngreso != null && fechaSalida != null) {
             // Convierte las fechas a objetos LocalDate
             LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
-                if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
-                    // Continúa con la lógica de tu aplicación
-                    Paquete paquete= (Paquete)comboPaquete.getSelectedItem();
-                    Alojamiento alo=paquete.getAlojamiento();
-                    alo.setIngreso(fechaIngresoLocal);
-                    alo.setSalida(fechaSalidaLocal);
-                    aloData.ModificarAlojamiento(alo);
-                    
-                    Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
-                    cli.setCantPersonas(cantPasajeros);
-                    cliData.modificarCliente(cli);
-                    
-                } else {
-                    // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
-                    JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
-                }
+            if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
+                // Continúa con la lógica de tu aplicación
+                Paquete paquete = (Paquete) comboPaquete.getSelectedItem();
+                Alojamiento alo = paquete.getAlojamiento();
+                alo.setIngreso(fechaIngresoLocal);
+                alo.setSalida(fechaSalidaLocal);
+                aloData.ModificarAlojamiento(alo);
+
+                Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
+                cli.setCantPersonas(cantPasajeros);
+                cliData.modificarCliente(cli);
+
+            } else {
+                // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
+                JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
             }
-        else {
+        } else {
             // Muestra un mensaje de error si alguna de las fechas está vacía
             JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
         }
@@ -669,17 +688,19 @@ public class VendedorLogeado extends javax.swing.JFrame {
         }
     }
 
-    public double presupuestoTotal(double precioTransporte, double precioEstadia, LocalDate fechaIn, LocalDate fechaOn) {
+    public double presupuestoTotal(double precioTransporte, double precioEstadia, LocalDate fechaIn, LocalDate fechaOn, int cantPersonas) {
         long diass = ChronoUnit.DAYS.between(fechaIn, fechaOn);
         int dias = (int) diass;
         double estadia = precioEstadia * dias;
-        double precioFinal = estadia + precioTransporte;
+        double precioFinal = 0;
         String temporada = CalcularTemporada(fechaIn);
 
         if (temporada.equals("Alta")) {
-            precioFinal = precioFinal * 1.30;
+            precioFinal = ((estadia + precioTransporte) * cantPersonas) * 1.30;
         } else if (temporada.equals("Media")) {
-            precioFinal = precioFinal * 1.15;
+            precioFinal = ((estadia + precioTransporte) * cantPersonas) * 1.15;
+        } else {
+            precioFinal = (estadia + precioTransporte) * cantPersonas;
         }
         return precioFinal;
     }
