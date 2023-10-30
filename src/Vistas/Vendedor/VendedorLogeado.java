@@ -326,13 +326,13 @@ public class VendedorLogeado extends javax.swing.JFrame {
         destino.setForeground(new java.awt.Color(242, 242, 242));
         destino.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         destino.setText("-");
-        jPanel4.add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 139, 130, -1));
+        jPanel4.add(destino, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 139, 190, -1));
 
         origen.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         origen.setForeground(new java.awt.Color(242, 242, 242));
         origen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         origen.setText("-");
-        jPanel4.add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(264, 79, 120, 16));
+        jPanel4.add(origen, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 79, 180, 16));
 
         precioTransporte.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         precioTransporte.setForeground(new java.awt.Color(242, 242, 242));
