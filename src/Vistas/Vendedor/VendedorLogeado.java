@@ -162,9 +162,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 arbolAncestorAdded(evt);
             }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane2.setViewportView(arbol);
@@ -274,14 +274,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
         precio.setBackground(new java.awt.Color(255, 153, 0));
         precio.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        precio.setForeground(new java.awt.Color(0, 0, 0));
         precio.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         precio.setText("precio");
         precio.setBorder(null);
 
         precio1.setBackground(new java.awt.Color(255, 153, 0));
         precio1.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        precio1.setForeground(new java.awt.Color(0, 0, 0));
         precio1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         precio1.setText("$");
         precio1.setBorder(null);
@@ -367,8 +365,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
         jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 22, -1));
-        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
-        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 190, 25));
+        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 190, 25));
+        jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
 
         dniCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         dniCliente.setForeground(new java.awt.Color(255, 255, 255));
