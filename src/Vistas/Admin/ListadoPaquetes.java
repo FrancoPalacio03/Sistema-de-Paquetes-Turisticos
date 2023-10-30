@@ -6,7 +6,9 @@ package Vistas.Admin;
 
 import AccesoADatos.Conexion;
 import AccesoADatos.PaqueteData;
+import AccesoADatos.PasajeData;
 import Entidades.Paquete;
+import Entidades.Pasaje;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +19,14 @@ import javax.swing.table.DefaultTableModel;
  * @author diakz
  */
 public class ListadoPaquetes extends javax.swing.JFrame {
-private Connection con = Conexion.getConexion();
+
+    private PaqueteData packData= new PaqueteData();
+    private PasajeData passData= new PasajeData();
+    private Connection con = Conexion.getConexion();
     DefaultTableModel modelo = new DefaultTableModel() {
         @Override
         public boolean isCellEditable(int row, int column) {
-            if (column   <5) {
+            if (column < 5) {
                 return false;
             } else {
                 return true;
@@ -29,13 +34,14 @@ private Connection con = Conexion.getConexion();
 
         }
     };
+
     /**
      * Creates new form ListadoPaquetes
      */
     public ListadoPaquetes() {
         initComponents();
         seteatabla();
-         cargartabla();
+        cargartabla();
     }
 
     /**
@@ -55,7 +61,7 @@ private Connection con = Conexion.getConexion();
         eliminar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -151,7 +157,7 @@ private Connection con = Conexion.getConexion();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    Admin re = new  Admin();
+        Admin re = new Admin();
         re.pack();
         re.setVisible(true);
         re.setLocationRelativeTo(null);
@@ -159,11 +165,14 @@ private Connection con = Conexion.getConexion();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
-       int filaS = jTable1.getSelectedRow();
-        if (filaS != -1) {
-            modelo.removeRow(filaS);
+        int filaSeleccionada = jTable1.getSelectedRow();
+        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+        Paquete pack= packData.buscarPaquete(id);
+        Pasaje pasaje= pack.getPasaje();
+        passData.bajaPasaje(pasaje.getIdPasaje());
+        packData.ba(id);
     }//GEN-LAST:event_eliminarActionPerformed
-    }
+
     /**
      * @param args the command line arguments
      */
@@ -198,26 +207,26 @@ private Connection con = Conexion.getConexion();
             }
         });
     }
+
     private void seteatabla() {
+        modelo.addColumn("ID");
         modelo.addColumn("Ciudad Origen");
         modelo.addColumn("Ciudad Destino");
         modelo.addColumn("alojamiento");
         modelo.addColumn("Transporte");
         jTable1.setModel(modelo);
-        
-        
-}
- private void cargartabla() {
- List<Paquete> paq = new ArrayList<Paquete>();
+
+    }
+
+    private void cargartabla() {
+        List<Paquete> paq = new ArrayList<Paquete>();
         PaqueteData packs = new PaqueteData();
         paq = packs.listarPaquete();
         for (Paquete elemento : paq) {
-            modelo.addRow(new Object[]{elemento.getOrigen(),elemento.getDestino(),elemento.getAlojamiento().getNombre(),elemento.getPasaje().getTipoTransporte(),
-
-            });
+            modelo.addRow(new Object[]{elemento.getIdPaquete(), elemento.getOrigen(), elemento.getDestino(), elemento.getAlojamiento().getNombre(), elemento.getPasaje().getTipoTransporte(),});
         }
- 
- }
+
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton eliminar;
     private javax.swing.JButton jButton2;

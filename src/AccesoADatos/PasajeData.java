@@ -133,10 +133,27 @@ public class PasajeData {
 
     }
 
-    public void bajaPasaje(int id) {
+    public void eliminarPasaje(int id) {
 
         try {
             String sql = "DELETE from pasaje WHERE idPasaje = ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se do de baja el pasaje.");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla pasajes");
+        }
+    }
+    
+    public void bajaPasaje(int id) {
+
+        try {
+            String sql = "update pasaje set estado=0 WHERE idPasaje = ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();

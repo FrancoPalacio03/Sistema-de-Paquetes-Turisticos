@@ -46,7 +46,6 @@ public class FormularioCiudad extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        Modificar = new javax.swing.JButton();
         Registrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -56,28 +55,13 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         URL = new javax.swing.JTextField();
         nombreCiudad = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        id = new javax.swing.JTextField();
         Cancelar1 = new javax.swing.JButton();
-        Buscar1 = new javax.swing.JButton();
         estado = new javax.swing.JCheckBox();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Modificar.setBackground(new java.awt.Color(102, 102, 102));
-        Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Modificar.setForeground(new java.awt.Color(255, 255, 255));
-        Modificar.setText("Modificar");
-        Modificar.setBorder(null);
-        Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 580, 130, 50));
 
         Registrar.setBackground(new java.awt.Color(102, 102, 102));
         Registrar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -89,19 +73,19 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 580, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 130, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione el Estado");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 340, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 340, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("URL Imagen");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 340, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 340, -1));
 
         combociudad.setComponentPopupMenu(combociudad.getComponentPopupMenu());
         combociudad.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +93,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 combociudadActionPerformed(evt);
             }
         });
-        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 230, -1));
+        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, -1));
 
         combopais1.setComponentPopupMenu(combociudad.getComponentPopupMenu());
         combopais1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,34 +101,25 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 combopais1ActionPerformed(evt);
             }
         });
-        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 220, -1));
+        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 220, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione Pais ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 340, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 340, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre de la ciudad");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, 340, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 340, -1));
 
         URL.setBorder(null);
-        jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 440, 30));
+        jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 440, 30));
 
         nombreCiudad.setBorder(null);
-        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, 230, 30));
-
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("ID");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 30, 340, -1));
-
-        id.setBorder(null);
-        jPanel1.add(id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 170, 30));
+        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 230, 30));
 
         Cancelar1.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -156,19 +131,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 Cancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 130, 50));
-
-        Buscar1.setBackground(new java.awt.Color(102, 102, 102));
-        Buscar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Buscar1.setForeground(new java.awt.Color(255, 255, 255));
-        Buscar1.setText("Buscar");
-        Buscar1.setBorder(null);
-        Buscar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Buscar1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Buscar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 70, 130, 50));
+        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 130, 50));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(255, 255, 255));
@@ -178,7 +141,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 estadoActionPerformed(evt);
             }
         });
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 410, -1, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -188,49 +151,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
-        // Obtén los valores de los campos
-        String nombre = nombreCiudad.getText().trim(); // Elimina espacios en blanco al principio y al final
-        String url = URL.getText().trim(); // Elimina espacios en blanco al principio y al final
-        Paises pais = (Paises) combopais1.getSelectedItem();
-        Estados estados = (Estados) combociudad.getSelectedItem();
-        boolean est = estado.isSelected();
-
-        // Validaciones
-        if (nombre.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El nombre de la ciudad no puede estar vacío.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Sale del método si el nombre está vacío
-        }
-
-        if (nombre.matches(".*\\d+.*")) {
-            JOptionPane.showMessageDialog(this, "El nombre de la ciudad no puede contener números.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Sale del método si el nombre contiene números
-        }
-
-        if (url.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "La URL de la imagen no puede estar vacía.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Sale del método si la URL está vacía
-        }
-
-        // Si todas las validaciones pasan, crea la instancia de Ciudad y guárdala en la base de datos
-        Ciudad ciudad = new Ciudad(nombre, pais, est, estados, url);
-        awp.ModificarCiudad(ciudad);
-
-        // Resto del código para cerrar la ventana actual y mostrar la ventana Admin
-        Admin re = new Admin();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
-
-    }//GEN-LAST:event_ModificarActionPerformed
 
     private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
         // TODO add your handling code here:
@@ -282,26 +207,6 @@ public class FormularioCiudad extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_Cancelar1ActionPerformed
-
-    private void Buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Buscar1ActionPerformed
-        // TODO add your handling code here
-        int idCiudad = 0;
-        try {
-            idCiudad = Integer.parseInt(id.getText());
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "El ID no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            return; // Salir del método si el importe no es válido
-        }
-        Ciudad ciudad = awp.BuscarCiudad(idCiudad);
-        if (ciudad != null) {
-            // Rellenar los campos con los datos del alojamiento
-            combopais1.setSelectedItem(ciudad.getPais());
-            combociudad.setSelectedItem(ciudad.getProvincia());
-            nombreCiudad.setText(ciudad.getNombre());
-            URL.setText(ciudad.getUrlImagen());
-            estado.setSelected(ciudad.isEstado());
-        }
-    }//GEN-LAST:event_Buscar1ActionPerformed
 
     private void estadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_estadoActionPerformed
         // TODO add your handling code here:
@@ -368,20 +273,16 @@ public class FormularioCiudad extends javax.swing.JFrame {
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Buscar1;
     private javax.swing.JButton Cancelar1;
-    private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField URL;
     private javax.swing.JComboBox<Estados> combociudad;
     private javax.swing.JComboBox<Paises> combopais1;
     private javax.swing.JCheckBox estado;
-    private javax.swing.JTextField id;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField nombreCiudad;
     // End of variables declaration//GEN-END:variables

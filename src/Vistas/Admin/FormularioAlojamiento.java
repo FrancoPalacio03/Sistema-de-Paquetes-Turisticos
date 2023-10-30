@@ -57,7 +57,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         Cancelar1 = new javax.swing.JButton();
         Buscar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -207,7 +207,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
             return; // Salir del método si el importe no es válido
         }
 
-        Alojamiento alo=new Alojamiento(nombreAlojamiento,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
+        Alojamiento alo=new Alojamiento(Integer.parseInt(Id.getText()),nombreAlojamiento,estaSeleccionado,descripcionServicios,importeDiario ,ciudadDestino);
         aloData.ModificarAlojamiento(alo);
         
         FormularioAlojamiento re = new FormularioAlojamiento();
@@ -258,7 +258,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         // TODO add your handling code here:
         int id=0;
         try {
-            id = Integer.parseInt(importe.getText());
+            id = Integer.parseInt(Id.getText());
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "El ID no es un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
             return; // Salir del método si el importe no es válido

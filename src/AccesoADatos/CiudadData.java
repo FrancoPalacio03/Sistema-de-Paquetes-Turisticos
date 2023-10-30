@@ -26,7 +26,6 @@ public class CiudadData {
 
     private Connection con = Conexion.getConexion();
 
-
     public CiudadData() {
 
     }
@@ -90,9 +89,7 @@ public class CiudadData {
         return ciudad;
     }
 
-
-
-public List<Paises> listarPaises() {
+    public List<Paises> listarPaises() {
         String sql = "Select * FROM pais ";
         PreparedStatement ps;
         ArrayList<Paises> paises = new ArrayList();
@@ -137,7 +134,7 @@ public List<Paises> listarPaises() {
         }
         return ciudades;
     }
-    
+
     public List<Ciudad> listar() {
         String sql = "Select * FROM ciudad where estado=1 ";
         PreparedStatement ps;
@@ -147,9 +144,46 @@ public List<Paises> listarPaises() {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Ciudad ciudad = new Ciudad();
+                Paises pais = new Paises();
+                pais.setPaisnombre(rs.getString("pais"));
+                Estados prov = new Estados();
+                prov.setEstadonombre(rs.getString("provincia"));
                 ciudad.setIdCiudad(rs.getInt("idCiudad"));
                 ciudad.setNombre(rs.getString("nombre"));
+                ciudad.setPais(pais);
                 ciudad.setEstado(rs.getBoolean("estado"));
+                ciudad.setProvincia(prov);
+                ciudad.setUrlImagen(rs.getString("url"));
+                ciudades.add(ciudad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla estados " + ex.getMessage());
+
+        }
+        return ciudades;
+    }
+
+    public List<Ciudad> listarTodos() {
+        String sql = "Select * FROM ciudad";
+        PreparedStatement ps;
+        ArrayList<Ciudad> ciudades = new ArrayList();
+        try {
+            ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Ciudad ciudad = new Ciudad();
+                Paises pais = new Paises();
+                pais.setPaisnombre(rs.getString("pais"));
+                Estados prov = new Estados();
+                prov.setEstadonombre(rs.getString("provincia"));
+                ciudad.setIdCiudad(rs.getInt("idCiudad"));
+                ciudad.setNombre(rs.getString("nombre"));
+                ciudad.setPais(pais);
+                ciudad.setEstado(rs.getBoolean("estado"));
+                ciudad.setProvincia(prov);
+                ciudad.setUrlImagen(rs.getString("url"));
                 ciudades.add(ciudad);
             }
             ps.close();
@@ -166,16 +200,34 @@ public List<Paises> listarPaises() {
     }
 
     public void BajaCiudad(int id) {
-String sql = "DELETE  FROM ciudad where Idciudad = ? ";
- try {
-            
-           
+        String sql = "UPDATE `ciudad` SET `estado` = '0' WHERE `ciudad`.`idCiudad` = ?";
+        try {
+
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, " Se dio de baja la ciudad .");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla estados " + ex.getMessage());
+
+        }
+    }
+    
+    public void AltaCiudad(int id) {
+        String sql = "Update ciudad SET estado=1 where Idciudad = ? ";
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se dio de alta la ciudad .");
             }
             ps.close();
 

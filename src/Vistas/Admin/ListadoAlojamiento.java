@@ -51,9 +51,10 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
+        Alta = new javax.swing.JButton();
+        baja = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
@@ -103,10 +104,17 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
             }
         });
 
-        Eliminar.setText("Eliminar Alojamientos");
-        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+        Alta.setText("Alta");
+        Alta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminarActionPerformed(evt);
+                AltaActionPerformed(evt);
+            }
+        });
+
+        baja.setText("Baja");
+        baja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaActionPerformed(evt);
             }
         });
 
@@ -122,7 +130,9 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Eliminar)))
+                        .addComponent(Alta, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(baja, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -133,8 +143,10 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Alta)
+                        .addComponent(baja)))
                 .addGap(23, 23, 23))
         );
 
@@ -167,14 +179,19 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
         re.setLocationRelativeTo(null);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+    private void AltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AltaActionPerformed
+        // TODO add your handling code here:
+        int filaSeleccionada = jTable1.getSelectedRow();
+        int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
+        aloData.AltaAlojamiento(id);
+    }//GEN-LAST:event_AltaActionPerformed
+
+    private void bajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaActionPerformed
         // TODO add your handling code here:
         int filaSeleccionada = jTable1.getSelectedRow();
         int id = (int) jTable1.getValueAt(filaSeleccionada, 0);
         aloData.BajaAlojamiento(id);
-        List<Paquete> pack= new ArrayList();
-        pack= packData.buscarPaqueteXAlojamiento(id);
-    }//GEN-LAST:event_EliminarActionPerformed
+    }//GEN-LAST:event_bajaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,13 +234,15 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
         // Borra cualquier fila existente en la tabla
         modelo.setRowCount(0);
         List<Alojamiento> alojamientos = new ArrayList();
-        alojamientos = aloData.ListarAlojamiento();
+        alojamientos = aloData.ListarTodo();
         for (Alojamiento alojamiento : alojamientos) {
             modelo.addRow(new Object[]{
                 alojamiento.getIdAlojamiento(),
                 alojamiento.getNombre(),
                 alojamiento.getServicio(),
-                alojamiento.getImporteDiario(),});
+                alojamiento.getImporteDiario(),
+                alojamiento.isEstado()});
+                
         }
     }
 
@@ -232,11 +251,13 @@ public class ListadoAlojamiento extends javax.swing.JFrame {
         modelo.addColumn("Alojamiento");
         modelo.addColumn("Servicios incluidos");
         modelo.addColumn("Precio Diario");
+        modelo.addColumn("estado");
         jTable1.setModel(modelo);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Alta;
+    private javax.swing.JButton baja;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -37,8 +37,6 @@ public class FormularioVendedor extends javax.swing.JFrame {
 
         jDialog1 = new javax.swing.JDialog();
         jPanel1 = new javax.swing.JPanel();
-        Buscar = new javax.swing.JButton();
-        Modificar = new javax.swing.JButton();
         apellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
@@ -75,35 +73,11 @@ public class FormularioVendedor extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Buscar.setBackground(new java.awt.Color(102, 102, 102));
-        Buscar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Buscar.setForeground(new java.awt.Color(255, 255, 255));
-        Buscar.setText("Buscar");
-        Buscar.setBorder(null);
-        Buscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BuscarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 80, 90, 30));
-
-        Modificar.setBackground(new java.awt.Color(102, 102, 102));
-        Modificar.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        Modificar.setForeground(new java.awt.Color(255, 255, 255));
-        Modificar.setText("Modificar");
-        Modificar.setBorder(null);
-        Modificar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ModificarActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 560, 130, 50));
 
         apellido.setBackground(new java.awt.Color(51, 51, 51));
         apellido.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,80 +311,6 @@ public class FormularioVendedor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_correoActionPerformed
 
-    private void BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarActionPerformed
-        // TODO add your handling code here:
-        // Obtener el ID del vendedor que se desea buscar (de alguna manera, por ejemplo, desde un campo de entrada de texto)
-        String idVendedorStr = id.getText();
-
-        try {
-            int idVendedorABuscar = Integer.parseInt(idVendedorStr);
-
-            Vendedor vendedorEncontrado = vendedata.BuscarVendedor(idVendedorABuscar);
-
-        if (vendedorEncontrado != null) {
-            id.setText(String.valueOf(vendedorEncontrado.getId()));
-            nombre.setText(vendedorEncontrado.getNombre());
-            apellido.setText(vendedorEncontrado.getApellido());
-            correo.setText(vendedorEncontrado.getCorreo());
-            dni.setText(String.valueOf(vendedorEncontrado.getDni()));
-            contraseña.setText(vendedorEncontrado.getPass());
-            estado.setSelected(vendedorEncontrado.getEstado());
-            Modificar.setEnabled(true); // Puedes habilitar el botón 'Siguiente' si es relevante en este contexto.
-
-            JOptionPane.showMessageDialog(this, "Vendedor encontrado con éxito.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                // Opcional: mostrar un mensaje de error si el vendedor no se encuentra
-                JOptionPane.showMessageDialog(this, "Vendedor no encontrado. Verifique el ID.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "El ID del vendedor debe ser un número válido.", "Error", JOptionPane.ERROR_MESSAGE);
-            }    
-    }//GEN-LAST:event_BuscarActionPerformed
-
-    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
-        // TODO add your handling code here:
-         String idVendedor = id.getText().trim();
-        String nombreVendedor = nombre.getText().trim();
-        String apellidoVendedor = apellido.getText().trim();
-        String correoVendedor = correo.getText().trim();
-        String dniVendedor = dni.getText().trim();
-        boolean estaSeleccionado = estado.isSelected();
-        int dni=0;
-        String contrasena = new String(contraseña.getPassword());
-        String contrasenaRepetida = new String(contraseña1.getPassword());
-
-        // Realizar validaciones
-        if (nombreVendedor.isEmpty() || apellidoVendedor.isEmpty() || correoVendedor.isEmpty() || dniVendedor.isEmpty() || contrasena.isEmpty() || contrasenaRepetida.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }else if(idVendedor.isEmpty()){
-            JOptionPane.showMessageDialog(this, "El id se asigna automaticamente ");
-        }
-        
-        if (!esDniValido(dniVendedor)) {
-            JOptionPane.showMessageDialog(this, "El DNI ingresado no es válido. Debe contener 8 dígitos numéricos.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }else{
-            dni= Integer.parseInt(dniVendedor);
-        }
-
-        if (!contrasena.equals(contrasenaRepetida)) {
-            JOptionPane.showMessageDialog(this, "Las contraseñas no coinciden.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        
-        Vendedor vendedor = new Vendedor(correoVendedor, contrasena ,nombreVendedor, apellidoVendedor, dni, estaSeleccionado);
-        
-        vendedata.modificarVendedor(vendedor);
-        Admin re = new Admin();
-        re.pack();
-        re.setVisible(true);
-        re.setLocationRelativeTo(null);
-        this.dispose();
-    }//GEN-LAST:event_ModificarActionPerformed
-
     private void apellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apellidoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_apellidoActionPerformed
@@ -571,9 +471,7 @@ public class FormularioVendedor extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Buscar;
     private javax.swing.JButton Cancelar1;
-    private javax.swing.JButton Modificar;
     private javax.swing.JButton Registrar;
     private javax.swing.JTextField apellido;
     private javax.swing.JPasswordField contraseña;

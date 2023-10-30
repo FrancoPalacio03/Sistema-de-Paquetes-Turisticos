@@ -54,9 +54,10 @@ public class FormularioPasaje extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
+        jPanel1.setFont(new java.awt.Font("Roboto Light", 0, 12)); // NOI18N
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Cancelar.setBackground(new java.awt.Color(102, 102, 102));
@@ -92,19 +93,19 @@ public class FormularioPasaje extends javax.swing.JFrame {
         jPanel1.add(transporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 360, 40));
 
         precioLabel.setBackground(new java.awt.Color(255, 255, 255));
-        precioLabel.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        precioLabel.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
         precioLabel.setForeground(new java.awt.Color(255, 255, 255));
         precioLabel.setText("-");
         jPanel1.add(precioLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 180, 310, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione Transporte");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 360, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Precio: $");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 100, -1));

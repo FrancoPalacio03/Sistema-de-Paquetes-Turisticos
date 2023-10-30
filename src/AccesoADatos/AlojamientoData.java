@@ -70,8 +70,8 @@ public class AlojamientoData {
                 alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
-                alojamiento.setEstado(true);
-                alojamiento.setServicio("servicio");
+                alojamiento.setEstado(rs.getBoolean("estado"));
+                alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getInt("importeDiario"));
                 Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
                 alojamiento.setCiudadDest(ciudad);
@@ -101,7 +101,36 @@ public class AlojamientoData {
                 Alojamiento alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
-                alojamiento.setEstado(true);
+                alojamiento.setEstado(rs.getBoolean("estado"));
+                alojamiento.setServicio(rs.getString("servicio"));
+                alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
+                Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
+                alojamiento.setCiudadDest(ciudad);
+
+                alojamientos.add(alojamiento);
+
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alojamiento " + ex.getMessage());
+        }
+        return alojamientos;
+
+    }
+    
+    public List< Alojamiento> ListarTodo() {
+
+        List<Alojamiento> alojamientos = new ArrayList<Alojamiento>();
+        try {
+            String sql = "SELECT * FROM alojamiento ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Alojamiento alojamiento = new Alojamiento();
+                alojamiento.setNombre(rs.getString("nombre"));
+                alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
+                alojamiento.setEstado(rs.getBoolean("estado"));
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
                 Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
@@ -120,7 +149,7 @@ public class AlojamientoData {
     }
 
     public void ModificarAlojamiento(Alojamiento alojamiento) {
-        String sql = "UPDATE alojamiento SET nombre= ?,  estado = ?, servicio =?, importeDiario = ?,Ciudad = ? WHERE idAlojamiento";
+        String sql = "UPDATE alojamiento SET nombre= ?,  estado = ?, servicio =?, importeDiario = ?,Ciudad = ? WHERE idAlojamiento=?";
         PreparedStatement ps = null;
 
         try {
@@ -131,7 +160,7 @@ public class AlojamientoData {
             Ciudad ciudad = alojamiento.getCiudadDest();
             ps.setInt(5, ciudad.getIdCiudad());
             ps.setString(1, alojamiento.getNombre());
-
+            ps.setInt(6, alojamiento.getIdAlojamiento());
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -149,13 +178,29 @@ public class AlojamientoData {
 
     public void BajaAlojamiento(int idAlojamiento) {
         try {
-            String sql = "DELETE from alojamiento WHERE idAlojamiento= ? ";
+            String sql = "UPDATE alojamiento SET estado=0 WHERE idAlojamiento= ? ";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idAlojamiento);
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, " Se eliminó el Alojamiento");
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Alojamiento");
+        }
+    }
+    
+    public void AltaAlojamiento(int idAlojamiento) {
+        try {
+            String sql = "UPDATE alojamiento SET estado=1 WHERE idAlojamiento= ? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idAlojamiento);
+            int fila = ps.executeUpdate();
+
+            if (fila == 1) {
+                JOptionPane.showMessageDialog(null, " Se dio de alta el Alojamiento");
             }
             ps.close();
         } catch (SQLException e) {
@@ -175,7 +220,7 @@ public class AlojamientoData {
                 Alojamiento alojamiento = new Alojamiento();
                 alojamiento.setNombre(rs.getString("nombre"));
                 alojamiento.setIdAlojamiento(rs.getInt("idAlojamiento"));
-                alojamiento.setEstado(true);
+                alojamiento.setEstado(rs.getBoolean("estado"));
                 alojamiento.setServicio(rs.getString("servicio"));
                 alojamiento.setImporteDiario(rs.getDouble("importeDiario"));
                 Ciudad ciudad = ciudata.BuscarCiudad(rs.getInt("Ciudad"));
