@@ -101,8 +101,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         transporte = new javax.swing.JLabel();
         precioAlojamiento1 = new javax.swing.JLabel();
         precioTransporte1 = new javax.swing.JLabel();
-        fechaOn = new com.toedter.calendar.JDateChooser();
         fechaIn = new com.toedter.calendar.JDateChooser();
+        fechaOn = new com.toedter.calendar.JDateChooser();
         dniCliente = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         idCliente = new javax.swing.JLabel();
@@ -162,9 +162,9 @@ public class VendedorLogeado extends javax.swing.JFrame {
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 arbolAncestorAdded(evt);
             }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane2.setViewportView(arbol);
@@ -365,8 +365,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         precioTransporte1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         precioTransporte1.setText("$");
         jPanel4.add(precioTransporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 210, 22, -1));
-        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 190, 25));
         jPanel4.add(fechaIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 190, 25));
+        jPanel4.add(fechaOn, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 270, 190, 25));
 
         dniCliente.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         dniCliente.setForeground(new java.awt.Color(255, 255, 255));
@@ -506,8 +506,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
             destino.setText(paquete.getDestino().getNombre());
             Date fechaSalida = Date.from(paquete.getAlojamiento().getSalida().atStartOfDay(ZoneId.systemDefault()).toInstant());
             Date fechaIngreso = Date.from(paquete.getAlojamiento().getIngreso().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            fechaOn.setDate(fechaSalida);
-            fechaIn.setDate(fechaIngreso);
+            fechaIn.setDate(fechaSalida);
+            fechaOn.setDate(fechaIngreso);
             precioTransporte.setText(Double.toString(paquete.getPasaje().getImporte()));
             alojamiento.setText(paquete.getAlojamiento().getNombre());
             precioAlojamiento.setText(Double.toString(paquete.getAlojamiento().getImporteDiario()));
@@ -551,8 +551,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
         LocalDate fechaActual = LocalDate.now();
         
         // Obtiene las fechas seleccionadas
-        Date fechaIngreso = fechaOn.getDate();
-        Date fechaSalida = fechaIn.getDate();
+        Date fechaIngreso = fechaIn.getDate();
+        Date fechaSalida = fechaOn.getDate();
         int cantPasajeros= Integer.parseInt((String)viajantes.getSelectedItem());
         
         if (fechaIngreso != null && fechaSalida != null) {
@@ -561,8 +561,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
             LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 
             // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
-            if (!fechaIngresoLocal.isBefore(fechaSalidaLocal)) {
-                // Verifica que ambas fechas sean posteriores a la fecha actual
                 if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
                     // Continúa con la lógica de tu aplicación
                     Paquete paquete= (Paquete)comboPaquete.getSelectedItem();
@@ -579,11 +577,8 @@ public class VendedorLogeado extends javax.swing.JFrame {
                     // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
                     JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
                 }
-            } else {
-                // Muestra un mensaje de error si la fecha de salida es anterior a la fecha de ingreso
-                JOptionPane.showMessageDialog(this, "La fecha de salida no puede ser anterior a la fecha de ingreso.");
             }
-        } else {
+        else {
             // Muestra un mensaje de error si alguna de las fechas está vacía
             JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
         }
