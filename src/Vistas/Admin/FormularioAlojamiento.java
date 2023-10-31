@@ -126,6 +126,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, 30));
 
+        comboCiudad.setForeground(new java.awt.Color(255, 255, 255));
         comboCiudad.setBorder(null);
         jPanel1.add(comboCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 640, 210, 30));
 
