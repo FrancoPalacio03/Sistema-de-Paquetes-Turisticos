@@ -84,7 +84,8 @@ public class FormularioPasaje extends javax.swing.JFrame {
         });
         jPanel1.add(Siguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, 130, 50));
 
-        transporte.setBorder(null);
+        transporte.setBackground(new java.awt.Color(51, 51, 51));
+        transporte.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(204, 204, 204)));
         transporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 transporteActionPerformed(evt);
