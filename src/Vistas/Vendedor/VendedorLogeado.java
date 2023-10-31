@@ -462,6 +462,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         pagos.setBackground(new java.awt.Color(102, 102, 102));
         pagos.setForeground(new java.awt.Color(255, 255, 255));
         pagos.setText("Medios de Pago");
+        pagos.setBorder(null);
         pagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pagosActionPerformed(evt);
@@ -528,7 +529,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
             
             Pasaje pasaje= passData.buscarPasaje(paquete.getPasaje().getIdPasaje());
             double precioTotal = presupuestoTotal(pasaje.getImporte(), paquete.getAlojamiento().getImporteDiario(), paquete.getAlojamiento().getIngreso(), paquete.getAlojamiento().getSalida(), cli.getCantPersonas());
-            System.out.println(pasaje.getImporte());
             // Crear un objeto DecimalFormat para formatear el número
             // Formatear el precio con separadores de miles
             String precioFormateado = formato.format(precioTotal);

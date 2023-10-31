@@ -183,12 +183,12 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         });
         jPanel1.add(Buscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 170, 130, 50));
 
-        jPanel2.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 102));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Formulario Alojamiento");
 

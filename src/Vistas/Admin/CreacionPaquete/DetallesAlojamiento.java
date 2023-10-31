@@ -83,11 +83,12 @@ public class DetallesAlojamiento extends javax.swing.JFrame {
         nombre6.setForeground(new java.awt.Color(255, 255, 255));
         nombre6.setText("$");
 
-        jPanel2.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel2.setBackground(new java.awt.Color(255, 153, 51));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
+        nombre.setBackground(new java.awt.Color(51, 51, 51));
         nombre.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
-        nombre.setForeground(new java.awt.Color(255, 255, 255));
+        nombre.setForeground(new java.awt.Color(51, 51, 51));
         nombre.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);

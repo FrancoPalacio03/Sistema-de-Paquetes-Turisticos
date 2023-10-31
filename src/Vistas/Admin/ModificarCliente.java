@@ -195,6 +195,7 @@ public class ModificarCliente extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Modificar Datos De Cliente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -222,14 +223,14 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel4.setText("Ingrese Nombre:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 360, -1));
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Ingrese Correo Electronico:");
 
-        correo.setBackground(new java.awt.Color(102, 102, 102));
+        correo.setBackground(new java.awt.Color(51, 51, 51));
         correo.setForeground(new java.awt.Color(255, 255, 255));
         correo.setBorder(null);
         correo.addActionListener(new java.awt.event.ActionListener() {
@@ -243,7 +244,7 @@ public class ModificarCliente extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Ingrese DNI:");
 
-        dni.setBackground(new java.awt.Color(102, 102, 102));
+        dni.setBackground(new java.awt.Color(51, 51, 51));
         dni.setForeground(new java.awt.Color(255, 255, 255));
         dni.setBorder(null);
         dni.addActionListener(new java.awt.event.ActionListener() {
