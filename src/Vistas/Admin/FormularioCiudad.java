@@ -120,10 +120,12 @@ public class FormularioCiudad extends javax.swing.JFrame {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 340, -1));
 
         URL.setBackground(new java.awt.Color(51, 51, 51));
+        URL.setForeground(new java.awt.Color(255, 255, 255));
         URL.setBorder(null);
         jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 440, 30));
 
         nombreCiudad.setBackground(new java.awt.Color(51, 51, 51));
+        nombreCiudad.setForeground(new java.awt.Color(255, 255, 255));
         nombreCiudad.setBorder(null);
         jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 230, 30));
 

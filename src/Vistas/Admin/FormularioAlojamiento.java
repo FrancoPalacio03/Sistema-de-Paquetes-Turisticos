@@ -122,6 +122,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 590, 340, -1));
 
         nombre.setBackground(new java.awt.Color(51, 51, 51));
+        nombre.setForeground(new java.awt.Color(255, 255, 255));
         nombre.setBorder(null);
         jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 320, 30));
 
@@ -136,6 +137,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
 
         importe.setBackground(new java.awt.Color(51, 51, 51));
         importe.setFont(new java.awt.Font("Roboto Medium", 0, 24)); // NOI18N
+        importe.setForeground(new java.awt.Color(255, 255, 255));
         importe.setBorder(null);
         jPanel1.add(importe, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 640, 140, 30));
 
@@ -156,6 +158,7 @@ public class FormularioAlojamiento extends javax.swing.JFrame {
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, 340, -1));
 
         Id.setBackground(new java.awt.Color(51, 51, 51));
+        Id.setForeground(new java.awt.Color(255, 255, 255));
         Id.setBorder(null);
         jPanel1.add(Id, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, 60, 30));
 
