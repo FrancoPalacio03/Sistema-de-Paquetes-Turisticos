@@ -39,7 +39,6 @@ import javax.swing.JOptionPane;
  */
 public class VendedorLogeado extends javax.swing.JFrame {
 
-    private DefaultTreeModel modelo;
     private Vendedor vendedor;
     private PaqueteVendidoData packData = new PaqueteVendidoData();
     private VendedorData vendeData = new VendedorData();
@@ -52,14 +51,12 @@ public class VendedorLogeado extends javax.swing.JFrame {
      */
     public VendedorLogeado() {
         initComponents();
-        arbol.setModel(modelo);
         llenarBox();
     }
 
     public VendedorLogeado(Vendedor vendedor) {
         initComponents();
         this.vendedor = vendedor;
-        arbol.setModel(modelo);
         llenarBox();
     }
 
@@ -77,8 +74,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jPanel1 = new javax.swing.JPanel();
         venderPaquete = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        arbol = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
         comboPaquete = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
@@ -124,6 +119,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         Salir2 = new javax.swing.JButton();
         NombreVendedor = new javax.swing.JLabel();
         Modificar1 = new javax.swing.JButton();
+        pagos = new javax.swing.JButton();
 
         jScrollPane1.setViewportView(jTextPane1);
 
@@ -142,39 +138,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(venderPaquete, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 270, 290, 90));
-
-        arbol.setBackground(new java.awt.Color(51, 102, 255));
-        arbol.setBorder(null);
-        arbol.setFont(new java.awt.Font("Microsoft JhengHei", 0, 14)); // NOI18N
-        arbol.setForeground(new java.awt.Color(255, 255, 255));
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("INFORMACION");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Medios de pago");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Ventas");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Paquetes");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Promociones");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Transportes");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Alojamientos");
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Clientes");
-        treeNode1.add(treeNode2);
-        arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        arbol.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                arbolAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
-        jScrollPane2.setViewportView(arbol);
-
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 170, 855));
 
         jPanel2.setBackground(new java.awt.Color(0, 102, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -225,7 +188,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel2.setText("Informacion Del Paquete");
         jPanel5.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 10, 228, -1));
 
-        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 8, 1039, 50));
+        jPanel4.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 8, 1210, 50));
 
         jLabel4.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(242, 242, 242));
@@ -273,7 +236,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(242, 242, 242));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Precio total:");
-        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 440, 116, -1));
+        jPanel4.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, 116, -1));
 
         jPanel3.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -315,7 +278,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
                 .addContainerGap(41, Short.MAX_VALUE))
         );
 
-        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 390, 330, -1));
+        jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 430, 330, -1));
 
         jLabel13.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(242, 242, 242));
@@ -412,7 +375,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         viajantes.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         jPanel4.add(viajantes, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 260, 60, 40));
 
-        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 1040, 630));
+        jPanel1.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 1210, 630));
 
         url.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         url.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -483,7 +446,7 @@ public class VendedorLogeado extends javax.swing.JFrame {
         NombreVendedor.setForeground(new java.awt.Color(255, 255, 255));
         NombreVendedor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         NombreVendedor.setText("Bienvenido/a ,");
-        jPanel1.add(NombreVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 202, 440, 30));
+        jPanel1.add(NombreVendedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 440, 30));
 
         Modificar1.setBackground(new java.awt.Color(102, 102, 102));
         Modificar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -495,6 +458,16 @@ public class VendedorLogeado extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Modificar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1260, 540, 290, 90));
+
+        pagos.setBackground(new java.awt.Color(102, 102, 102));
+        pagos.setForeground(new java.awt.Color(255, 255, 255));
+        pagos.setText("Medios de Pago");
+        pagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pagosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(pagos, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 150, 170));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -568,10 +541,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_comboPaqueteActionPerformed
 
-    private void arbolAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_arbolAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_arbolAncestorAdded
-
     private void venderPaqueteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_venderPaqueteActionPerformed
         // TODO add your handling code here:
 
@@ -602,7 +571,48 @@ public class VendedorLogeado extends javax.swing.JFrame {
 
     private void Modificar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Modificar1ActionPerformed
         // TODO add your handling code here:
+        LocalDate fechaActual = LocalDate.now();
+
+        // Obtiene las fechas seleccionadas
+        Date fechaIngreso = fechaIn.getDate();
+        Date fechaSalida = fechaOn.getDate();
+        int cantPasajeros = Integer.parseInt((String) viajantes.getSelectedItem());
+
+        if (fechaIngreso != null && fechaSalida != null) {
+            // Convierte las fechas a objetos LocalDate
+            LocalDate fechaIngresoLocal = fechaIngreso.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaSalidaLocal = fechaSalida.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            // Verifica que la fecha de salida no sea anterior a la fecha de ingreso
+            if (!fechaIngresoLocal.isBefore(fechaActual) && !fechaSalidaLocal.isBefore(fechaActual)) {
+                // Continúa con la lógica de tu aplicación
+                Paquete paquete = (Paquete) comboPaquete.getSelectedItem();
+                Alojamiento alo = paquete.getAlojamiento();
+                alo.setIngreso(fechaIngresoLocal);
+                alo.setSalida(fechaSalidaLocal);
+                aloData.ModificarAlojamiento(alo);
+
+                Cliente cli = cliData.BuscarClienteXPaquete(paquete.getIdPaquete());
+                cli.setCantPersonas(cantPasajeros);
+                cliData.modificarCliente(cli);
+
+            } else {
+                // Muestra un mensaje de error si alguna de las fechas es anterior a la fecha actual
+                JOptionPane.showMessageDialog(this, "Las fechas deben ser posteriores a la fecha actual.");
+            }
+        } else {
+            // Muestra un mensaje de error si alguna de las fechas está vacía
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione ambas fechas.");
+        }
     }//GEN-LAST:event_Modificar1ActionPerformed
+
+    private void pagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagosActionPerformed
+        // TODO add your handling code here:
+        MediosDePago re = new MediosDePago();
+        re.pack();
+        re.setVisible(true);
+        re.setLocationRelativeTo(null);
+    }//GEN-LAST:event_pagosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -701,7 +711,6 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JButton Salir2;
     private javax.swing.JLabel alojamiento;
     private javax.swing.JLabel apellidoCliente;
-    private javax.swing.JTree arbol;
     private javax.swing.JComboBox<Paquete> comboPaquete;
     private javax.swing.JLabel destino;
     private javax.swing.JLabel dniCliente;
@@ -730,10 +739,10 @@ public class VendedorLogeado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel nombreCliente;
     private javax.swing.JLabel origen;
+    private javax.swing.JButton pagos;
     private javax.swing.JTextField precio;
     private javax.swing.JTextField precio1;
     private javax.swing.JLabel precioAlojamiento;

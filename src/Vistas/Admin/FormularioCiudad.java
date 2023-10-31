@@ -57,6 +57,10 @@ public class FormularioCiudad extends javax.swing.JFrame {
         nombreCiudad = new javax.swing.JTextField();
         Cancelar1 = new javax.swing.JButton();
         estado = new javax.swing.JCheckBox();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -73,19 +77,19 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 480, 130, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 550, 130, 50));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Seleccione el Estado");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 140, 340, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 340, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
         jLabel2.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("URL Imagen");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 340, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 430, 340, -1));
 
         combociudad.setComponentPopupMenu(combociudad.getComponentPopupMenu());
         combociudad.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +97,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 combociudadActionPerformed(evt);
             }
         });
-        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 200, 230, -1));
+        jPanel1.add(combociudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 280, 230, -1));
 
         combopais1.setComponentPopupMenu(combociudad.getComponentPopupMenu());
         combopais1.addActionListener(new java.awt.event.ActionListener() {
@@ -101,25 +105,27 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 combopais1ActionPerformed(evt);
             }
         });
-        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 220, -1));
+        jPanel1.add(combopais1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 230, -1));
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Seleccione Pais ");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 30, 340, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 130, 340, -1));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Microsoft JhengHei", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre de la ciudad");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 260, 340, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 330, 340, -1));
 
+        URL.setBackground(new java.awt.Color(51, 51, 51));
         URL.setBorder(null);
-        jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 410, 440, 30));
+        jPanel1.add(URL, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 480, 440, 30));
 
+        nombreCiudad.setBackground(new java.awt.Color(51, 51, 51));
         nombreCiudad.setBorder(null);
-        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 310, 230, 30));
+        jPanel1.add(nombreCiudad, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 380, 230, 30));
 
         Cancelar1.setBackground(new java.awt.Color(102, 102, 102));
         Cancelar1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -131,7 +137,7 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 Cancelar1ActionPerformed(evt);
             }
         });
-        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 480, 130, 50));
+        jPanel1.add(Cancelar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 550, 130, 50));
 
         estado.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         estado.setForeground(new java.awt.Color(255, 255, 255));
@@ -141,17 +147,53 @@ public class FormularioCiudad extends javax.swing.JFrame {
                 estadoActionPerformed(evt);
             }
         });
-        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
+        jPanel1.add(estado, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 380, -1, -1));
+
+        jPanel2.setBackground(new java.awt.Color(204, 102, 0));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel5.setFont(new java.awt.Font("Roboto Medium", 0, 36)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("Formulario De Ciudad");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(77, 77, 77)
+                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(98, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addComponent(jLabel5)
+                .addContainerGap(40, Short.MAX_VALUE))
+        );
+
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 120));
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 410, 290, -1));
+
+        jSeparator2.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator2.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 440, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 621, Short.MAX_VALUE)
         );
 
         pack();
@@ -283,7 +325,11 @@ public class FormularioCiudad extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField nombreCiudad;
     // End of variables declaration//GEN-END:variables
 }

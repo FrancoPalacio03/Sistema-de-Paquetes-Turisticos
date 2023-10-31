@@ -67,15 +67,11 @@ public class RegistroPaquete extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         jAloj = new javax.swing.JLabel();
-        jFechain = new javax.swing.JLabel();
-        jFechaon = new javax.swing.JLabel();
         jTransporte = new javax.swing.JLabel();
         jCiudadOrigen = new javax.swing.JLabel();
         jCiudadDestino = new javax.swing.JLabel();
@@ -96,14 +92,15 @@ public class RegistroPaquete extends javax.swing.JFrame {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel18.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Precio diario alojamiento:");
-        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 420, -1, -1));
+        jPanel1.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 420, -1, -1));
 
         Registrar.setText("Registrar");
         Registrar.setBorder(null);
@@ -112,12 +109,12 @@ public class RegistroPaquete extends javax.swing.JFrame {
                 RegistrarActionPerformed(evt);
             }
         });
-        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 540, 96, 50));
+        jPanel1.add(Registrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 550, 96, 50));
 
-        jLabel19.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Precio total:");
-        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 480, -1, -1));
+        jPanel1.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 480, -1, -1));
 
         Descartar.setText("Descartar");
         Descartar.setBorder(null);
@@ -126,7 +123,7 @@ public class RegistroPaquete extends javax.swing.JFrame {
                 DescartarActionPerformed(evt);
             }
         });
-        jPanel1.add(Descartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 540, 92, 50));
+        jPanel1.add(Descartar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 550, 92, 50));
 
         jPanel2.setBackground(new java.awt.Color(255, 153, 0));
 
@@ -154,45 +151,35 @@ public class RegistroPaquete extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 102));
 
-        jLabel7.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Fecha salida:");
-
-        jLabel10.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("Fecha regreso:");
-
-        jLabel14.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Transporte:");
 
-        jLabel3.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Parte desde:");
 
-        jLabel21.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel21.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Hasta:");
 
-        jLabel24.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel24.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Alojamiento:");
 
+        jAloj.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jAloj.setForeground(new java.awt.Color(255, 255, 255));
         jAloj.setText("-");
 
-        jFechain.setForeground(new java.awt.Color(255, 255, 255));
-        jFechain.setText("-");
-
-        jFechaon.setForeground(new java.awt.Color(255, 255, 255));
-        jFechaon.setText("-");
-
+        jTransporte.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jTransporte.setForeground(new java.awt.Color(255, 255, 255));
         jTransporte.setText("-");
 
+        jCiudadOrigen.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jCiudadOrigen.setForeground(new java.awt.Color(255, 255, 255));
         jCiudadOrigen.setText("-");
 
+        jCiudadDestino.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jCiudadDestino.setForeground(new java.awt.Color(255, 255, 255));
         jCiudadDestino.setText("-");
 
@@ -203,30 +190,26 @@ public class RegistroPaquete extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel14)
-                    .addComponent(jLabel24))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel24)
+                    .addComponent(jLabel14))
+                .addGap(37, 37, 37)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTransporte, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                    .addComponent(jAloj, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jAloj, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(55, 55, 55)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel21)
-                                .addGap(37, 37, 37))
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCiudadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCiudadDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTransporte, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                        .addComponent(jFechaon, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jFechain, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(244, Short.MAX_VALUE))
+                        .addGap(19, 19, 19)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel21)))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jCiudadOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 9, Short.MAX_VALUE))
+                    .addComponent(jCiudadDestino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -242,46 +225,37 @@ public class RegistroPaquete extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
                             .addComponent(jCiudadOrigen))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jFechain))
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel10)
-                            .addComponent(jFechaon))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel14)
-                            .addComponent(jTransporte)))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel21)
-                            .addComponent(jCiudadDestino))))
-                .addContainerGap(72, Short.MAX_VALUE))
+                    .addComponent(jCiudadDestino)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel14)
+                        .addComponent(jTransporte)
+                        .addComponent(jLabel21)))
+                .addContainerGap(151, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 770, 220));
 
-        jLabel11.setFont(new java.awt.Font("Microsoft JhengHei", 0, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Precio pasaje:");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
 
+        jprecioPasaje.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jprecioPasaje.setForeground(new java.awt.Color(255, 255, 255));
         jprecioPasaje.setText("-");
-        jPanel1.add(jprecioPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 360, 55, -1));
+        jPanel1.add(jprecioPasaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, 210, -1));
 
+        jPrecioDiarioAloj.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jPrecioDiarioAloj.setForeground(new java.awt.Color(255, 255, 255));
         jPrecioDiarioAloj.setText("-");
-        jPanel1.add(jPrecioDiarioAloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 420, 80, -1));
+        jPanel1.add(jPrecioDiarioAloj, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 420, 190, -1));
 
+        jPrecioTotal.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jPrecioTotal.setForeground(new java.awt.Color(255, 255, 255));
         jPrecioTotal.setText("-");
-        jPanel1.add(jPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 90, -1));
+        jPanel1.add(jPrecioTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 480, 190, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -392,10 +366,7 @@ public class RegistroPaquete extends javax.swing.JFrame {
     private javax.swing.JLabel jAloj;
     private javax.swing.JLabel jCiudadDestino;
     private javax.swing.JLabel jCiudadOrigen;
-    private javax.swing.JLabel jFechain;
-    private javax.swing.JLabel jFechaon;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel18;
@@ -404,7 +375,6 @@ public class RegistroPaquete extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
